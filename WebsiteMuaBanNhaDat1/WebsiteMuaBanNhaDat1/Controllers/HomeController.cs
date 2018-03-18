@@ -13,5 +13,10 @@ namespace WebsiteMuaBanNhaDat1.Controllers
         {
             return View();
         }
+        public ActionResult Index1()
+        {
+          
+            return View();
+        }
     }
 }

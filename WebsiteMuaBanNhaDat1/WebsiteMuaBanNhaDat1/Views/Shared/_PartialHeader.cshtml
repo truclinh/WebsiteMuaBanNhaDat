@@ -14,30 +14,68 @@
                 </button>
 
             </div>
-
-
             <!-- Nav Starts -->
             <div class="navbar-collapse  collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="index.php">Home</a></li>
-                    <li><a href="about.php">About</a></li>
-                    <li><a href="agents.php">Agents</a></li>
-                    <li><a href="blog.php">Blog</a></li>
-                    <li><a href="contact.php">Contact</a></li>
+                <ul class="nav navbar-nav navbar-right nav-list">
+                    <li class="active"><a href="@Url.Action("Index","Home")"><img src="~/Content/images/home1.png" style="width:25px;height:22px" /></a></li>
                     <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
+                        <a href="javascript:void(0)" class="dropbtn">Nhà đất bán</a>
                         <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
+                            <a href="/ban-can-ho-chung-cu" >Bán căn hộ chung cư</a>
+                            <a href="/ban-nha-rieng" >Bán nhà riêng</a>
+                            <a href="/ban-nha-biet-thu-lien-ke" >Bán nhà biệt thự, liền kề</a>
+                            <a href="/ban-nha-mat-pho" >Bán nhà mặt phố</a>
+                            <a href="/ban-dat-nen-du-an" >Bán đất nền dự án</a>
+                            <a href="/ban-dat" >Bán đất</a>
+                            <a href="/ban-trang-trai-khu-nghi-duong" >Bán trang trại, khu nghỉ dưỡng</a>
+                            <a href="/ban-kho-nha-xuong" >Bán kho, nhà xưởng</a>
+                            <a href="/ban-loai-bat-dong-san-khac" >Bán loại bất động sản khác</a>
                         </div>
                     </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Nhà đất cho thuê</a>
+                        <div class="dropdown-content">
+                            <a href="/cho-thue-can-ho-chung-cu" >Cho thuê căn hộ chung cư</a>
+                            <a href="/cho-thue-nha-rieng" >Cho thuê nhà riêng</a>
+                            <a href="/cho-thue-nha-mat-pho" >Cho thuê nhà mặt phố</a>
+                            <a href="/cho-thue-nha-tro-phong-tro" >Cho thuê nhà trọ, phòng trọ</a>
+                            <a href="/cho-thue-van-phong" >Cho thuê văn phòng</a>
+                            <a href="/cho-thue-cua-hang-ki-ot" >Cho thuê cửa hàng - ki ốt</a>
+                            <a href="/cho-thue-kho-nha-xuong-dat" >Cho thuê kho, nhà xưởng, đất</a>
+                            <a href="/cho-thue-loai-bat-dong-san-khac" >Cho thuê loại bất động sản khác</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Cần mua</a>
+                        <div class="dropdown-content">
+                            <a href="/mua-can-ho-chung-cu" >Mua căn hộ chung cư</a>
+                            <a href="/mua-nha-rieng" >Mua nhà riêng</a>
+                            <a href="/mua-nha-biet-thu-lien-ke" >Mua nhà biệt thự, liền kề</a>
+                            <a href="/mua-nha-mat-pho" >Mua nhà mặt phố</a>
+                            <a href="/mua-dat-nen-du-an" >Mua đất nền dự án</a>
+                            <a href="/mua-dat" >Mua đất</a>
+                            <a href="/mua-trang-trai-khu-nghi-duong" >Mua trang trại, khu nghỉ dưỡng</a>
+                            <a href="/mua-kho-nha-xuong" >Mua kho, nhà xưởng</a>
+                            <a href="/mua-cac-loai-bat-dong-san-khac" >Mua loại bất động sản khác</a>
+
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Cần thuê</a>
+                        <div class="dropdown-content">
+                            <a href="/can-thue-can-ho-chung-cu" >Cần thuê căn hộ chung cư</a>
+                            <a href="/can-thue-nha-rieng" >Cần thuê nhà riêng</a>
+                            <a href="/can-thue-nha-mat-pho" >Cần thuê nhà mặt phố</a>
+                            <a href="/can-thue-nha-tro-phong-tro" >Cần thuê nhà trọ, phòng trọ</a>
+                            <a href="/can-thue-van-phong" >Cần thuê văn phòng</a>
+                            <a href="/can-thue-cua-hang-ki-ot" >Cần thuê cửa hàng - ki ốt</a>
+                            <a href="/can-thue-kho-nha-xuong-dat" >Cần thuê kho, nhà xưởng, đất</a>
+                            <a href="/can-thue-cac-loai-bat-dong-san-khac" >Cần thuê loại bất động sản khác</a>
+                        </div>
+                    </li>
+                    <li><a href="contact.php">Dự án</a></li>
+                    <li><a href="contact.php">Mẫu nhà đẹp</a></li>
+                    <li><a href="contact.php">Liên hệ - Góp ý</a></li>
                 </ul>
             </div>
             <!-- #Nav Ends -->
@@ -56,12 +94,12 @@
 
     <!-- Header Starts -->
     <div class="header">
-        <a href="index.php"><img src="~/Content/images/logo.png" alt="Realestate"></a>
+        <a href="@Url.Action("Index","Home")"><img src="~/Content/images/logo.png" alt="Realestate"></a>
 
         <ul class="pull-right">
-            <li><a href="buysalerent.php">Buy</a></li>
-            <li><a href="buysalerent.php">Sale</a></li>
-            <li><a href="buysalerent.php">Rent</a></li>
+            <li><a href="buysalerent.php">Mua</a></li>
+            <li><a href="buysalerent.php">Bán</a></li>
+            <li><a href="buysalerent.php">Thuê</a></li>
         </ul>
     </div>
     <!-- #Header Starts -->

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>@ViewBag.Title</title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     @Html.DevExpress().GetStyleSheets( 
         new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
         new StyleSheet { ExtensionSuite = ExtensionSuite.RichEdit },
@@ -17,7 +17,6 @@
         new Script { ExtensionSuite = ExtensionSuite.Editors },
         new Script { ExtensionSuite = ExtensionSuite.GridView }
     )
-
     <link rel="stylesheet" href="~/Content/assets/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="~/Content/assets/style.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -37,6 +36,8 @@
     <script type="text/javascript" src="~/Content/assets/slitslider/js/modernizr.custom.79639.js"></script>
     <script type="text/javascript" src="~/Content/assets/slitslider/js/jquery.ba-cond.min.js"></script>
     <script type="text/javascript" src="~/Content/assets/slitslider/js/jquery.slitslider.js"></script>
+
+   
     <!-- slitslider -->
 
     <style type="text/css">
@@ -48,7 +49,7 @@
             display: none;
             position: absolute;
             background-color: white;
-            min-width: 160px;
+            min-width: 220px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 9999;
         }
@@ -60,17 +61,22 @@
                 display: block;
                 text-align: left;
                 border: 1px solid #acb0b7;
+                /*border-bottom:1px solid #acb0b7;*/
             }
 
                 .dropdown-content a:hover {
-                    background-color: #60cc43;
-                    color: white;
+                    background-color: rgba(0,0,0,0.2);
+                    color:#0e2111;
                     font-weight: bold;
                 }
 
         .dropdown:hover .dropdown-content {
             display: block;
         }
+        .dropdown:hover .dropbtn {
+   color:white;
+   font-weight:bold;
+}
     </style>
 </head>
 

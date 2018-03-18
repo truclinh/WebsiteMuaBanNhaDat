@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
@@ -17,10 +17,66 @@
         new Script { ExtensionSuite = ExtensionSuite.Editors },
         new Script { ExtensionSuite = ExtensionSuite.GridView }
     )
-    
+
+    <link rel="stylesheet" href="~/Content/assets/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/assets/style.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/assets/bootstrap/js/bootstrap.js"></script>
+    <script src="~/Content/assets/script.js"></script>
+
+
+
+    <!-- Owl stylesheet -->
+    <link rel="stylesheet" href="~/Content/assets/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="~/Content/assets/owl-carousel/owl.theme.css">
+    <script src="~/Content/assets/owl-carousel/owl.carousel.js"></script>
+    <!-- Owl stylesheet -->
+    <!-- slitslider -->
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/slitslider/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/slitslider/css/custom.css" />
+    <script type="text/javascript" src="~/Content/assets/slitslider/js/modernizr.custom.79639.js"></script>
+    <script type="text/javascript" src="~/Content/assets/slitslider/js/jquery.ba-cond.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/slitslider/js/jquery.slitslider.js"></script>
+    <!-- slitslider -->
+
+    <style type="text/css">
+        li.dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 9999;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 2px 5px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+                border: 1px solid #acb0b7;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #60cc43;
+                    color: white;
+                    font-weight: bold;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
+    @Html.Partial("_PartialHeader")
     @RenderBody()
+    @Html.Partial("_PartialFooter")
 </body>
 </html>

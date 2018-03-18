@@ -130,6 +130,52 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\assets\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\assets\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\assets\fonts\din.svg" />
+    <Content Include="Content\assets\owl-carousel\AjaxLoader.gif" />
+    <Content Include="Content\assets\owl-carousel\grabbing.png" />
+    <Content Include="Content\assets\owl-carousel\owl.carousel.css" />
+    <Content Include="Content\assets\owl-carousel\owl.carousel.js" />
+    <Content Include="Content\assets\owl-carousel\owl.theme.css" />
+    <Content Include="Content\assets\script.js" />
+    <Content Include="Content\assets\slitslider\css\custom.css" />
+    <Content Include="Content\assets\slitslider\css\style.css" />
+    <Content Include="Content\assets\slitslider\js\jquery.ba-cond.min.js" />
+    <Content Include="Content\assets\slitslider\js\jquery.slitslider.js" />
+    <Content Include="Content\assets\slitslider\js\modernizr.custom.79639.js" />
+    <Content Include="Content\assets\style.css" />
+    <Content Include="Content\images\about.jpg" />
+    <Content Include="Content\images\advertisements.jpg" />
+    <Content Include="Content\images\agents\1.jpg" />
+    <Content Include="Content\images\agents\2.jpg" />
+    <Content Include="Content\images\agents\3.jpg" />
+    <Content Include="Content\images\agents\4.jpg" />
+    <Content Include="Content\images\banner.jpg" />
+    <Content Include="Content\images\bg.jpg" />
+    <Content Include="Content\images\bginside.jpg" />
+    <Content Include="Content\images\bgmain.png" />
+    <Content Include="Content\images\blog\1.jpg" />
+    <Content Include="Content\images\blog\2.jpg" />
+    <Content Include="Content\images\blog\3.jpg" />
+    <Content Include="Content\images\blog\4.jpg" />
+    <Content Include="Content\images\blog\5.jpg" />
+    <Content Include="Content\images\facebook.png" />
+    <Content Include="Content\images\instagram.png" />
+    <Content Include="Content\images\linkedin.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\properties\1.jpg" />
+    <Content Include="Content\images\properties\2.jpg" />
+    <Content Include="Content\images\properties\3.jpg" />
+    <Content Include="Content\images\properties\4.jpg" />
+    <Content Include="Content\images\properties\5.jpg" />
+    <Content Include="Content\images\slider\1.jpg" />
+    <Content Include="Content\images\slider\2.jpg" />
+    <Content Include="Content\images\slider\3.jpg" />
+    <Content Include="Content\images\slider\4.jpg" />
+    <Content Include="Content\images\slider\5.jpg" />
+    <Content Include="Content\images\twitter.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Global.asax" />
@@ -157,6 +203,13 @@
     <Content Include="Scripts\knockout-3.3.0.debug.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />
     <Content Include="packages.config" />
+    <Content Include="Content\assets\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\assets\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\assets\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\assets\fonts\din.eot" />
+    <Content Include="Content\assets\fonts\din.ttf" />
+    <Content Include="Content\assets\fonts\din.woff" />
+    <Content Include="Content\assets\owl-carousel\.DS_Store" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Views\Web.config" />
@@ -168,6 +221,9 @@
     <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Views\Shared\_PartialHeader.cshtml" />
+    <Content Include="Views\Shared\_PartialFooter.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
@@ -184,6 +240,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -191,7 +248,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>

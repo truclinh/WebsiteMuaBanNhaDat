@@ -69,6 +69,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -180,6 +182,16 @@
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="Models\MuaBanNhaDatModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MuaBanNhaDatModel.edmx</DependentUpon>
+      <LastGenOutput>MuaBanNhaDatModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\MuaBanNhaDatModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MuaBanNhaDatModel.edmx</DependentUpon>
+      <LastGenOutput>MuaBanNhaDatModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\ace.js" />
     <Content Include="Scripts\cldr.event.js" />
     <Content Include="Scripts\cldr.js" />
@@ -211,6 +223,13 @@
     <Content Include="Content\assets\fonts\din.ttf" />
     <Content Include="Content\assets\fonts\din.woff" />
     <Content Include="Content\assets\owl-carousel\.DS_Store" />
+    <EntityDeploy Include="Models\MuaBanNhaDatModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MuaBanNhaDatModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MuaBanNhaDatModel.edmx.diagram">
+      <DependentUpon>MuaBanNhaDatModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Views\Web.config" />
@@ -231,6 +250,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index1.cshtml" />
+    <Content Include="Views\Home\NhaDatBan_MenuPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -246,11 +266,71 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DonVi.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DuongPho.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LienHe.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoaiHinh.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MuaBanNhaDatModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MuaBanNhaDatModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MuaBanNhaDatModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MuaBanNhaDatModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MuaBanNhaDatModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NoiDungLoaiHinh.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PhuongXa.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanHuyen.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaiKhoan.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TinhTP.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TinRao.cs" />
+    <Compile Include="Models\TinRaoCBCHT.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TinRaoCMCT.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,5 +1,9 @@
-  $(document).ready(function() {
-   $("#owl-example").owlCarousel();
+$(document).ready(function () {
+
+    $("#owl-example").owlCarousel();
+
+    $("#owl-example1").owlCarousel();
+
   $('.listing-detail span').tooltip('hide');
         $('.carousel').carousel({
             interval: 3000

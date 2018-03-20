@@ -1,7 +1,10 @@
-﻿
+﻿@using WebsiteMuaBanNhaDat1.Models
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int x = 0;
+    //  int sizeList = ViewBag.TinRaoNoiBat.Count();
+    var getlist = ViewBag.TinRaoNoiBat;
 }
 
 <div class="">
@@ -10,67 +13,84 @@
     <div id="slider" class="sl-slider-wrapper">
 
         <div class="sl-slider">
-
-            <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
-                <div class="sl-slide-inner">
-                    <div class="bg-img bg-img-1"></div>
-                    <h2><a href="#">1 Phòng khách, 3 Phòng ngủ</a></h2>
-                    <blockquote>
-                        <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 167 Đại lộ Bình Dương, Bình Dương</p>
-                        <p>Một không gian thoáng đãng với vườn cây xây xung quanh tạo nên một không gian gần gũi với thiên nhiên</p>
-                        <cite>800 TRIỆU</cite>
-                    </blockquote>
-                </div>
-            </div>
-
-            <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
-                <div class="sl-slide-inner">
-                    <div class="bg-img bg-img-2"></div>
-                    <h2><a href="#">1 Phòng khách, 3 Phòng ngủ</a></h2>
-                    <blockquote>
-                        <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 167 Đại lộ Bình Dương, Bình Dương</p>
-                        <p>Một không gian thoáng đãng với vườn cây xây xung quanh tạo nên một không gian gần gũi với thiên nhiên</p>
-                        <cite>800 TRIỆU</cite>
-                    </blockquote>
-                </div>
-            </div>
-
-            <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
-                <div class="sl-slide-inner">
-                    <div class="bg-img bg-img-3"></div>
-                    <h2><a href="#">1 Phòng khách, 3 Phòng ngủ</a></h2>
-                    <blockquote>
-                        <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 167 Đại lộ Bình Dương, Bình Dương</p>
-                        <p>Một không gian thoáng đãng với vườn cây xây xung quanh tạo nên một không gian gần gũi với thiên nhiên</p>
-                        <cite>800 TRIỆU</cite>
-                    </blockquote>
-                </div>
-            </div>
-
-            <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="-5" data-slice2-rotation="25" data-slice1-scale="2" data-slice2-scale="1">
-                <div class="sl-slide-inner">
-                    <div class="bg-img bg-img-4"></div>
-                    <h2><a href="#">1 Phòng khách, 3 Phòng ngủ</a></h2>
-                    <blockquote>
-                        <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 167 Đại lộ Bình Dương, Bình Dương</p>
-                        <p>Một không gian thoáng đãng với vườn cây xây xung quanh tạo nên một không gian gần gũi với thiên nhiên</p>
-                        <cite>800 TRIỆU</cite>
-                    </blockquote>
-                </div>
-            </div>
-
-            <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
-                <div class="sl-slide-inner">
-                    <div class="bg-img bg-img-5"></div>
-                    <h2><a href="#">1 Phòng khách, 3 Phòng ngủ</a></h2>
-                    <blockquote>
-                        <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 167 Đại lộ Bình Dương, Bình Dương</p>
-                        <p>Một không gian thoáng đãng với vườn cây xây xung quanh tạo nên một không gian gần gũi với thiên nhiên</p>
-                        <cite>800 TRIỆU</cite>
-                    </blockquote>
-                </div>
-            </div>
-        </div><!-- /sl-slider -->
+            @foreach (var item in ViewBag.TinRaoNoiBat)
+            {
+                if (item.ma_loaihinh == 1 && item.so_phongngu != 0)
+                {
+                    x = x + 1;
+                    if (x == 1)
+                    {
+                        <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+                            <div class="sl-slide-inner">
+                                <div class="bg-img bg-img-1"></div>
+                                <h2><a href="#">@(item.so_phongkhach) Phòng khách, @(item.so_phongngu) Phòng ngủ, @(item.so_nhabep) Nhà bếp, @(item.so_toilet) Toilet</a></h2>
+                                <blockquote>
+                                    <p class="location"><span class="glyphicon glyphicon-map-marker"></span>@(item.ten_quanhuyen) ,@(item.ten_tinhtp) </p>
+                                    <p>@(item.tieude)</p>
+                                    <cite>@(item.gia)  @(item.ten_donvi) </cite>
+                                </blockquote>
+                            </div>
+                        </div>
+                    }
+                    else if (x == 2)
+                    {
+                        <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
+                            <div class="sl-slide-inner">
+                                <div class="bg-img bg-img-2"></div>
+                                <h2><a href="#">@(item.so_phongkhach) Phòng khách, @(item.so_phongngu) Phòng ngủ, @(item.so_nhabep) Nhà bếp, @(item.so_nhabep) Toilet</a></h2>
+                                <blockquote>
+                                    <p class="location"><span class="glyphicon glyphicon-map-marker"></span>@(item.ten_quanhuyen) ,@(item.ten_tinhtp) </p>
+                                    <p>@(item.tieude)</p>
+                                    <cite>@(item.gia)  @(item.ten_donvi) </cite>
+                                </blockquote>
+                            </div>
+                        </div>
+                    }
+                    else if (x == 3)
+                    {
+                        <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
+                            <div class="sl-slide-inner">
+                                <div class="bg-img bg-img-3"></div>
+                                <h2><a href="#">@(item.so_phongkhach) Phòng khách, @(item.so_phongngu) Phòng ngủ, @(item.so_nhabep) Nhà bếp, @(item.so_nhabep) Toilet</a></h2>
+                                <blockquote>
+                                    <p class="location"><span class="glyphicon glyphicon-map-marker"></span>@(item.ten_quanhuyen) ,@(item.ten_tinhtp) </p>
+                                    <p>@(item.tieude)</p>
+                                    <cite>@(item.gia)  @(item.ten_donvi) </cite>
+                                </blockquote>
+                            </div>
+                        </div>
+                    }
+                    else if (x == 4)
+                    {
+                        <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="-5" data-slice2-rotation="25" data-slice1-scale="2" data-slice2-scale="1">
+                            <div class="sl-slide-inner">
+                                <div class="bg-img bg-img-4"></div>
+                                <h2><a href="#">@(item.so_phongkhach) Phòng khách, @(item.so_phongngu) Phòng ngủ, @(item.so_nhabep) Nhà bếp, @(item.so_nhabep) Toilet</a></h2>
+                                <blockquote>
+                                    <p class="location"><span class="glyphicon glyphicon-map-marker"></span>@(item.ten_quanhuyen) ,@(item.ten_tinhtp) </p>
+                                    <p>@(item.tieude)</p>
+                                    <cite>@(item.gia)  @(item.ten_donvi) </cite>
+                                </blockquote>
+                            </div>
+                        </div>
+                    }
+                    else if (x == 5)
+                    {
+                        <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
+                            <div class="sl-slide-inner">
+                                <div class="bg-img bg-img-5"></div>
+                                <h2><a href="#">@(item.so_phongkhach) Phòng khách, @(item.so_phongngu) Phòng ngủ, @(item.so_nhabep) Nhà bếp, @(item.so_nhabep) Toilet</a></h2>
+                                <blockquote>
+                                    <p class="location"><span class="glyphicon glyphicon-map-marker"></span>@(item.ten_quanhuyen) ,@(item.ten_tinhtp) </p>
+                                    <p>@(item.tieude)</p>
+                                    <cite>@(item.gia)  @(item.ten_donvi) </cite>
+                                </blockquote>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
 
 
 
@@ -137,105 +157,120 @@
 </div>
 <!-- banner -->
 <div class="container">
+    <!--Nhà đất bán-->
     <div class="properties-listing spacer">
-        <a href="buysalerent.php" class="pull-right viewall">View All Listing</a>
-        <h2>Featured Properties</h2>
+        <a href="buysalerent.php" class="pull-right viewall">Xem thêm tin rao Nhà đất bán</a>
+        <h2>NHÀ ĐẤT BÁN</h2>
         <div id="owl-example" class="owl-carousel">
-            <div class="properties">
-                <div class="image-holder">
-                    <img src="~/Content/images/properties/1.jpg" class="img-responsive" alt="properties" />
-                    <div class="status sold">Sold</div>
-                </div>
-                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                <p class="price">Price: $234,900</p>
-                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                <a class="btn btn-primary" href="property-detail.php">View Details</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder">
-                    <img src="~/Content/images/properties/2.jpg" class="img-responsive" alt="properties" />
-                    <div class="status new">New</div>
-                </div>
-                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                <p class="price">Price: $234,900</p>
-                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                <a class="btn btn-primary" href="property-detail.php">View Details</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder"><img src="~/Content/images/properties/3.jpg" class="img-responsive" alt="properties" /></div>
-                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                <p class="price">Price: $234,900</p>
-                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                <a class="btn btn-primary" href="property-detail.php">View Details</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder"><img src="~/Content/images/properties/4.jpg" class="img-responsive" alt="properties" /></div>
-                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                <p class="price">Price: $234,900</p>
-                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                <a class="btn btn-primary" href="property-detail.php">View Details</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder">
-                    <img src="~/Content/images/properties/1.jpg" class="img-responsive" alt="properties" />
-                    <div class="status sold">Sold</div>
-                </div>
-                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                <p class="price">Price: $234,900</p>
-                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                <a class="btn btn-primary" href="property-detail.php">View Details</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder">
-                    <img src="~/Content/images/properties/2.jpg" class="img-responsive" alt="properties" />
-                    <div class="status sold">Sold</div>
-                </div>
-                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                <p class="price">Price: $234,900</p>
-                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                <a class="btn btn-primary" href="property-detail.php">View Details</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder">
-                    <img src="~/Content/images/properties/3.jpg" class="img-responsive" alt="properties" />
-                    <div class="status new">New</div>
-                </div>
-                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                <p class="price">Price: $234,900</p>
-                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                <a class="btn btn-primary" href="property-detail.php">View Details</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder"><img src="~/Content/images/properties/4.jpg" class="img-responsive" alt="properties" /></div>
-                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                <p class="price">Price: $234,900</p>
-                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                <a class="btn btn-primary" href="property-detail.php">View Details</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder"><img src="~/Content/images/properties/1.jpg" class="img-responsive" alt="properties" /></div>
-                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                <p class="price">Price: $234,900</p>
-                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                <a class="btn btn-primary" href="property-detail.php">View Details</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder"><img src="~/Content/images/properties/2.jpg" class="img-responsive" alt="properties" /></div>
-                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                <p class="price">Price: $234,900</p>
-                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                <a class="btn btn-primary" href="property-detail.php">View Details</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder"><img src="~/Content/images/properties/3.jpg" class="img-responsive" alt="properties" /></div>
-                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                <p class="price">Price: $234,900</p>
-                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                <a class="btn btn-primary" href="property-detail.php">View Details</a>
-            </div>
+            @foreach (var item in ViewBag.TinRaoNoiBat)
+            {
+                if (item.ma_loaihinh == 1)
+                {
+                    if ((DateTime.Now.Subtract(item.ngaydang).Days)<=7)
+                    {
+                        <div class="properties">
+                            <div class="image-holder">
+                                <img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" />
+                                <div class="status new">Mới</div>
+                            </div>
+                            <h4><a href="#" data-toggle="tooltip" title="@item.tieude!">@(item.tieude.Substring(0, 22))...</a></h4>
+                            <p class="price">Giá: @(item.gia)  @(item.ten_donvi) </p>
+                            @if (item.so_phongngu > 0)
+                            {
+                                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
 
+                            }
+                            else
+                            {
+                                <div style="visibility:hidden" class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
+                            }
+                            <a class="btn btn-primary" href="property-detail.php">Chi tiết</a>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="properties">
+                            <img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" />
+                            <h4><a href="#" data-toggle="tooltip" title="@item.tieude!">@(item.tieude.Substring(0, 22))...</a></h4>
+                            <p class="price">Giá: @(item.gia)  @(item.ten_donvi) </p>
+                            @if (item.so_phongngu > 0)
+                            {
+                                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
+
+                            }
+                            else
+                            {
+                                <div style="visibility:hidden" class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
+                            }
+                             <a class="btn btn-primary" href="property-detail.php">Chi tiết</a>
+                        </div>
+                    }
+
+
+                }
+            }
         </div>
     </div>
+    </div>
+<!--End Nhà đất bán-->
+    <!--Nhà đất cho thuê-->
+<div class="container">
+    <div class="properties-listing spacer">
+        <a href="buysalerent.php" class="pull-right viewall">Xem thêm tin rao Nhà đất cho thuê</a>
+        <h2>NHÀ ĐẤT CHO THUÊ</h2>
+        <div id="owl-example1" class="owl-carousel">
+            @foreach (var item in ViewBag.TinRaoNoiBat)
+            {
+                if (item.ma_loaihinh == 2)
+                {
+                    if ((DateTime.Now.Subtract(item.ngaydang).Days) <= 7)
+                    {
+                        <div class="properties">
+                            <div class="image-holder">
+                                <img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" />
+                                <div class="status new">Mới</div>
+                            </div>
+                            <h4><a href="#" data-toggle="tooltip" title="@item.tieude!">@(item.tieude.Substring(0, 22))...</a></h4>
+                            <p class="price">Giá: @(item.gia)  @(item.ten_donvi) </p>
+                            @if (item.so_phongngu > 0)
+                            {
+                                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
+
+                            }
+                            else
+                            {
+                                <div style="visibility:hidden" class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
+                            }
+                            <a class="btn btn-primary" href="property-detail.php">Chi tiết</a>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="properties">
+                            <img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" />
+                            <h4><a href="#" data-toggle="tooltip" title="@item.tieude!">@(item.tieude.Substring(0, 22))...</a></h4>
+                            <p class="price">Giá: @(item.gia)  @(item.ten_donvi) </p>
+                            @if (item.so_phongngu > 0)
+                            {
+                                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
+
+                            }
+                            else
+                            {
+                                <div style="visibility:hidden" class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
+                            }
+                            <a class="btn btn-primary" href="property-detail.php">Chi tiết</a>
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>
+    <!--End Nhà đất cho thuê-->
+<div class="container">
     <div class="spacer">
         <div class="row">
             <div class="col-lg-6 col-sm-9 recent-view">
@@ -300,4 +335,19 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
 
+        $("#owl-example").owlCarousel();
+
+        $("#owl-example1").owlCarousel();
+
+        $('.listing-detail span').tooltip('hide');
+        $('.carousel').carousel({
+            interval: 3000
+        });
+        $('.carousel').carousel('cycle');
+    });
+
+
+</script>

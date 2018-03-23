@@ -44,6 +44,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BotDetect, Version=4.3.0.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.3.0\lib\net45\BotDetect.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BotDetect.Web.Mvc, Version=4.3.0.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.3.0\lib\net45\BotDetect.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -136,6 +144,7 @@
     <Content Include="Content\assets\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\assets\bootstrap\js\bootstrap.js" />
     <Content Include="Content\assets\fonts\din.svg" />
+    <Content Include="Content\assets\fonts\font-awesome.min.css" />
     <Content Include="Content\assets\owl-carousel\AjaxLoader.gif" />
     <Content Include="Content\assets\owl-carousel\grabbing.png" />
     <Content Include="Content\assets\owl-carousel\owl.carousel.css" />
@@ -251,6 +260,14 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index1.cshtml" />
     <Content Include="Views\Home\NhaDatBan_MenuPartial.cshtml" />
+    <Content Include="Views\Home\MenuPartial.cshtml" />
+    <Content Include="Views\Home\MenuItemPartial.cshtml" />
+    <Content Include="Views\Home\TinNoiBatPartial.cshtml" />
+    <Content Include="Views\Home\TinNoiBatCMCTPartial.cshtml" />
+    <Content Include="Views\Home\FooterPartial.cshtml" />
+    <Content Include="Views\TaiKhoan\DangKy.cshtml" />
+    <Content Include="Views\Shared\_PartialDangNhap.cshtml" />
+    <Content Include="Views\TaiKhoan\DangNhapPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -263,8 +280,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DangKyNhanThongBao.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DonVi.cs">
       <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
@@ -278,6 +299,11 @@
     <Compile Include="Models\LoaiHinh.cs">
       <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoaiHinh_en.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Metadata\TaiKhoan.metadata.cs" />
+    <Compile Include="Models\TaiKhoanDAO.cs" />
     <Compile Include="Models\MuaBanNhaDatModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -294,6 +320,9 @@
       <DependentUpon>MuaBanNhaDatModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\NoiDungLoaiHinh.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PhongThuy.cs">
       <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PhuongXa.cs">
@@ -318,6 +347,7 @@
       <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TinRao.cs" />
+    <Compile Include="Models\TinRaoCanMuaCanThue.cs" />
     <Compile Include="Models\TinRaoCBCHT.cs">
       <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
     </Compile>

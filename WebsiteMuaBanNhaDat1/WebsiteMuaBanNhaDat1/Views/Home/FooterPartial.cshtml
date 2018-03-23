@@ -1,0 +1,6 @@
+﻿@using WebsiteMuaBanNhaDat1.Models
+@model IEnumerable<LoaiHinh>
+@foreach (var item in Model)
+{
+<li class="col-lg-12 col-sm-12 col-xs-3"><a href="@Url.Action(item.tenkhongdau,"Home")">@item.ten_loaihinh</a></li>
+}

@@ -1,19 +1,17 @@
 ﻿@using WebsiteMuaBanNhaDat1.Models
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Trang chủ";
     Layout = "~/Views/Shared/_Layout.cshtml";
     int x = 0;
-    //  int sizeList = ViewBag.TinRaoNoiBat.Count();
-    var getlist = ViewBag.TinRaoNoiBat;
+    int y = 0;
+    string ketqua = ViewBag.KetQua;
 }
 
 <div class="">
-
-
     <div id="slider" class="sl-slider-wrapper">
 
         <div class="sl-slider">
-            @foreach (var item in ViewBag.TinRaoNoiBat)
+            @foreach (var item in ViewBag.TinRaoCBCHTNoiBat)
             {
                 if (item.ma_loaihinh == 1 && item.so_phongngu != 0)
                 {
@@ -114,240 +112,200 @@
         <div class="searchbar">
             <div class="row">
                 <div class="col-lg-6 col-sm-6">
-                    <input type="text" class="form-control" placeholder="Search of Properties">
+                    <input type="text" class="form-control" placeholder="Nhập từ khóa để tìm theo cụm từ">
                     <div class="row">
                         <div class="col-lg-3 col-sm-3 ">
                             <select class="form-control">
-                                <option>Buy</option>
-                                <option>Rent</option>
-                                <option>Sale</option>
+                                <option>Loại hình</option>
+                                <option>Nhà đất bán</option>
+                                <option>Nhà đất cho thuê</option>
+                                <option>Nhà đất cần mua</option>
+                                <option>Nhà đất cần thuê</option>
                             </select>
                         </div>
                         <div class="col-lg-3 col-sm-4">
                             <select class="form-control">
-                                <option>Price</option>
-                                <option>$150,000 - $200,000</option>
-                                <option>$200,000 - $250,000</option>
-                                <option>$250,000 - $300,000</option>
-                                <option>$300,000 - above</option>
+                                <option>Loại</option>
+                                <option>Bán A</option>
+                                <option>Bán A</option>
+                                <option>Bán A</option>
+                                <option>Bán A</option>
                             </select>
                         </div>
-                        <div class="col-lg-3 col-sm-4">
+                        <div class="col-lg-4 col-sm-4">
                             <select class="form-control">
-                                <option>Property</option>
+                                <option>Tỉnh/Thành phố</option>
                                 <option>Apartment</option>
                                 <option>Building</option>
                                 <option>Office Space</option>
                             </select>
                         </div>
-                        <div class="col-lg-3 col-sm-4">
-                            <button class="btn btn-success" onclick="window.location.href='buysalerent.php'">Find Now</button>
+                        <div class="col-lg-2 col-sm-4">
+                            <a href="#" class="btn btn-success btn-lg">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </a>
                         </div>
                     </div>
 
 
                 </div>
                 <div class="col-lg-5 col-lg-offset-1 col-sm-6 ">
-                    @*<p>Đăng nhập để thực hiện đăng bài</p>*@
-                    <button class="btn btn-info" data-toggle="modal" data-target="#loginpop">Đăng nhập</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- banner -->
-<div class="container">
+@foreach (var item in ViewBag.lstLoaiHinhCBCHT)
+{
     <!--Nhà đất bán-->
-    <div class="properties-listing spacer">
-        <a href="buysalerent.php" class="pull-right viewall">Xem thêm tin rao Nhà đất bán</a>
-        <h2>NHÀ ĐẤT BÁN</h2>
-        <div id="owl-example" class="owl-carousel">
-            @foreach (var item in ViewBag.TinRaoNoiBat)
-            {
-                if (item.ma_loaihinh == 1)
-                {
-                    if ((DateTime.Now.Subtract(item.ngaydang).Days)<=7)
-                    {
-                        <div class="properties">
-                            <div class="image-holder">
-                                <img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" />
-                                <div class="status new">Mới</div>
-                            </div>
-                            <h4><a href="#" data-toggle="tooltip" title="@item.tieude!">@(item.tieude.Substring(0, 22))...</a></h4>
-                            <p class="price">Giá: @(item.gia)  @(item.ten_donvi) </p>
-                            @if (item.so_phongngu > 0)
-                            {
-                                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
-
-                            }
-                            else
-                            {
-                                <div style="visibility:hidden" class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
-                            }
-                            <a class="btn btn-primary" href="property-detail.php">Chi tiết</a>
-                        </div>
-
-                    }
-                    else
-                    {
-                        <div class="properties">
-                            <img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" />
-                            <h4><a href="#" data-toggle="tooltip" title="@item.tieude!">@(item.tieude.Substring(0, 22))...</a></h4>
-                            <p class="price">Giá: @(item.gia)  @(item.ten_donvi) </p>
-                            @if (item.so_phongngu > 0)
-                            {
-                                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
-
-                            }
-                            else
-                            {
-                                <div style="visibility:hidden" class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
-                            }
-                             <a class="btn btn-primary" href="property-detail.php">Chi tiết</a>
-                        </div>
-                    }
-
-
-                }
-            }
+    <div class="container">
+        <div class="properties-listing spacer">
+            <a href="buysalerent.php" class="pull-right viewall" style="color:darkred"> Xem thêm <i class="fas fa-angle-double-right"></i></a>
+            <h3 style="text-transform:uppercase;font-weight:bold">@(item.ten_loaihinh)</h3>
+            <div id="owl-example@(item.ma_loaihinh)" class="owl-carousel">
+                @Html.Action("TinNoiBatPartial", "Home", new { ma = item.ma_loaihinh })
+            </div>
         </div>
     </div>
-    </div>
-<!--End Nhà đất bán-->
-    <!--Nhà đất cho thuê-->
-<div class="container">
-    <div class="properties-listing spacer">
-        <a href="buysalerent.php" class="pull-right viewall">Xem thêm tin rao Nhà đất cho thuê</a>
-        <h2>NHÀ ĐẤT CHO THUÊ</h2>
-        <div id="owl-example1" class="owl-carousel">
-            @foreach (var item in ViewBag.TinRaoNoiBat)
-            {
-                if (item.ma_loaihinh == 2)
-                {
-                    if ((DateTime.Now.Subtract(item.ngaydang).Days) <= 7)
-                    {
-                        <div class="properties">
-                            <div class="image-holder">
-                                <img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" />
-                                <div class="status new">Mới</div>
-                            </div>
-                            <h4><a href="#" data-toggle="tooltip" title="@item.tieude!">@(item.tieude.Substring(0, 22))...</a></h4>
-                            <p class="price">Giá: @(item.gia)  @(item.ten_donvi) </p>
-                            @if (item.so_phongngu > 0)
-                            {
-                                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
+    <!--End Nhà đất bán-->
+}
 
-                            }
-                            else
-                            {
-                                <div style="visibility:hidden" class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
-                            }
-                            <a class="btn btn-primary" href="property-detail.php">Chi tiết</a>
-                        </div>
 
-                    }
-                    else
-                    {
-                        <div class="properties">
-                            <img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" />
-                            <h4><a href="#" data-toggle="tooltip" title="@item.tieude!">@(item.tieude.Substring(0, 22))...</a></h4>
-                            <p class="price">Giá: @(item.gia)  @(item.ten_donvi) </p>
-                            @if (item.so_phongngu > 0)
-                            {
-                                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
-
-                            }
-                            else
-                            {
-                                <div style="visibility:hidden" class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
-                            }
-                            <a class="btn btn-primary" href="property-detail.php">Chi tiết</a>
-                        </div>
-                    }
-                }
-            }
-        </div>
-    </div>
-</div>
-    <!--End Nhà đất cho thuê-->
 <div class="container">
     <div class="spacer">
         <div class="row">
             <div class="col-lg-6 col-sm-9 recent-view">
-                <h3>About Us</h3>
-                <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.<br><a href="about.php">Learn More</a></p>
+                @foreach (var item in ViewBag.lstLoaiHinhCMCT)
+                {
+                    <h3 style="text-transform:uppercase;font-weight:bold">@(item.ten_loaihinh)</h3>
+                    <ul>
+                        @Html.Action("TinNoiBatCMCTPartial", "Home", new { ma = item.ma_loaihinh })
+                    </ul>
+                    <a href="buysalerent.php" class="pull-right viewall" style="color:darkred"> Xem thêm <i class="fas fa-angle-double-right"></i></a>
+                    <br />
+                }
 
             </div>
             <div class="col-lg-5 col-lg-offset-1 col-sm-3 recommended">
-                <h3>Recommended Properties</h3>
-                <div id="myCarousel" class="carousel slide">
-                    <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-                        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-                        <li data-target="#myCarousel" data-slide-to="3" class=""></li>
-                    </ol>
-                    <!-- Carousel items -->
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <div class="row">
-                                <div class="col-lg-4"><img src="~/Content/images/properties/1.jpg" class="img-responsive" alt="properties" /></div>
-                                <div class="col-lg-8">
-                                    <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                                    <p class="price">$300,000</p>
-                                    <a href="property-detail.php" class="more">More Detail</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-lg-4"><img src="~/Content/images/properties/2.jpg" class="img-responsive" alt="properties" /></div>
-                                <div class="col-lg-8">
-                                    <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                                    <p class="price">$300,000</p>
-                                    <a href="property-detail.php" class="more">More Detail</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-lg-4"><img src="~/Content/images/properties/3.jpg" class="img-responsive" alt="properties" /></div>
-                                <div class="col-lg-8">
-                                    <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                                    <p class="price">$300,000</p>
-                                    <a href="property-detail.php" class="more">More Detail</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-lg-4"><img src="~/Content/images/properties/4.jpg" class="img-responsive" alt="properties" /></div>
-                                <div class="col-lg-8">
-                                    <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                                    <p class="price">$300,000</p>
-                                    <a href="property-detail.php" class="more">More Detail</a>
-                                </div>
-                            </div>
+                <h3 class="col-lg-12" style="background-color:green;padding:7px;color:white;font-weight:bold">Tin rao mới nhất</h3>
+                <div class="spacer">
+                    <div id="myCarousel" class="carousel slide">
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                            <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+                            <li data-target="#myCarousel" data-slide-to="3" class=""></li>
+                        </ol>
+                        <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            
+                            @foreach (var item in ViewBag.TinRaoCBCHTNoiBat)
+                            {
+                                y = y + 1;
+                                if (y == 1)
+                                {
+                                    <div class="item active">
+                                        <div class="row">
+                                            <div class="col-lg-4"><img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" /></div>
+                                            <div class="col-lg-7">
+                                                @if ((item.tieude.Length) <= 40)
+                                                {
+                                                    <h5><a href="property-detail.html">@(item.tieude)</a></h5>
+                                                }
+                                                else
+                                                {
+                                                    <h5><a href="property-detail.html">@(item.tieude.Substring(0, 40))...</a></h5>
+                                                }
+                                                <h5><a href="property-detail.html">@(item.tieude.Substring(0, 40))...</a></h5>
+                                                <p class="price">@(item.gia) @(item.ten_donvi)</p>
+                                                <a href="property-detail.html" class="more">Chi tiết</a>
+                                            </div>
+                                            <div class="col-lg-1"></div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="item">
+                                        <div class="row">
+                                            <div class="col-lg-4"><img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" /></div>
+                                            <div class="col-lg-7">
+                                                @if ((item.tieude.Length) <= 40)
+                                                {
+                                                    <h5><a href="property-detail.html" style="color:#18851a">@(item.tieude)</a></h5>
+                                                }
+                                                else
+                                                {
+                                                    <h5><a href="property-detail.html" style="color:#18851a">@(item.tieude.Substring(0, 40))...</a></h5>
+                                                }
+                                                <p class="price">@(item.gia) @(item.ten_donvi)</p>
+                                                <a href="property-detail.html" class="more">Chi tiết</a>
+                                            </div>
+                                            <div class="col-lg-1"></div>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
                         </div>
                     </div>
+                </div>
+                <br />
+                <h3 class="col-lg-12" style="background-color:green;padding:7px;color:white;font-weight:bold">Phong thủy</h3>
+                <div class="spacer">
+                    @foreach (var item in ViewBag.PhongThuy)
+                    {
+                        <br />
+                        <div class="row">
+                         
+                            <div class="col-lg-4"><img src="~/Content/images/properties/4.jpg" class="img-responsive" alt="properties" /></div>
+                            <div class="col-lg-7">
+                                @if (item.tieude.Length <= 50)
+                                {
+                                    <h5><b><a href="property-detail.html" style="color:#1d3b18">@(item.tieude)</a></b></h5>
+                                }
+                                else
+                                {
+                                    <h5><b><a href="property-detail.html" style="color:#1d3b18">@(item.tieude.Substring(0, 50))...</a></b></h5>
+                                }
+                                <p class="price">@(item.ngaydang.ToString("dd/MM/yyyy"))</p>
+                                <a href="property-detail.html" class="more">Chi tiết</a>
+                            </div>
+                            <div class="col-lg-1"></div>
+                        </div>
+                        <br />
+                    }
+
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
+@Html.Action("DangNhapPartial", "TaiKhoan")
+@foreach (var item in ViewBag.lstLoaiHinhCBCHT)
+{
+    <script>
+        $(document).ready(function () {
 
-        $("#owl-example").owlCarousel();
+            $("#owl-example@(item.ma_loaihinh)").owlCarousel();
 
-        $("#owl-example1").owlCarousel();
 
-        $('.listing-detail span').tooltip('hide');
-        $('.carousel').carousel({
-            interval: 3000
+            $('.listing-detail span').tooltip('hide');
+            $('.carousel').carousel({
+                interval: 3000
+            });
+            $('.carousel').carousel('cycle');
         });
-        $('.carousel').carousel('cycle');
-    });
 
 
+    </script>
+}
+
+<script>
+    if(@ketqua.Count()!=0){
+
+        alert('@Html.Raw(ketqua.ToString())');
+    }
 </script>

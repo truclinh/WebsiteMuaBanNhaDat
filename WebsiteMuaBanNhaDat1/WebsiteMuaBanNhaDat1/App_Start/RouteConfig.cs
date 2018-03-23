@@ -16,6 +16,9 @@ namespace WebsiteMuaBanNhaDat1 {
                 url: "{controller}/{action}/{id}", // URL with parameters
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
+            // BotDetect requests must not be routed
+            routes.IgnoreRoute("{*botdetect}",
+              new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
         }
     }
 }

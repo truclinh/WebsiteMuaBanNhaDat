@@ -5,18 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ee6bc5e7c4da46be8668becdf866bcd4" Name="Diagram1">
-        <EntityTypeShape EntityType="MuaBanNhaDatModel.DonVi" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuaBanNhaDatModel.DuongPho" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuaBanNhaDatModel.LienHe" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuaBanNhaDatModel.LoaiHinh" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuaBanNhaDatModel.NoiDungLoaiHinh" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuaBanNhaDatModel.PhuongXa" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuaBanNhaDatModel.QuanHuyen" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuaBanNhaDatModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuaBanNhaDatModel.TaiKhoan" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuaBanNhaDatModel.TinRaoCBCHT" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuaBanNhaDatModel.TinRaoCMCT" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuaBanNhaDatModel.TinhTP" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuaBanNhaDatModel.DonVi" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MuaBanNhaDatModel.DuongPho" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MuaBanNhaDatModel.LienHe" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MuaBanNhaDatModel.LoaiHinh" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MuaBanNhaDatModel.LoaiHinh_en" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MuaBanNhaDatModel.NoiDungLoaiHinh" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MuaBanNhaDatModel.PhongThuy" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MuaBanNhaDatModel.PhuongXa" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MuaBanNhaDatModel.QuanHuyen" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MuaBanNhaDatModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MuaBanNhaDatModel.TinRaoCBCHT" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MuaBanNhaDatModel.TinRaoCMCT" Width="1.5" PointX="8.75" PointY="7.75" />
+        <EntityTypeShape EntityType="MuaBanNhaDatModel.TinhTP" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="MuaBanNhaDatModel.DangKyNhanThongBao" Width="1.5" PointX="3.375" PointY="9.75" />
+        <EntityTypeShape EntityType="MuaBanNhaDatModel.TaiKhoan" Width="1.5" PointX="5.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

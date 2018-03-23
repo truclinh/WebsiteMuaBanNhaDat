@@ -12,17 +12,10 @@ namespace WebsiteMuaBanNhaDat1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TaiKhoan
+    public partial class DangKyNhanThongBao
     {
-        public int ma_taikhoan { get; set; }
-        public string tendangnhap { get; set; }
-        public string matkhau { get; set; }
-        public string xacnhan_matkhau { get; set; }
-        public string tennguoidung { get; set; }
-        public string diachi { get; set; }
+        public int id { get; set; }
         public string email { get; set; }
-        public string dienthoai { get; set; }
-        public Nullable<int> maquyen { get; set; }
         public Nullable<System.DateTime> ngaydangky { get; set; }
         public string ghichu { get; set; }
     }

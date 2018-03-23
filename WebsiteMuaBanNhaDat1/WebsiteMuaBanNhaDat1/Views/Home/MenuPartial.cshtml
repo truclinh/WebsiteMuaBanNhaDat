@@ -1,0 +1,21 @@
+﻿@using WebsiteMuaBanNhaDat1.Models
+@model IEnumerable<LoaiHinh>
+
+
+<li class="active"><a href="@Url.Action("Index","Home")"><img src="~/Content/images/home1.png" style="width:25px;height:22px" /></a></li>
+@foreach (var item in Model)
+{
+    if (item.comenucon == false)
+    {
+        <li><a href="@Url.Action(item.tenkhongdau,"Home")">@item.ten_loaihinh</a></li>
+    }
+    else
+    {
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">@item.ten_loaihinh</a>
+            <div class="dropdown-content">
+                @Html.Action("MenuItemPartial", "Home", new {ma=item.ma_loaihinh })
+            </div>
+        </li>
+    }
+}

@@ -1,0 +1,50 @@
+﻿@using WebsiteMuaBanNhaDat1.Models
+@model IEnumerable<TinRaoCanMuaCanThue>
+@foreach (var item in ViewBag.TinRaoCMCTNoiBat)
+{
+    <li style="border:1px solid #808080;border-top:2px solid darkblue;border-left:2px groove darkblue;list-style-type:none;padding:10px;background-color:white">
+        <b><a href="#" data-toggle="tooltip" title="@item.tieude!" style="color:darkblue">@(item.tieude)</a></b> 
+        <ul>
+            <li>
+                Giá:
+                @if (item.gia_tu != null && item.gia_den != null)
+                {
+                    <b>@(item.gia_tu) @(item.ten_donvi) - @(item.gia_den) @(item.ten_donvi)</b>
+                }
+                else if (item.gia_tu != null && item.gia_den == null)
+                {
+                    <b> Trên @(item.gia_tu)@(item.ten_donvi)</b>
+                }
+                else if (item.gia_tu == null && item.gia_den != null)
+                {
+                    <b> Dưới @(item.gia_den) @(item.ten_donvi)</b>
+                }
+                else if (item.gia_tu == null && item.gia_den == null)
+                {
+                    <b>@(item.ten_donvi)</b>
+                }
+&nbsp;&nbsp;
+                Diện tích:
+                @if (item.dientich_tu != null && item.dientich_den != null)
+                {
+                    <b>@(item.dientich_tu)m<sup>2</sup> - @(item.dientich_den) m<sup>2</sup></b>
+                }
+                else if (item.dientich_tu != null && item.dientich_den == null)
+                {
+                    <b> Trên @(item.dientich_tu) m<sup>2</sup></b>
+                }
+                else if (item.dientich_tu == null && item.dientich_den != null)
+                {
+                    <b> Dưới @(item.dientich_den) m<sup>2</sup></b>
+                }
+                else if (item.dientich_tu == null && item.dientich_den == null)
+                {
+                    <b>Không xác định</b>
+                }
+            </li>
+
+            <li>Địa chỉ: @(item.ten_duongpho), @(item.ten_phuongxa), @(item.ten_quanhuyen), @(item.ten_tinhtp)</li>
+
+        </ul>
+    </li>
+}

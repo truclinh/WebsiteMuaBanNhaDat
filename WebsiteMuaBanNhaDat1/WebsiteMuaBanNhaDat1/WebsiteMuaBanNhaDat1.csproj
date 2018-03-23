@@ -140,6 +140,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\bootstrap\bootstrap-social.css" />
+    <Content Include="Content\assets\bootstrap\bootstrap.min.css" />
     <Content Include="Content\assets\bootstrap\css\bootstrap.css" />
     <Content Include="Content\assets\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\assets\bootstrap\js\bootstrap.js" />

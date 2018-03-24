@@ -2,7 +2,7 @@
 @model IEnumerable<NoiDungLoaiHinh>
 @foreach (var item in Model)
 {
-    <a href="@Url.Action(item.tenkhongdau,"Home")">@item.ten_ndloaihinh</a>
+    <a href="@Url.Action("TinTheoLoaiHinh", "TinTheoLoaiHinh", new {@ma_ndloaihinh=item.ma_ndloaihinh,@ma_loaihinh=item.ma_loaihinh })">@item.ten_ndloaihinh</a>
 }
 
 

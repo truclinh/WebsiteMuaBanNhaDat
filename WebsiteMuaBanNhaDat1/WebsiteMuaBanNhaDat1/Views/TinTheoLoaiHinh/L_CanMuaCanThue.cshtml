@@ -1,0 +1,93 @@
+﻿@using WebsiteMuaBanNhaDat1.Models
+@model IEnumerable<TinRaoCMCT>
+@{
+    ViewBag.Title = ViewBag.TenLoaiND;
+    Layout = "~/Views/Shared/_LayoutTheoLoai.cshtml";
+}
+<script>
+                $(document).ready(function () {
+                        // alert("hi");
+                            $('.nav-list > li').removeClass('active');
+                            $("#@(ViewBag.TenLoaiHinh)").addClass('active');
+                });
+</script>
+<div class="sortby clearfix">
+    <div class="pull-left result">Showing: 12 of 100 </div>
+    <div class="pull-right">
+        <select class="form-control">
+            <option>Sort by</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+        </select>
+    </div>
+
+</div>
+<div class="row">
+    @foreach (var item in ViewBag.TinRaoCMCT)
+    {
+            <!-- properties -->
+        <div class="col-lg-4 col-sm-6">
+            <div class="properties" style="border:1px solid #1b5600">
+                <div class="image-holder">
+                    <img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties">
+                    <div class="status new">Mới</div>
+                </div>
+                <h4><a href="#" data-toggle="tooltip" title="@item.tieude!">@(item.tieude.Substring(0, 15))...</a></h4>
+                <p class="price">
+                    Giá:
+                    @if (item.gia_tu != null && item.gia_den != null)
+                {
+                        <b>@(item.gia_tu) @(item.ten_donvi) - @(item.gia_den) @(item.ten_donvi)</b>
+                    }
+                    else if (item.gia_tu != null && item.gia_den == null)
+                    {
+                        <b> Trên @(item.gia_tu)@(item.ten_donvi)</b>
+                    }
+                    else if (item.gia_tu == null && item.gia_den != null)
+                    {
+                        <b> Dưới @(item.gia_den) @(item.ten_donvi)</b>
+                    }
+                    else if (item.gia_tu == null && item.gia_den == null)
+                    {
+                        <b>Thỏa thuận</b>
+                    }
+                    &nbsp;&nbsp;<br />
+                    Diện tích:
+                    @if (item.dientich_tu != null && item.dientich_den != null)
+                {
+                        <b>@(item.dientich_tu)m<sup>2</sup> - @(item.dientich_den) m<sup>2</sup></b>
+                    }
+                    else if (item.dientich_tu != null && item.dientich_den == null)
+                    {
+                        <b> Trên @(item.dientich_tu) m<sup>2</sup></b>
+                    }
+                    else if (item.dientich_tu == null && item.dientich_den != null)
+                    {
+                        <b> Dưới @(item.dientich_den) m<sup>2</sup></b>
+                    }
+                    else if (item.dientich_tu == null && item.dientich_den == null)
+                    {
+                        <b>Không xác định</b>
+                    }
+                </p>
+                <div class="listing-detail"><span class="fa fa-location-arrow"></span> @(item.ten_quanhuyen), @(item.ten_tinhtp)</div>
+                <a class="btn btn-primary" href="property-detail.php">Chi tiết</a>
+            </div>
+        </div>
+    <!-- properties -->
+    }
+    @*<br />
+    <div class="center">
+        <ul class="pagination">
+            <li><a href="#">«</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">»</a></li>
+        </ul>
+    </div>*@
+
+</div>
+

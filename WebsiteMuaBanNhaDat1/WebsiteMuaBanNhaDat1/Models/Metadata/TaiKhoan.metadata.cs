@@ -33,6 +33,7 @@ namespace WebsiteMuaBanNhaDat1.Models
             [Display(Name = "Điện thoại")]
             public string dienthoai { get; set; }
             public string ghichu { get; set; }
+            public string anhdaidien { get; set; }
         }
     }
 }

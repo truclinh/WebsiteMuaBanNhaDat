@@ -11,7 +11,7 @@
     }
     else
     {
-        <li class="dropdown">
+        <li class="dropdown" id="@item.tenkhongdau">
             <a href="javascript:void(0)" class="dropbtn">@item.ten_loaihinh</a>
             <div class="dropdown-content">
                 @Html.Action("MenuItemPartial", "Home", new {ma=item.ma_loaihinh })

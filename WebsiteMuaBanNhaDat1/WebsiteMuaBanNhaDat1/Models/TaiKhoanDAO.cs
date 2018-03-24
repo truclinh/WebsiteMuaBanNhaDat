@@ -25,5 +25,21 @@ namespace WebsiteMuaBanNhaDat1.Models
             db.SaveChanges();
             return tk.ma_taikhoan;
         }
+        //-------------------------------------- Login facebook
+        public int? ThemTKFB(TaiKhoan tk)
+        {
+            var user = db.TaiKhoan.SingleOrDefault(x => x.tendangnhap == tk.tendangnhap);
+            if (user == null)
+            {
+                db.TaiKhoan.Add(tk);
+                db.SaveChanges();
+                return tk.ma_taikhoan;
+            }
+            else
+            {
+                return user.ma_taikhoan;
+            }
+
+        }
     }
 }

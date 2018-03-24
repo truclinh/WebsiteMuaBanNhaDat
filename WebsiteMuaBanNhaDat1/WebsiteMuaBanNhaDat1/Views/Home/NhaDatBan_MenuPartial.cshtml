@@ -1,1 +1,50 @@
-﻿
+﻿@using WebsiteMuaBanNhaDat1.Models
+@model IEnumerable<NoiDungLoaiHinh>
+@{
+    ViewBag.Title = ViewBag.TenLoaiND;
+    Layout = "~/Views/Shared/_LayoutTheoLoai.cshtml";
+}
+
+<div class="sortby clearfix">
+    <div class="pull-left result">Showing: 12 of 100 </div>
+    <div class="pull-right">
+        <select class="form-control">
+            <option>Sort by</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+        </select>
+    </div>
+
+</div>
+<div class="row">
+    @foreach (var item in Model)
+    {
+            <!-- properties -->
+        <div class="col-lg-4 col-sm-6">
+            <div class="properties">
+                <div class="image-holder">
+                    <img src="~/Content/images/properties/@item." class="img-responsive" alt="properties">
+                    <div class="status sold">Sold</div>
+                </div>
+                <h4><a href="property-detail.php">Royal Inn</a></h4>
+                <p class="price">Price: $234,900</p>
+                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
+                <a class="btn btn-primary" href="property-detail.php">View Details</a>
+            </div>
+        </div>
+    <!-- properties -->
+    }
+    <div class="center">
+        <ul class="pagination">
+            <li><a href="#">«</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">»</a></li>
+        </ul>
+    </div>
+
+</div>
+

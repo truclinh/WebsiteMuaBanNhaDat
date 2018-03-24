@@ -1,4 +1,4 @@
-﻿
+﻿<link href="~/Content/assets/bootstrap/css/bootstrap-social.css" rel="stylesheet" />
 <!-- Modal -->
 <div id="loginpop" class="modal fade">
     <div class="modal-dialog">
@@ -16,7 +16,12 @@
                             <label class="sr-only" for="exampleInputPassword2">Mật khẩu</label>
                             <input type="password" name="txtPass" class="form-control" id="exampleInputPassword2" placeholder="Mật khẩu">
                         </div>
-                        <center> <button type="submit" class="btn btn-success">Đăng nhập</button></center>
+                        <center>
+                            <button type="submit" class="btn btn-success">Đăng nhập</button>
+                            <a href="@Url.Action("LoginFacebook","TaiKhoan")" class="btn btn-block btn-social btn-facebook">
+                                 Đăng nhập bằng Facebook
+                            </a>
+                        </center>
                     }
                 </div>
                 <div class="col-sm-6">

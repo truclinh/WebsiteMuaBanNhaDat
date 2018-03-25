@@ -2,8 +2,8 @@
 @model IEnumerable<TinRaoCanMuaCanThue>
 @foreach (var item in ViewBag.TinRaoCMCTNoiBat)
 {
-    <li style="border:1px solid #18851a;border-top:2px solid #18851a;border-left:2px solid #18851a;list-style-type:none;padding:10px;background-color:white">
-        <b><a href="#" data-toggle="tooltip" title="@item.tieude!" style="color:#18851a">@(item.tieude)</a></b> 
+    <li style="border:1px solid #64a30a;border-top:2px solid #64a30a;border-left:2px solid #64a30a;list-style-type:none;padding:10px;background-color:white">
+        <b><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })" data-toggle="tooltip" title="@item.tieude!" style="color:#304b0a">@(item.tieude)</a></b> 
         <ul>
             <li>
                 Giá:

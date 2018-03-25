@@ -9,8 +9,8 @@
                         <img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" />
                         <div class="status new">Mới</div>
                     </div>
-                    <h4><a href="#" data-toggle="tooltip" title="@item.tieude!">@(item.tieude.Substring(0, 22))...</a></h4>
-                    <p class="price">Giá: @(item.gia)  @(item.ten_donvi) </p>
+                    <h4><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })" data-toggle="tooltip" title="@item.tieude!" style="color:#304b0a">@(item.tieude.Substring(0, 22))...</a></h4>
+                    <p class="price">Giá: <b>@(item.gia) @(item.ten_donvi)</b> </p>
                     @if (item.so_phongngu > 0)
                     {
                         <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
@@ -20,7 +20,7 @@
                     {
                         <div style="visibility:hidden" class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
                     }
-                    <a class="btn btn-primary" href="property-detail.php">Chi tiết</a>
+                    <a class="btn btn-primary" href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })">Chi tiết</a>
                 </div>
 
             }
@@ -28,8 +28,8 @@
             {
                 <div class="properties">
                     <img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" />
-                    <h4><a href="#" data-toggle="tooltip" title="@item.tieude!">@(item.tieude.Substring(0, 22))...</a></h4>
-                    <p class="price">Giá: @(item.gia)  @(item.ten_donvi) </p>
+                    <h4><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })" data-toggle="tooltip" title="@item.tieude!" style="color:#304b0a">@(item.tieude.Substring(0, 22))...</a></h4>
+                    <p class="price">Giá: <b>@(item.gia)  @(item.ten_donvi) </b> </p>
                     @if (item.so_phongngu > 0)
                     {
                         <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
@@ -39,7 +39,7 @@
                     {
                         <div style="visibility:hidden" class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
                     }
-                    <a class="btn btn-primary" href="property-detail.php">Chi tiết</a>
+                    <a class="btn btn-primary" href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })">Chi tiết</a>
                 </div>
             }
     }

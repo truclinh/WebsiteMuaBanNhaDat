@@ -20,7 +20,7 @@
                         <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
                             <div class="sl-slide-inner">
                                 <div class="bg-img bg-img-1"></div>
-                                <h2><a href="#">@(item.so_phongkhach) Phòng khách, @(item.so_phongngu) Phòng ngủ, @(item.so_nhabep) Nhà bếp, @(item.so_toilet) Toilet</a></h2>
+                                <h2><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })">@(item.so_phongkhach) Phòng khách, @(item.so_phongngu) Phòng ngủ, @(item.so_nhabep) Nhà bếp, @(item.so_toilet) Toilet</a></h2>
                                 <blockquote>
                                     <p class="location"><span class="glyphicon glyphicon-map-marker"></span>@(item.ten_quanhuyen) ,@(item.ten_tinhtp) </p>
                                     <p>@(item.tieude)</p>
@@ -34,7 +34,7 @@
                         <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
                             <div class="sl-slide-inner">
                                 <div class="bg-img bg-img-2"></div>
-                                <h2><a href="#">@(item.so_phongkhach) Phòng khách, @(item.so_phongngu) Phòng ngủ, @(item.so_nhabep) Nhà bếp, @(item.so_nhabep) Toilet</a></h2>
+                                <h2><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })">@(item.so_phongkhach) Phòng khách, @(item.so_phongngu) Phòng ngủ, @(item.so_nhabep) Nhà bếp, @(item.so_nhabep) Toilet</a></h2>
                                 <blockquote>
                                     <p class="location"><span class="glyphicon glyphicon-map-marker"></span>@(item.ten_quanhuyen) ,@(item.ten_tinhtp) </p>
                                     <p>@(item.tieude)</p>
@@ -48,7 +48,7 @@
                         <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
                             <div class="sl-slide-inner">
                                 <div class="bg-img bg-img-3"></div>
-                                <h2><a href="#">@(item.so_phongkhach) Phòng khách, @(item.so_phongngu) Phòng ngủ, @(item.so_nhabep) Nhà bếp, @(item.so_nhabep) Toilet</a></h2>
+                                <h2><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })">@(item.so_phongkhach) Phòng khách, @(item.so_phongngu) Phòng ngủ, @(item.so_nhabep) Nhà bếp, @(item.so_nhabep) Toilet</a></h2>
                                 <blockquote>
                                     <p class="location"><span class="glyphicon glyphicon-map-marker"></span>@(item.ten_quanhuyen) ,@(item.ten_tinhtp) </p>
                                     <p>@(item.tieude)</p>
@@ -62,7 +62,7 @@
                         <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="-5" data-slice2-rotation="25" data-slice1-scale="2" data-slice2-scale="1">
                             <div class="sl-slide-inner">
                                 <div class="bg-img bg-img-4"></div>
-                                <h2><a href="#">@(item.so_phongkhach) Phòng khách, @(item.so_phongngu) Phòng ngủ, @(item.so_nhabep) Nhà bếp, @(item.so_nhabep) Toilet</a></h2>
+                                <h2><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })">@(item.so_phongkhach) Phòng khách, @(item.so_phongngu) Phòng ngủ, @(item.so_nhabep) Nhà bếp, @(item.so_nhabep) Toilet</a></h2>
                                 <blockquote>
                                     <p class="location"><span class="glyphicon glyphicon-map-marker"></span>@(item.ten_quanhuyen) ,@(item.ten_tinhtp) </p>
                                     <p>@(item.tieude)</p>
@@ -76,7 +76,7 @@
                         <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
                             <div class="sl-slide-inner">
                                 <div class="bg-img bg-img-5"></div>
-                                <h2><a href="#">@(item.so_phongkhach) Phòng khách, @(item.so_phongngu) Phòng ngủ, @(item.so_nhabep) Nhà bếp, @(item.so_nhabep) Toilet</a></h2>
+                                <h2><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })">@(item.so_phongkhach) Phòng khách, @(item.so_phongngu) Phòng ngủ, @(item.so_nhabep) Nhà bếp, @(item.so_nhabep) Toilet</a></h2>
                                 <blockquote>
                                     <p class="location"><span class="glyphicon glyphicon-map-marker"></span>@(item.ten_quanhuyen) ,@(item.ten_tinhtp) </p>
                                     <p>@(item.tieude)</p>
@@ -160,7 +160,7 @@
     <!--Nhà đất bán-->
     <div class="container">
         <div class="properties-listing spacer">
-            <a href="buysalerent.php" class="pull-right viewall" style="color:darkred"> Xem thêm <i class="fas fa-angle-double-right"></i></a>
+            <a href="@Url.Action("XemThem","TinTheoLoaiHinh", new {ma_loaihinh=item.ma_loaihinh })" class="pull-right viewall" style="color:darkred"> Xem thêm <i class="fas fa-angle-double-right"></i></a>
             <h3 style="text-transform:uppercase;font-weight:bold">@(item.ten_loaihinh)</h3>
             <div id="owl-example@(item.ma_loaihinh)" class="owl-carousel">
                 @Html.Action("TinNoiBatPartial", "Home", new { ma = item.ma_loaihinh })
@@ -181,13 +181,13 @@
                     <ul>
                         @Html.Action("TinNoiBatCMCTPartial", "Home", new { ma = item.ma_loaihinh })
                     </ul>
-                    <a href="buysalerent.php" class="pull-right viewall" style="color:darkred"> Xem thêm <i class="fas fa-angle-double-right"></i></a>
+                    <a href="@Url.Action("XemThem","TinTheoLoaiHinh", new {ma_loaihinh=item.ma_loaihinh })" class="pull-right viewall" style="color:darkred"> Xem thêm <i class="fas fa-angle-double-right"></i></a>
                     <br />
                 }
 
             </div>
             <div class="col-lg-5 col-lg-offset-1 col-sm-3 recommended">
-                <h3 class="col-lg-12" style="background-color:green;padding:7px;color:white;font-weight:bold">Tin rao mới nhất</h3>
+                <h3 class="col-lg-12" style="background-color:#64a30a;padding:7px;color:white;font-weight:bold">Tin rao mới nhất</h3>
                 <div class="spacer">
                     <div id="myCarousel" class="carousel slide">
                         <ol class="carousel-indicators">
@@ -206,19 +206,19 @@
                                 {
                                     <div class="item active">
                                         <div class="row">
-                                            <div class="col-lg-4"><img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" /></div>
+                                            <div class="col-lg-4"><img src="~/Content/images/properties/4.jpg" class="img-responsive" alt="properties" /></div>
                                             <div class="col-lg-7">
                                                 @if ((item.tieude.Length) <= 40)
                                                 {
-                                                    <h5><a href="property-detail.html">@(item.tieude)</a></h5>
+                                                    <h5><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })" style="color:#304b0a">@(item.tieude)</a></h5>
                                                 }
                                                 else
                                                 {
-                                                    <h5><a href="property-detail.html">@(item.tieude.Substring(0, 40))...</a></h5>
+                                                    <h5><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })" style="color:#304b0a">@(item.tieude.Substring(0, 40))...</a></h5>
                                                 }
                                                 <h5><a href="property-detail.html">@(item.tieude.Substring(0, 40))...</a></h5>
                                                 <p class="price">@(item.gia) @(item.ten_donvi)</p>
-                                                <a href="property-detail.html" class="more">Chi tiết</a>
+                                                <a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })" class="more">Chi tiết</a>
                                             </div>
                                             <div class="col-lg-1"></div>
                                         </div>
@@ -232,14 +232,14 @@
                                             <div class="col-lg-7">
                                                 @if ((item.tieude.Length) <= 40)
                                                 {
-                                                    <h5><a href="property-detail.html" style="color:#18851a">@(item.tieude)</a></h5>
+                                                    <h5><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })" style="color:#304b0a">@(item.tieude)</a></h5>
                                                 }
                                                 else
                                                 {
-                                                    <h5><a href="property-detail.html" style="color:#18851a">@(item.tieude.Substring(0, 40))...</a></h5>
+                                                    <h5><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })" style="color:#304b0a">@(item.tieude.Substring(0, 40))...</a></h5>
                                                 }
                                                 <p class="price">@(item.gia) @(item.ten_donvi)</p>
-                                                <a href="property-detail.html" class="more">Chi tiết</a>
+                                                <a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })" class="more">Chi tiết</a>
                                             </div>
                                             <div class="col-lg-1"></div>
                                         </div>
@@ -251,7 +251,7 @@
                     </div>
                 </div>
                 <br />
-                <h3 class="col-lg-12" style="background-color:green;padding:7px;color:white;font-weight:bold">Phong thủy</h3>
+                <h3 class="col-lg-12" style="background-color:#64a30a;padding:7px;color:white;font-weight:bold">Phong thủy</h3>
                 <div class="spacer">
                     @foreach (var item in ViewBag.PhongThuy)
                     {
@@ -262,14 +262,14 @@
                             <div class="col-lg-7">
                                 @if (item.tieude.Length <= 50)
                                 {
-                                    <h5><b><a href="property-detail.html" style="color:#1d3b18">@(item.tieude)</a></b></h5>
+                                    <h5><b><a href="property-detail.html" style="color:#304b0a">@(item.tieude)</a></b></h5>
                                 }
                                 else
                                 {
-                                    <h5><b><a href="property-detail.html" style="color:#1d3b18">@(item.tieude.Substring(0, 50))...</a></b></h5>
+                                    <h5><b><a href="property-detail.html" style="color:#304b0a">@(item.tieude.Substring(0, 50))...</a></b></h5>
                                 }
                                 <p class="price">@(item.ngaydang.ToString("dd/MM/yyyy"))</p>
-                                <a href="property-detail.html" class="more">Chi tiết</a>
+                                <a href="#" class="more">Chi tiết</a>
                             </div>
                             <div class="col-lg-1"></div>
                         </div>

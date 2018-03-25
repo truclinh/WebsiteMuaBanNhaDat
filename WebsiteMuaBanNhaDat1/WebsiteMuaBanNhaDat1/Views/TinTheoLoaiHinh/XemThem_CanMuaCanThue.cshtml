@@ -1,14 +1,14 @@
 ﻿@using WebsiteMuaBanNhaDat1.Models
 @model IEnumerable<TinRaoCMCT>
 @{
-    ViewBag.Title = ViewBag.TenLoaiND;
+    ViewBag.Title = ViewBag.TenLoaiHinh;
     Layout = "~/Views/Shared/_LayoutTheoLoai.cshtml";
 }
 <script>
                 $(document).ready(function () {
                         // alert("hi");
                             $('.nav-list > li').removeClass('active');
-                            $("#@(ViewBag.TenLoaiHinh)").addClass('active');
+                            $("#@(ViewBag.TenKhongDau)").addClass('active');
                 });
 </script>
 <div class="sortby clearfix">
@@ -77,17 +77,17 @@
     <!-- properties -->
     }
     @*<br />
-    <div class="center">
-        <ul class="pagination">
-            <li><a href="#">«</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">»</a></li>
-        </ul>
-    </div>*@
+        <div class="center">
+            <ul class="pagination">
+                <li><a href="#">«</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">»</a></li>
+            </ul>
+        </div>*@
 
 </div>
 

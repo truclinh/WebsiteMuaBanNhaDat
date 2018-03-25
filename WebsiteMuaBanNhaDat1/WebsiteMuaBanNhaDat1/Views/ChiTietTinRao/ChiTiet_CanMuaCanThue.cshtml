@@ -1,0 +1,132 @@
+﻿@using WebsiteMuaBanNhaDat1.Models
+@model IEnumerable<TinRaoCMCT>
+@{
+    ViewBag.Title = ViewBag.TieuDeTin;
+    Layout = "~/Views/Shared/_LayoutTheoLoai.cshtml";
+}
+<script>
+                $(document).ready(function () {
+                        // alert("hi");
+                            $('.nav-list > li').removeClass('active');
+                            $("#@(ViewBag.TenLoaiHinh)").addClass('active');
+                });
+</script>
+@foreach (var item in ViewBag.TinRaoCMCT)
+{
+    <h2>@item.tieude</h2>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="property-images">
+                <!-- Slider Starts -->
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators hidden-xs">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <!-- Item 1 -->
+                        <div class="item active">
+                            <img src="~/Content/images/properties/@item.anh1" class="properties" alt="properties" />
+                        </div>
+                        <!-- #Item 1 -->
+                        <!-- Item 2 -->
+                        <div class="item">
+                            <img src="~/Content/images/properties/@item.anh2" class="properties" alt="properties" />
+
+                        </div>
+                        <!-- #Item 2 -->
+                        <!-- Item 3 -->
+                        <div class="item">
+                            <img src="~/Content/images/properties/@item.anh3" class="properties" alt="properties" />
+                        </div>
+                        <!-- #Item 3 -->
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
+                <!-- #Slider Ends -->
+
+            </div>
+
+
+
+
+            <div class="spacer">
+                <h4><span class="glyphicon glyphicon-th-list"></span> Thông tin mô tả yêu cầu</h4>
+                <p>@Html.Raw(item.noidung)</p>
+            </div>
+            <div>
+                <h4><span class="glyphicon glyphicon-map-marker"></span> Vị trí</h4>
+                <div class="well"><iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Pulchowk,+Patan,+Central+Region,+Nepal&amp;aq=0&amp;oq=pulch&amp;sll=37.0625,-95.677068&amp;sspn=39.371738,86.572266&amp;ie=UTF8&amp;hq=&amp;hnear=Pulchowk,+Patan+Dhoka,+Patan,+Bagmati,+Central+Region,+Nepal&amp;ll=27.678236,85.316853&amp;spn=0.001347,0.002642&amp;t=m&amp;z=14&amp;output=embed"></iframe></div>
+            </div>
+
+        </div>
+        <div class="col-lg-4">
+            <div class="col-lg-12  col-sm-6">
+                <div class="property-info">
+                    <h5 style="border:3px solid #64a30a;background-color:white;padding:5px;">
+                        Giá:
+                        @if (item.gia_tu != null && item.gia_den != null)
+                {
+                            <b>@(item.gia_tu) @(item.ten_donvi) - @(item.gia_den) @(item.ten_donvi)</b>
+                        }
+                        else if (item.gia_tu != null && item.gia_den == null)
+                        {
+                            <b> Trên @(item.gia_tu)@(item.ten_donvi)</b>
+                        }
+                        else if (item.gia_tu == null && item.gia_den != null)
+                        {
+                            <b> Dưới @(item.gia_den) @(item.ten_donvi)</b>
+                        }
+                        else if (item.gia_tu == null && item.gia_den == null)
+                        {
+                            <b>Thỏa thuận</b>
+                        }
+                     <br />
+                        Diện tích:
+                        @if (item.dientich_tu != null && item.dientich_den != null)
+                {
+                            <b>@(item.dientich_tu) m<sup>2</sup> - @(item.dientich_den) m<sup>2</sup></b>
+                        }
+                        else if (item.dientich_tu != null && item.dientich_den == null)
+                        {
+                            <b> Trên @(item.dientich_tu) m<sup>2</sup></b>
+                        }
+                        else if (item.dientich_tu == null && item.dientich_den != null)
+                        {
+                            <b> Dưới @(item.dientich_den) m<sup>2</sup></b>
+                        }
+                        else if (item.dientich_tu == null && item.dientich_den == null)
+                        {
+                            <b>Không xác định</b>
+                        }
+                    </h5>
+                    <p class="area">
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                        @(item.ten_duongpho), @(item.ten_phuongxa), @(item.ten_quanhuyen), @(item.ten_tinhtp)
+                    </p>
+
+                    <div class="profile">
+                        <span class="glyphicon glyphicon-user"></span> Agent Details
+                        <p>John Parker<br>009 229 2929</p>
+                    </div>
+                </div>
+                <p>Ngày đăng: @item.ngaydang.ToString("dd/MM/yyyy")</p>
+            </div>
+            <div class="col-lg-12 col-sm-6 ">
+                <div class="enquiry">
+                    <h6><span class="glyphicon glyphicon-envelope"></span> Post Enquiry</h6>
+                    <form role="form">
+                        <input type="text" class="form-control" placeholder="Full Name" />
+                        <input type="text" class="form-control" placeholder="you@yourdomain.com" />
+                        <input type="text" class="form-control" placeholder="your number" />
+                        <textarea rows="6" class="form-control" placeholder="Whats on your mind?"></textarea>
+                        <button type="submit" class="btn btn-primary" name="Submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}

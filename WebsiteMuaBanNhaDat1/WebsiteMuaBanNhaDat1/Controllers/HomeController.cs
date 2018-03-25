@@ -17,36 +17,54 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                                          join tp in db.TinhTP on cb.ma_tinhtp equals tp.ma_tinhtp
                                          join qh in db.QuanHuyen on tp.ma_tinhtp equals qh.ma_tinhtp
                                          join dv in db.DonVi on cb.ma_donvi equals dv.ma_donvi
-                                         where (cb.ma_tinhtp == tp.ma_tinhtp && tp.ma_tinhtp == qh.ma_tinhtp && cb.ma_donvi == dv.ma_donvi && cb.ma_quanhuyen == qh.ma_quanhuyen)
+                                         join nd in db.NoiDungLoaiHinh on cb.ma_ndloaihinh equals nd.ma_ndloaihinh
+                                         join px in db.PhuongXa on cb.ma_phuongxa equals px.ma_phuongxa
+                                         join dp in db.DuongPho on cb.ma_duongpho equals dp.ma_duongpho
+                                         where (cb.ma_tinhtp == tp.ma_tinhtp && tp.ma_tinhtp == qh.ma_tinhtp && cb.ma_donvi == dv.ma_donvi && cb.ma_quanhuyen == qh.ma_quanhuyen&&cb.ma_ndloaihinh==nd.ma_ndloaihinh &&cb.ma_phuongxa==px.ma_phuongxa &&cb.ma_duongpho==dp.ma_duongpho&&px.ma_quanhuyen==qh.ma_quanhuyen && dp.ma_phuongxa==px.ma_phuongxa)
                                          select new TinRao
                                          {
                                              ma_tinrao = cb.ma_tinrao,
-                                             ma_loaihinh = cb.ma_loaihinh,
                                              tieude = cb.tieude,
+                                             ma_loaihinh = cb.ma_loaihinh, 
+                                             ma_ndloaihinh=nd.ma_ndloaihinh, 
+                                             ten_ndloaihinh=nd.ten_ndloaihinh,                                           
                                              ten_tinhtp = tp.ten_tinhtp,
                                              ten_quanhuyen = qh.ten_quanhuyen,
+                                             ten_phuongxa=px.ten_phuongxa,
+                                             ten_duongpho=dp.ten_duongpho,
+                                             dientich=cb.dientich,
+                                             gia = cb.gia,
+                                             ten_donvi = dv.ten_donvi,
+                                             mota=cb.mota,
                                              so_phongngu = cb.so_phongngu,
                                              so_phongkhach = cb.so_phongkhach,
                                              so_nhabep = cb.so_nhabep,
-                                             so_toilet = cb.so_toilet,
-                                             gia = cb.gia,
+                                             so_toilet = cb.so_toilet,                                        
                                              anh1 = cb.anh1,
-                                             ten_donvi = dv.ten_donvi,
-                                             ngaydang = cb.ngaydang
+                                             anh2=cb.anh2,
+                                             anh3=cb.anh3,
+                                             anh4=cb.anh4,
+                                             anh360do=cb.anh360do,
+                                             ngaydang = cb.ngaydang,
+                                             ngayketthuc=cb.ngayketthuc
                                          }
                           ).ToList();
             ViewBag.TinRaoCMCTNoiBat = (from cb in db.TinRaoCMCT
                                         join tp in db.TinhTP on cb.ma_tinhtp equals tp.ma_tinhtp
                                         join qh in db.QuanHuyen on tp.ma_tinhtp equals qh.ma_tinhtp
+                                        join dv in db.DonVi on cb.ma_donvi equals dv.ma_donvi
+                                        join nd in db.NoiDungLoaiHinh on cb.ma_ndloaihinh equals nd.ma_ndloaihinh
                                         join px in db.PhuongXa on cb.ma_phuongxa equals px.ma_phuongxa
                                         join dp in db.DuongPho on cb.ma_duongpho equals dp.ma_duongpho
-                                        join dv in db.DonVi on cb.ma_donvi equals dv.ma_donvi
                                         where (cb.ma_tinhtp == tp.ma_tinhtp && tp.ma_tinhtp == qh.ma_tinhtp && cb.ma_donvi == dv.ma_donvi && cb.ma_quanhuyen == qh.ma_quanhuyen && px.ma_quanhuyen == qh.ma_quanhuyen && dp.ma_phuongxa == px.ma_phuongxa)
                                         select new TinRaoCanMuaCanThue
                                         {
                                             ma_tinrao = cb.ma_tinrao,
                                             tieude = cb.tieude,
+                                            noidung=cb.noidung,
                                             ma_loaihinh = cb.ma_loaihinh,
+                                            ma_ndloaihinh=cb.ma_ndloaihinh,
+                                            ten_ndloaihinh=nd.ten_ndloaihinh,
                                             ten_tinhtp = tp.ten_tinhtp,
                                             ten_quanhuyen = qh.ten_quanhuyen,
                                             ten_phuongxa = px.ten_phuongxa,
@@ -57,7 +75,10 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                                             dientich_tu = cb.dientich_tu,
                                             dientich_den = cb.dientich_den,
                                             anh1 = cb.anh1,
-                                            ngaydang = cb.ngaydang
+                                            anh2 = cb.anh2,
+                                            anh3 = cb.anh3,
+                                            ngaydang = cb.ngaydang,
+                                            ngayketthuc=cb.ngayketthuc
                                         }
                           ).ToList();
             ViewBag.lstLoaiHinhCBCHT = db.LoaiHinh.OrderBy(n => n.ma_loaihinh).Where(n => n.nhom == "CBCHT").ToList();
@@ -97,22 +118,36 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                                          join tp in db.TinhTP on cb.ma_tinhtp equals tp.ma_tinhtp
                                          join qh in db.QuanHuyen on tp.ma_tinhtp equals qh.ma_tinhtp
                                          join dv in db.DonVi on cb.ma_donvi equals dv.ma_donvi
-                                         where (cb.ma_tinhtp == tp.ma_tinhtp && tp.ma_tinhtp == qh.ma_tinhtp && cb.ma_donvi == dv.ma_donvi && cb.ma_quanhuyen == qh.ma_quanhuyen && cb.ma_loaihinh == ma)
+                                         join nd in db.NoiDungLoaiHinh on cb.ma_ndloaihinh equals nd.ma_ndloaihinh
+                                         join px in db.PhuongXa on cb.ma_phuongxa equals px.ma_phuongxa
+                                         join dp in db.DuongPho on cb.ma_duongpho equals dp.ma_duongpho
+                                         where (cb.ma_tinhtp == tp.ma_tinhtp && tp.ma_tinhtp == qh.ma_tinhtp && cb.ma_donvi == dv.ma_donvi && cb.ma_quanhuyen == qh.ma_quanhuyen && cb.ma_ndloaihinh == nd.ma_ndloaihinh && cb.ma_phuongxa == px.ma_phuongxa && cb.ma_duongpho == dp.ma_duongpho && px.ma_quanhuyen == qh.ma_quanhuyen && dp.ma_phuongxa == px.ma_phuongxa && cb.ma_loaihinh == ma)
                                          select new TinRao
                                          {
                                              ma_tinrao = cb.ma_tinrao,
-                                             ma_loaihinh = cb.ma_loaihinh,
                                              tieude = cb.tieude,
+                                             ma_loaihinh = cb.ma_loaihinh,
+                                             ma_ndloaihinh = nd.ma_ndloaihinh,
+                                             ten_ndloaihinh = nd.ten_ndloaihinh,
                                              ten_tinhtp = tp.ten_tinhtp,
                                              ten_quanhuyen = qh.ten_quanhuyen,
+                                             ten_phuongxa = px.ten_phuongxa,
+                                             ten_duongpho = dp.ten_duongpho,
+                                             dientich = cb.dientich,
+                                             gia = cb.gia,
+                                             ten_donvi = dv.ten_donvi,
+                                             mota = cb.mota,
                                              so_phongngu = cb.so_phongngu,
                                              so_phongkhach = cb.so_phongkhach,
                                              so_nhabep = cb.so_nhabep,
                                              so_toilet = cb.so_toilet,
-                                             gia = cb.gia,
                                              anh1 = cb.anh1,
-                                             ten_donvi = dv.ten_donvi,
-                                             ngaydang = cb.ngaydang
+                                             anh2 = cb.anh2,
+                                             anh3 = cb.anh3,
+                                             anh4 = cb.anh4,
+                                             anh360do = cb.anh360do,
+                                             ngaydang = cb.ngaydang,
+                                             ngayketthuc = cb.ngayketthuc
                                          }
                           ).ToList();
             return PartialView("TinNoiBatPartial");
@@ -124,15 +159,19 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             ViewBag.TinRaoCMCTNoiBat = (from cb in db.TinRaoCMCT
                                         join tp in db.TinhTP on cb.ma_tinhtp equals tp.ma_tinhtp
                                         join qh in db.QuanHuyen on tp.ma_tinhtp equals qh.ma_tinhtp
+                                        join dv in db.DonVi on cb.ma_donvi equals dv.ma_donvi
+                                        join nd in db.NoiDungLoaiHinh on cb.ma_ndloaihinh equals nd.ma_ndloaihinh
                                         join px in db.PhuongXa on cb.ma_phuongxa equals px.ma_phuongxa
                                         join dp in db.DuongPho on cb.ma_duongpho equals dp.ma_duongpho
-                                        join dv in db.DonVi on cb.ma_donvi equals dv.ma_donvi
                                         where (cb.ma_tinhtp == tp.ma_tinhtp && tp.ma_tinhtp == qh.ma_tinhtp && cb.ma_donvi == dv.ma_donvi && cb.ma_quanhuyen == qh.ma_quanhuyen && px.ma_quanhuyen == qh.ma_quanhuyen && dp.ma_phuongxa == px.ma_phuongxa && cb.ma_loaihinh == ma)
                                         select new TinRaoCanMuaCanThue
                                         {
                                             ma_tinrao = cb.ma_tinrao,
                                             tieude = cb.tieude,
+                                            noidung = cb.noidung,
                                             ma_loaihinh = cb.ma_loaihinh,
+                                            ma_ndloaihinh = cb.ma_ndloaihinh,
+                                            ten_ndloaihinh = nd.ten_ndloaihinh,
                                             ten_tinhtp = tp.ten_tinhtp,
                                             ten_quanhuyen = qh.ten_quanhuyen,
                                             ten_phuongxa = px.ten_phuongxa,
@@ -143,7 +182,10 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                                             dientich_tu = cb.dientich_tu,
                                             dientich_den = cb.dientich_den,
                                             anh1 = cb.anh1,
-                                            ngaydang = cb.ngaydang
+                                            anh2 = cb.anh2,
+                                            anh3 = cb.anh3,
+                                            ngaydang = cb.ngaydang,
+                                            ngayketthuc = cb.ngayketthuc
                                         }
                          ).Take(3).ToList();
             return PartialView("TinNoiBatCMCTPartial");

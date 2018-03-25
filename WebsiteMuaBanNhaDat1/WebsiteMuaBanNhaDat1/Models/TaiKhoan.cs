@@ -14,7 +14,7 @@ namespace WebsiteMuaBanNhaDat1.Models
     
     public partial class TaiKhoan
     {
-        public int? ma_taikhoan { get; set; }
+        public int ma_taikhoan { get; set; }
         public string tendangnhap { get; set; }
         public string matkhau { get; set; }
         public string xacnhan_matkhau { get; set; }

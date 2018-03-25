@@ -121,7 +121,7 @@
           <Property Name="tendangnhap" Type="nvarchar" MaxLength="50" />
           <Property Name="matkhau" Type="nvarchar" MaxLength="50" />
           <Property Name="tennguoidung" Type="nvarchar" MaxLength="100" />
-          <Property Name="anhdaidien" Type="nvarchar" MaxLength="50" />
+          <Property Name="anhdaidien" Type="nvarchar" MaxLength="100" />
           <Property Name="diachi" Type="nvarchar" MaxLength="100" />
           <Property Name="email" Type="nvarchar" MaxLength="50" />
           <Property Name="dienthoai" Type="nchar" MaxLength="12" />
@@ -180,7 +180,7 @@
           <Property Name="anh2" Type="nvarchar(max)" />
           <Property Name="anh3" Type="nvarchar(max)" />
           <Property Name="ngaydang" Type="datetime" />
-          <Property Name="ngaykethuc" Type="datetime" />
+          <Property Name="ngayketthuc" Type="datetime" />
           <Property Name="ghichu" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="TinhTP">
@@ -285,10 +285,10 @@
           <EntitySet Name="QuanHuyen" EntityType="MuaBanNhaDatModel.QuanHuyen" />
           <EntitySet Name="sysdiagrams" EntityType="MuaBanNhaDatModel.sysdiagrams" />
           <EntitySet Name="TinRaoCBCHT" EntityType="MuaBanNhaDatModel.TinRaoCBCHT" />
-          <EntitySet Name="TinRaoCMCT" EntityType="MuaBanNhaDatModel.TinRaoCMCT" />
           <EntitySet Name="TinhTP" EntityType="MuaBanNhaDatModel.TinhTP" />
           <EntitySet Name="DangKyNhanThongBao" EntityType="MuaBanNhaDatModel.DangKyNhanThongBao" />
           <EntitySet Name="TaiKhoan" EntityType="MuaBanNhaDatModel.TaiKhoan" />
+          <EntitySet Name="TinRaoCMCT" EntityType="MuaBanNhaDatModel.TinRaoCMCT" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -429,31 +429,6 @@
           <Property Name="ngayketthuc" Type="DateTime" Precision="3" />
           <Property Name="ghichu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="TinRaoCMCT">
-          <Key>
-            <PropertyRef Name="ma_tinrao" />
-          </Key>
-          <Property Name="ma_tinrao" Type="Guid" Nullable="false" />
-          <Property Name="tieude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ma_loaihinh" Type="Int32" />
-          <Property Name="ma_ndloaihinh" Type="Int32" />
-          <Property Name="ma_tinhtp" Type="Int32" />
-          <Property Name="ma_quanhuyen" Type="Int32" />
-          <Property Name="ma_phuongxa" Type="Int32" />
-          <Property Name="ma_duongpho" Type="Int32" />
-          <Property Name="gia_tu" Type="Double" />
-          <Property Name="gia_den" Type="Double" />
-          <Property Name="ma_donvi" Type="Int32" />
-          <Property Name="dientich_tu" Type="Double" />
-          <Property Name="dientich_den" Type="Double" />
-          <Property Name="anh1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="anh2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="anh3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ngaydang" Type="DateTime" Precision="3" />
-          <Property Name="ngaykethuc" Type="DateTime" Precision="3" />
-          <Property Name="ghichu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="TinhTP">
           <Key>
             <PropertyRef Name="ma_tinhtp" />
@@ -479,12 +454,37 @@
           <Property Name="tendangnhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="matkhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="tennguoidung" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="anhdaidien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="anhdaidien" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="diachi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="dienthoai" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
           <Property Name="maquyen" Type="Int32" />
           <Property Name="ngaydangky" Type="DateTime" Precision="3" />
+          <Property Name="ghichu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TinRaoCMCT">
+          <Key>
+            <PropertyRef Name="ma_tinrao" />
+          </Key>
+          <Property Name="ma_tinrao" Type="Guid" Nullable="false" />
+          <Property Name="tieude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ma_loaihinh" Type="Int32" />
+          <Property Name="ma_ndloaihinh" Type="Int32" />
+          <Property Name="ma_tinhtp" Type="Int32" />
+          <Property Name="ma_quanhuyen" Type="Int32" />
+          <Property Name="ma_phuongxa" Type="Int32" />
+          <Property Name="ma_duongpho" Type="Int32" />
+          <Property Name="gia_tu" Type="Double" />
+          <Property Name="gia_den" Type="Double" />
+          <Property Name="ma_donvi" Type="Int32" />
+          <Property Name="dientich_tu" Type="Double" />
+          <Property Name="dientich_den" Type="Double" />
+          <Property Name="anh1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="anh2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="anh3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ngaydang" Type="DateTime" Precision="3" />
+          <Property Name="ngayketthuc" Type="DateTime" Precision="3" />
           <Property Name="ghichu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
@@ -656,32 +656,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TinRaoCMCT">
-            <EntityTypeMapping TypeName="MuaBanNhaDatModel.TinRaoCMCT">
-              <MappingFragment StoreEntitySet="TinRaoCMCT">
-                <ScalarProperty Name="ghichu" ColumnName="ghichu" />
-                <ScalarProperty Name="ngaykethuc" ColumnName="ngaykethuc" />
-                <ScalarProperty Name="ngaydang" ColumnName="ngaydang" />
-                <ScalarProperty Name="anh3" ColumnName="anh3" />
-                <ScalarProperty Name="anh2" ColumnName="anh2" />
-                <ScalarProperty Name="anh1" ColumnName="anh1" />
-                <ScalarProperty Name="dientich_den" ColumnName="dientich_den" />
-                <ScalarProperty Name="dientich_tu" ColumnName="dientich_tu" />
-                <ScalarProperty Name="ma_donvi" ColumnName="ma_donvi" />
-                <ScalarProperty Name="gia_den" ColumnName="gia_den" />
-                <ScalarProperty Name="gia_tu" ColumnName="gia_tu" />
-                <ScalarProperty Name="ma_duongpho" ColumnName="ma_duongpho" />
-                <ScalarProperty Name="ma_phuongxa" ColumnName="ma_phuongxa" />
-                <ScalarProperty Name="ma_quanhuyen" ColumnName="ma_quanhuyen" />
-                <ScalarProperty Name="ma_tinhtp" ColumnName="ma_tinhtp" />
-                <ScalarProperty Name="ma_ndloaihinh" ColumnName="ma_ndloaihinh" />
-                <ScalarProperty Name="ma_loaihinh" ColumnName="ma_loaihinh" />
-                <ScalarProperty Name="noidung" ColumnName="noidung" />
-                <ScalarProperty Name="tieude" ColumnName="tieude" />
-                <ScalarProperty Name="ma_tinrao" ColumnName="ma_tinrao" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TinhTP">
             <EntityTypeMapping TypeName="MuaBanNhaDatModel.TinhTP">
               <MappingFragment StoreEntitySet="TinhTP">
@@ -715,6 +689,32 @@
                 <ScalarProperty Name="matkhau" ColumnName="matkhau" />
                 <ScalarProperty Name="tendangnhap" ColumnName="tendangnhap" />
                 <ScalarProperty Name="ma_taikhoan" ColumnName="ma_taikhoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TinRaoCMCT">
+            <EntityTypeMapping TypeName="MuaBanNhaDatModel.TinRaoCMCT">
+              <MappingFragment StoreEntitySet="TinRaoCMCT">
+                <ScalarProperty Name="ghichu" ColumnName="ghichu" />
+                <ScalarProperty Name="ngayketthuc" ColumnName="ngayketthuc" />
+                <ScalarProperty Name="ngaydang" ColumnName="ngaydang" />
+                <ScalarProperty Name="anh3" ColumnName="anh3" />
+                <ScalarProperty Name="anh2" ColumnName="anh2" />
+                <ScalarProperty Name="anh1" ColumnName="anh1" />
+                <ScalarProperty Name="dientich_den" ColumnName="dientich_den" />
+                <ScalarProperty Name="dientich_tu" ColumnName="dientich_tu" />
+                <ScalarProperty Name="ma_donvi" ColumnName="ma_donvi" />
+                <ScalarProperty Name="gia_den" ColumnName="gia_den" />
+                <ScalarProperty Name="gia_tu" ColumnName="gia_tu" />
+                <ScalarProperty Name="ma_duongpho" ColumnName="ma_duongpho" />
+                <ScalarProperty Name="ma_phuongxa" ColumnName="ma_phuongxa" />
+                <ScalarProperty Name="ma_quanhuyen" ColumnName="ma_quanhuyen" />
+                <ScalarProperty Name="ma_tinhtp" ColumnName="ma_tinhtp" />
+                <ScalarProperty Name="ma_ndloaihinh" ColumnName="ma_ndloaihinh" />
+                <ScalarProperty Name="ma_loaihinh" ColumnName="ma_loaihinh" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="tieude" ColumnName="tieude" />
+                <ScalarProperty Name="ma_tinrao" ColumnName="ma_tinrao" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

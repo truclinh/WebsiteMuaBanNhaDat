@@ -284,6 +284,11 @@
     <Content Include="Views\Shared\_PartialTinRaoNoiBat.cshtml" />
     <Content Include="Views\TinTheoLoaiHinh\L_CanBanCanChoThue.cshtml" />
     <Content Include="Views\TinTheoLoaiHinh\L_CanMuaCanThue.cshtml" />
+    <Content Include="Views\TinTheoLoaiHinh\TinRaoMoiNhatPartial.cshtml" />
+    <Content Include="Views\TinTheoLoaiHinh\XemThem_CanBanCanChoThue.cshtml" />
+    <Content Include="Views\TinTheoLoaiHinh\XemThem_CanMuaCanThue.cshtml" />
+    <Content Include="Views\ChiTietTinRao\ChiTiet_CanBanCanChoThue.cshtml" />
+    <Content Include="Views\ChiTietTinRao\ChiTiet_CanMuaCanThue.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -295,8 +300,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\CanBanCanChoThueController.cs" />
-    <Compile Include="Controllers\CanMuaCanThueController.cs" />
+    <Compile Include="Controllers\ChiTietTinRaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
@@ -378,7 +382,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CanMuaCanThue\" />
     <Folder Include="Views\TimKiem\" />
   </ItemGroup>
   <ItemGroup>
@@ -408,7 +411,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50817</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44300/</IISUrl>
+          <IISUrl>http://localhost:44300/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

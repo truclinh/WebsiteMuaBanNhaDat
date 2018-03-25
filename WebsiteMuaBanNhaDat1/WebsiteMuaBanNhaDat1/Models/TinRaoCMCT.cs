@@ -32,7 +32,7 @@ namespace WebsiteMuaBanNhaDat1.Models
         public string anh2 { get; set; }
         public string anh3 { get; set; }
         public Nullable<System.DateTime> ngaydang { get; set; }
-        public Nullable<System.DateTime> ngaykethuc { get; set; }
+        public Nullable<System.DateTime> ngayketthuc { get; set; }
         public string ghichu { get; set; }
     }
 }

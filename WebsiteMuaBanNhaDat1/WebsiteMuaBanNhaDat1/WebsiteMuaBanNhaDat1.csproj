@@ -273,7 +273,6 @@
     </Content>
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index1.cshtml" />
     <Content Include="Views\Home\NhaDatBan_MenuPartial.cshtml" />
     <Content Include="Views\Home\MenuPartial.cshtml" />
     <Content Include="Views\Home\MenuItemPartial.cshtml" />
@@ -294,6 +293,9 @@
     <Content Include="Views\ChiTietTinRao\ChiTiet_CanMuaCanThue.cshtml" />
     <Content Include="Views\Shared\_LayoutAnh360.cshtml" />
     <Content Include="Views\ChiTietTinRao\Xem360.cshtml" />
+    <Content Include="Views\Shared\_LayoutNormal.cshtml" />
+    <Content Include="Views\Home\PhongThuy.cshtml" />
+    <Content Include="Views\Home\DocTiep.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -334,6 +336,13 @@
     </Compile>
     <Compile Include="Models\Metadata\TaiKhoan.metadata.cs" />
     <Compile Include="Models\NhanXet.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NhieuNhanXet.cs" />
+    <Compile Include="Models\sp_BaiDangNhieuNhanXet1_Result.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_BaiDangNhieuNhanXet_Result.cs">
       <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TaiKhoanDAO.cs" />

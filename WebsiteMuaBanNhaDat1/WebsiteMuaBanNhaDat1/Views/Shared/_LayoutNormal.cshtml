@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>@ViewBag.Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    @Html.DevExpress().GetStyleSheets(
+        new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.RichEdit },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.Editors },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.GridView }
+    )
+    @Html.DevExpress().GetScripts(
+        new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+        new Script { ExtensionSuite = ExtensionSuite.RichEdit },
+        new Script { ExtensionSuite = ExtensionSuite.Editors },
+        new Script { ExtensionSuite = ExtensionSuite.GridView }
+    )
+    <link rel="stylesheet" href="~/Content/assets/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/assets/style.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/assets/bootstrap/js/bootstrap.js"></script>
+    <script src="~/Content/assets/script.js"></script>
+
+
+    <!-- Owl stylesheet -->
+    <link rel="stylesheet" href="~/Content/assets/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="~/Content/assets/owl-carousel/owl.theme.css">
+    <script src="~/Content/assets/owl-carousel/owl.carousel.js"></script>
+    <!-- Owl stylesheet -->
+    <!-- slitslider -->
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/slitslider/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/slitslider/css/custom.css" />
+    <script type="text/javascript" src="~/Content/assets/slitslider/js/modernizr.custom.79639.js"></script>
+    <script type="text/javascript" src="~/Content/assets/slitslider/js/jquery.ba-cond.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/slitslider/js/jquery.slitslider.js"></script>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
+
+    <link href="../Content/assets/bootstrap/bootstrap-social.css" rel="stylesheet" />
+    <!-- slitslider -->
+
+    <style type="text/css">
+        li.dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 9999;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 2px 5px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+                border: 1px solid #acb0b7;
+                /*border-bottom:1px solid #acb0b7;*/
+            }
+
+                .dropdown-content a:hover {
+                    background-color: rgba(0,0,0,0.2);
+                    color: #0e2111;
+                    font-weight: bold;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    @Html.Partial("_PartialHeader")
+    @RenderBody()
+    @Html.Partial("_PartialFooter")
+    @Html.Action("DangNhapPartial", "TaiKhoan")
+</body>
+</html>

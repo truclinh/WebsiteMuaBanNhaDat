@@ -82,6 +82,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ma_tinrao" Type="uniqueidentifier" />
+          <Property Name="ma_baiviet" Type="int" />
           <Property Name="hoten" Type="nvarchar" MaxLength="100" />
           <Property Name="email" Type="nvarchar" MaxLength="50" />
           <Property Name="noidung" Type="nvarchar" MaxLength="500" />
@@ -96,6 +97,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tieude" Type="nvarchar" MaxLength="100" />
           <Property Name="noidung" Type="nvarchar(max)" />
+          <Property Name="hinhbia" Type="nvarchar" MaxLength="200" />
           <Property Name="ngaydang" Type="datetime" />
         </EntityType>
         <EntityType Name="PhuongXa">
@@ -211,6 +213,8 @@
           <Parameter Name="version" Type="int" Mode="In" />
           <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
         </Function>
+        <Function Name="sp_BaiDangNhieuNhanXet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_BaiDangNhieuNhanXet1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -294,16 +298,18 @@
           <EntitySet Name="LoaiHinh" EntityType="MuaBanNhaDatModel.LoaiHinh" />
           <EntitySet Name="LoaiHinh_en" EntityType="MuaBanNhaDatModel.LoaiHinh_en" />
           <EntitySet Name="NoiDungLoaiHinh" EntityType="MuaBanNhaDatModel.NoiDungLoaiHinh" />
-          <EntitySet Name="PhongThuy" EntityType="MuaBanNhaDatModel.PhongThuy" />
           <EntitySet Name="PhuongXa" EntityType="MuaBanNhaDatModel.PhuongXa" />
           <EntitySet Name="QuanHuyen" EntityType="MuaBanNhaDatModel.QuanHuyen" />
           <EntitySet Name="sysdiagrams" EntityType="MuaBanNhaDatModel.sysdiagrams" />
           <EntitySet Name="TinRaoCBCHT" EntityType="MuaBanNhaDatModel.TinRaoCBCHT" />
           <EntitySet Name="TinhTP" EntityType="MuaBanNhaDatModel.TinhTP" />
           <EntitySet Name="DangKyNhanThongBao" EntityType="MuaBanNhaDatModel.DangKyNhanThongBao" />
-          <EntitySet Name="TaiKhoan" EntityType="MuaBanNhaDatModel.TaiKhoan" />
           <EntitySet Name="TinRaoCMCT" EntityType="MuaBanNhaDatModel.TinRaoCMCT" />
+          <EntitySet Name="PhongThuy" EntityType="MuaBanNhaDatModel.PhongThuy" />
           <EntitySet Name="NhanXet" EntityType="MuaBanNhaDatModel.NhanXet" />
+          <EntitySet Name="TaiKhoan" EntityType="MuaBanNhaDatModel.TaiKhoan" />
+          <FunctionImport Name="sp_BaiDangNhieuNhanXet" ReturnType="Collection(MuaBanNhaDatModel.sp_BaiDangNhieuNhanXet_Result)" />
+          <FunctionImport Name="sp_BaiDangNhieuNhanXet1" ReturnType="Collection(MuaBanNhaDatModel.sp_BaiDangNhieuNhanXet1_Result)" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -377,15 +383,6 @@
           <Property Name="tenkhongdau" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ma_loaihinh" Type="Int32" />
           <Property Name="ghichu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="PhongThuy">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tieude" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ngaydang" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="PhuongXa">
           <Key>
@@ -461,22 +458,6 @@
           <Property Name="ngaydangky" Type="DateTime" Precision="3" />
           <Property Name="ghichu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="TaiKhoan">
-          <Key>
-            <PropertyRef Name="ma_taikhoan" />
-          </Key>
-          <Property Name="ma_taikhoan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tendangnhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="matkhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="tennguoidung" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="anhdaidien" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="diachi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="dienthoai" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
-          <Property Name="maquyen" Type="Int32" />
-          <Property Name="ngaydangky" Type="DateTime" Precision="3" />
-          <Property Name="ghichu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="TinRaoCMCT">
           <Key>
             <PropertyRef Name="ma_tinrao" />
@@ -502,12 +483,23 @@
           <Property Name="ngayketthuc" Type="DateTime" Precision="3" />
           <Property Name="ghichu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="PhongThuy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tieude" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhbia" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ngaydang" Type="DateTime" Precision="3" />
+        </EntityType>
         <EntityType Name="NhanXet">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ma_tinrao" Type="Guid" />
+          <Property Name="ma_baiviet" Type="Int32" />
           <Property Name="hoten" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="noidung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -515,6 +507,34 @@
           <Property Name="ngaydang" Type="DateTime" Precision="3" />
           <Property Name="ghichu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="ma_taikhoan" />
+          </Key>
+          <Property Name="ma_taikhoan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tendangnhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="matkhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tennguoidung" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="anhdaidien" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="diachi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dienthoai" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="maquyen" Type="Int32" />
+          <Property Name="ngaydangky" Type="DateTime" Precision="3" />
+          <Property Name="ghichu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="sp_BaiDangNhieuNhanXet_Result">
+          <Property Type="Int32" Name="ma_baiviet" Nullable="true" />
+          <Property Type="Int32" Name="tong_nhanxet" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_BaiDangNhieuNhanXet1_Result">
+          <Property Type="Int32" Name="tong_nhanxet" Nullable="true" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="tieude" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="noidung" Nullable="true" />
+          <Property Type="String" Name="hinhbia" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="ngaydang" Nullable="true" Precision="23" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -613,16 +633,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PhongThuy">
-            <EntityTypeMapping TypeName="MuaBanNhaDatModel.PhongThuy">
-              <MappingFragment StoreEntitySet="PhongThuy">
-                <ScalarProperty Name="ngaydang" ColumnName="ngaydang" />
-                <ScalarProperty Name="noidung" ColumnName="noidung" />
-                <ScalarProperty Name="tieude" ColumnName="tieude" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PhuongXa">
             <EntityTypeMapping TypeName="MuaBanNhaDatModel.PhuongXa">
               <MappingFragment StoreEntitySet="PhuongXa">
@@ -703,23 +713,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TaiKhoan">
-            <EntityTypeMapping TypeName="MuaBanNhaDatModel.TaiKhoan">
-              <MappingFragment StoreEntitySet="TaiKhoan">
-                <ScalarProperty Name="ghichu" ColumnName="ghichu" />
-                <ScalarProperty Name="ngaydangky" ColumnName="ngaydangky" />
-                <ScalarProperty Name="maquyen" ColumnName="maquyen" />
-                <ScalarProperty Name="dienthoai" ColumnName="dienthoai" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="diachi" ColumnName="diachi" />
-                <ScalarProperty Name="anhdaidien" ColumnName="anhdaidien" />
-                <ScalarProperty Name="tennguoidung" ColumnName="tennguoidung" />
-                <ScalarProperty Name="matkhau" ColumnName="matkhau" />
-                <ScalarProperty Name="tendangnhap" ColumnName="tendangnhap" />
-                <ScalarProperty Name="ma_taikhoan" ColumnName="ma_taikhoan" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TinRaoCMCT">
             <EntityTypeMapping TypeName="MuaBanNhaDatModel.TinRaoCMCT">
               <MappingFragment StoreEntitySet="TinRaoCMCT">
@@ -746,6 +739,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PhongThuy">
+            <EntityTypeMapping TypeName="MuaBanNhaDatModel.PhongThuy">
+              <MappingFragment StoreEntitySet="PhongThuy">
+                <ScalarProperty Name="ngaydang" ColumnName="ngaydang" />
+                <ScalarProperty Name="hinhbia" ColumnName="hinhbia" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="tieude" ColumnName="tieude" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="NhanXet">
             <EntityTypeMapping TypeName="MuaBanNhaDatModel.NhanXet">
               <MappingFragment StoreEntitySet="NhanXet">
@@ -755,11 +759,49 @@
                 <ScalarProperty Name="noidung" ColumnName="noidung" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="hoten" ColumnName="hoten" />
+                <ScalarProperty Name="ma_baiviet" ColumnName="ma_baiviet" />
                 <ScalarProperty Name="ma_tinrao" ColumnName="ma_tinrao" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TaiKhoan">
+            <EntityTypeMapping TypeName="MuaBanNhaDatModel.TaiKhoan">
+              <MappingFragment StoreEntitySet="TaiKhoan">
+                <ScalarProperty Name="ghichu" ColumnName="ghichu" />
+                <ScalarProperty Name="ngaydangky" ColumnName="ngaydangky" />
+                <ScalarProperty Name="maquyen" ColumnName="maquyen" />
+                <ScalarProperty Name="dienthoai" ColumnName="dienthoai" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="anhdaidien" ColumnName="anhdaidien" />
+                <ScalarProperty Name="tennguoidung" ColumnName="tennguoidung" />
+                <ScalarProperty Name="matkhau" ColumnName="matkhau" />
+                <ScalarProperty Name="tendangnhap" ColumnName="tendangnhap" />
+                <ScalarProperty Name="ma_taikhoan" ColumnName="ma_taikhoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_BaiDangNhieuNhanXet" FunctionName="MuaBanNhaDatModel.Store.sp_BaiDangNhieuNhanXet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MuaBanNhaDatModel.sp_BaiDangNhieuNhanXet_Result">
+                <ScalarProperty Name="ma_baiviet" ColumnName="ma_baiviet" />
+                <ScalarProperty Name="tong_nhanxet" ColumnName="tong_nhanxet" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_BaiDangNhieuNhanXet1" FunctionName="MuaBanNhaDatModel.Store.sp_BaiDangNhieuNhanXet1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MuaBanNhaDatModel.sp_BaiDangNhieuNhanXet1_Result">
+                <ScalarProperty Name="tong_nhanxet" ColumnName="tong_nhanxet" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tieude" ColumnName="tieude" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="hinhbia" ColumnName="hinhbia" />
+                <ScalarProperty Name="ngaydang" ColumnName="ngaydang" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -20,33 +20,33 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                                          join nd in db.NoiDungLoaiHinh on cb.ma_ndloaihinh equals nd.ma_ndloaihinh
                                          join px in db.PhuongXa on cb.ma_phuongxa equals px.ma_phuongxa
                                          join dp in db.DuongPho on cb.ma_duongpho equals dp.ma_duongpho
-                                         where (cb.ma_tinhtp == tp.ma_tinhtp && tp.ma_tinhtp == qh.ma_tinhtp && cb.ma_donvi == dv.ma_donvi && cb.ma_quanhuyen == qh.ma_quanhuyen&&cb.ma_ndloaihinh==nd.ma_ndloaihinh &&cb.ma_phuongxa==px.ma_phuongxa &&cb.ma_duongpho==dp.ma_duongpho&&px.ma_quanhuyen==qh.ma_quanhuyen && dp.ma_phuongxa==px.ma_phuongxa)
+                                         where (cb.ma_tinhtp == tp.ma_tinhtp && tp.ma_tinhtp == qh.ma_tinhtp && cb.ma_donvi == dv.ma_donvi && cb.ma_quanhuyen == qh.ma_quanhuyen && cb.ma_ndloaihinh == nd.ma_ndloaihinh && cb.ma_phuongxa == px.ma_phuongxa && cb.ma_duongpho == dp.ma_duongpho && px.ma_quanhuyen == qh.ma_quanhuyen && dp.ma_phuongxa == px.ma_phuongxa)
                                          select new TinRao
                                          {
                                              ma_tinrao = cb.ma_tinrao,
                                              tieude = cb.tieude,
-                                             ma_loaihinh = cb.ma_loaihinh, 
-                                             ma_ndloaihinh=nd.ma_ndloaihinh, 
-                                             ten_ndloaihinh=nd.ten_ndloaihinh,                                           
+                                             ma_loaihinh = cb.ma_loaihinh,
+                                             ma_ndloaihinh = nd.ma_ndloaihinh,
+                                             ten_ndloaihinh = nd.ten_ndloaihinh,
                                              ten_tinhtp = tp.ten_tinhtp,
                                              ten_quanhuyen = qh.ten_quanhuyen,
-                                             ten_phuongxa=px.ten_phuongxa,
-                                             ten_duongpho=dp.ten_duongpho,
-                                             dientich=cb.dientich,
+                                             ten_phuongxa = px.ten_phuongxa,
+                                             ten_duongpho = dp.ten_duongpho,
+                                             dientich = cb.dientich,
                                              gia = cb.gia,
                                              ten_donvi = dv.ten_donvi,
-                                             mota=cb.mota,
+                                             mota = cb.mota,
                                              so_phongngu = cb.so_phongngu,
                                              so_phongkhach = cb.so_phongkhach,
                                              so_nhabep = cb.so_nhabep,
-                                             so_toilet = cb.so_toilet,                                        
+                                             so_toilet = cb.so_toilet,
                                              anh1 = cb.anh1,
-                                             anh2=cb.anh2,
-                                             anh3=cb.anh3,
-                                             anh4=cb.anh4,
-                                             anh360do=cb.anh360do,
+                                             anh2 = cb.anh2,
+                                             anh3 = cb.anh3,
+                                             anh4 = cb.anh4,
+                                             anh360do = cb.anh360do,
                                              ngaydang = cb.ngaydang,
-                                             ngayketthuc=cb.ngayketthuc
+                                             ngayketthuc = cb.ngayketthuc
                                          }
                           ).ToList();
             ViewBag.TinRaoCMCTNoiBat = (from cb in db.TinRaoCMCT
@@ -61,10 +61,10 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                                         {
                                             ma_tinrao = cb.ma_tinrao,
                                             tieude = cb.tieude,
-                                            noidung=cb.noidung,
+                                            noidung = cb.noidung,
                                             ma_loaihinh = cb.ma_loaihinh,
-                                            ma_ndloaihinh=cb.ma_ndloaihinh,
-                                            ten_ndloaihinh=nd.ten_ndloaihinh,
+                                            ma_ndloaihinh = cb.ma_ndloaihinh,
+                                            ten_ndloaihinh = nd.ten_ndloaihinh,
                                             ten_tinhtp = tp.ten_tinhtp,
                                             ten_quanhuyen = qh.ten_quanhuyen,
                                             ten_phuongxa = px.ten_phuongxa,
@@ -78,7 +78,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                                             anh2 = cb.anh2,
                                             anh3 = cb.anh3,
                                             ngaydang = cb.ngaydang,
-                                            ngayketthuc=cb.ngayketthuc
+                                            ngayketthuc = cb.ngayketthuc
                                         }
                           ).ToList();
             ViewBag.lstLoaiHinhCBCHT = db.LoaiHinh.OrderBy(n => n.ma_loaihinh).Where(n => n.nhom == "CBCHT").ToList();
@@ -206,7 +206,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                 try
                 {
                     var x = db.DangKyNhanThongBao.Where(n => n.email == txtEmail);
-                    if ( x.Count()== 0)
+                    if (x.Count() == 0)
                     {
                         DangKyNhanThongBao dknt = new DangKyNhanThongBao();
                         dknt.email = txtEmail;
@@ -233,6 +233,25 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             else
                 ViewData["EditError"] = "Please, correct all errors.";
             return null;
+        }
+        //-------------------------------------- Phong thủy
+        public ActionResult PhongThuy()
+        {
+            ViewBag.MoiNhat = db.PhongThuy.ToList().OrderByDescending(n => n.ngaydang).Take(5);
+            ViewBag.NhieuNX = db.sp_BaiDangNhieuNhanXet1().ToList().Take(5);
+            var da = db.PhongThuy.OrderByDescending(n => n.ngaydang).ToList();
+            return View(da);
+        }
+        //-------------------------------------- Đọc tiếp tin Phong thủy
+        public ActionResult DocTiep(int? ma_baiviet)
+        {         
+            var da = db.PhongThuy.SingleOrDefault(n => n.id == ma_baiviet);
+            ViewBag.TieuDe = da.tieude.ToString();
+            var model = db.NhanXet.Where(n => n.ma_baiviet == ma_baiviet).ToList();
+            ViewBag.NhanXet = model;
+            ViewBag.MoiNhat = db.PhongThuy.ToList().OrderByDescending(n => n.ngaydang).Take(5);
+            ViewBag.NhieuNX = db.sp_BaiDangNhieuNhanXet1().ToList().Take(5);
+            return View(da);
         }
     }
 }

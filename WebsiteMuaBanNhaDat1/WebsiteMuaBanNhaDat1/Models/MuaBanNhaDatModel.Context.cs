@@ -33,16 +33,16 @@ namespace WebsiteMuaBanNhaDat1.Models
         public virtual DbSet<LoaiHinh> LoaiHinh { get; set; }
         public virtual DbSet<LoaiHinh_en> LoaiHinh_en { get; set; }
         public virtual DbSet<NoiDungLoaiHinh> NoiDungLoaiHinh { get; set; }
-        public virtual DbSet<PhongThuy> PhongThuy { get; set; }
         public virtual DbSet<PhuongXa> PhuongXa { get; set; }
         public virtual DbSet<QuanHuyen> QuanHuyen { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TinRaoCBCHT> TinRaoCBCHT { get; set; }
         public virtual DbSet<TinhTP> TinhTP { get; set; }
         public virtual DbSet<DangKyNhanThongBao> DangKyNhanThongBao { get; set; }
-        public virtual DbSet<TaiKhoan> TaiKhoan { get; set; }
         public virtual DbSet<TinRaoCMCT> TinRaoCMCT { get; set; }
+        public virtual DbSet<PhongThuy> PhongThuy { get; set; }
         public virtual DbSet<NhanXet> NhanXet { get; set; }
+        public virtual DbSet<TaiKhoan> TaiKhoan { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -145,6 +145,16 @@ namespace WebsiteMuaBanNhaDat1.Models
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<sp_BaiDangNhieuNhanXet_Result> sp_BaiDangNhieuNhanXet()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_BaiDangNhieuNhanXet_Result>("sp_BaiDangNhieuNhanXet");
+        }
+    
+        public virtual ObjectResult<sp_BaiDangNhieuNhanXet1_Result> sp_BaiDangNhieuNhanXet1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_BaiDangNhieuNhanXet1_Result>("sp_BaiDangNhieuNhanXet1");
         }
     }
 }

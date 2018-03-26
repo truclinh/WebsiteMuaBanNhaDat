@@ -1,0 +1,152 @@
+﻿@using WebsiteMuaBanNhaDat1.Models
+@model PhongThuy
+@{
+    ViewBag.Title = "Phong thủy";
+    Layout = "~/Views/Shared/_LayoutNormal.cshtml";
+    int sonhanxet = ViewBag.NhanXet.Count;
+}
+<script>
+                $(document).ready(function () {
+                        // alert("hi");
+                            $('.nav-list > li').removeClass('active');
+                            $("#PhongThuy").addClass('active');
+                });
+</script>
+<style>
+    .comments {
+        height: 500px;
+        overflow-y: scroll;
+    }
+
+    .comment {
+        border: 1px solid #b4afaf;
+    }
+
+    .demuc {
+        color: #304b0a;
+    }
+
+    .tabbable {
+        background-color: white;
+       
+    }
+
+    .tab-pane {
+        padding: 10px; border:1px solid #b4afaf;border-top:none;
+    }
+</style>
+<!-- banner -->
+<div class="inside-banner">
+    <div class="container">
+        <span class="pull-right"><a href="@Url.Action("Index","Home")">Trang chủ</a> / Phong thủy</span>
+        <h2>Phong thủy</h2>
+    </div>
+</div>
+<!-- banner -->
+
+
+<div class="container">
+    <div class="spacer blog">
+        <div class="row">
+            <div class="col-lg-8">
+
+                <!-- blog detail -->
+                <h2>@Model.tieude</h2>
+                <div class="info">Ngày đăng: @Model.ngaydang.Value.ToString("dd/MM/yyyy")</div>
+                <img src="~/Content/images/blog/@Model.hinhbia" class="thumbnail img-responsive" alt="blog title">
+                <p>@Html.Raw(Model.noidung)</p>
+                <!-- blog detail -->
+
+            </div>
+            <div class="col-lg-4 visible-lg">
+
+                <!-- tabs -->
+                <div class="tabbable">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">Bài đăng mới nhất</a></li>
+                        <li class=""><a href="#tab2" data-toggle="tab">Bài đăng nhiều nhận xét nhất</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane" id="tab1">
+                            <ul class="list-unstyled">
+                                @foreach (var item in ViewBag.MoiNhat)
+                                {
+                                    <li>
+                                        <h5><a href="@Url.Action("DocTiep","Home",new {ma_baiviet=item.id })">@item.tieude</a></h5>
+                                        <div class="info">Ngày đăng: @item.ngaydang</div>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                        <div class="tab-pane" id="tab2">
+                            <ul class="list-unstyled">
+                                @foreach (var item in ViewBag.NhieuNX)
+                                {
+                                    <li>
+                                        <h5><a href="@Url.Action("DocTiep","Home",new {ma_baiviet=item.id })">@item.tieude</a></h5>
+                                        <div class="info">Ngày đăng: @item.ngaydang</div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- tabs -->
+                <br />
+                <div class="col-lg-12 col-sm-4 ">
+                    <div class="enquiry">
+                        <h6><b class="demuc"><span class="glyphicon glyphicon-envelope"></span> Nhận xét</b></h6>
+                        @if (Session["TaiKhoan"] == null)
+                        {
+                            using (Html.BeginForm("NXBaiDangPT_VoDanh", "NhanXet", new { ma_baiviet = Model.id }, FormMethod.Post, new { id = "frmVodanh" }))
+                            {
+                                <input type="text" name="txtHoTen" class="form-control" placeholder="Họ và tên" />
+                                <input type="text" name="txtEmail" class="form-control" placeholder="Địa chỉ Email" />
+                                <textarea rows="6" name="txtNoiDung" class="form-control" placeholder="Nhập nhận xét ..."></textarea>
+                                <button type="submit" class="btn btn-primary" name="Submit">Đăng</button>
+                            }
+                        }
+                        else
+                        {
+                            using (Html.BeginForm("NXBaiDangPT_ThanhVien", "NhanXet", new { ma_baiviet = Model.id }, FormMethod.Post, new { id = "frmThanhVien" }))
+                            {
+                                <input type="hidden" name="txtHoTen1" value="@Session["NguoiDung"].ToString()" />
+                                <input type="hidden" name="txtEmail1" value="@Session["Email"].ToString()" />
+                                <textarea rows="6" name="txtNoiDung1" class="form-control" placeholder="Nhập nhận xét ..."></textarea>
+                                <button type="submit" class="btn btn-primary" name="Submit">Đăng</button>
+                            }
+                        }
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-sm-4" style="visibility:hidden">Chèn hàng trắng</div>
+                <div class="col-lg-12 col-sm-4 comments">
+                    <h6><b class="demuc"><span class="glyphicon glyphicon-comment"></span> Danh sách nhận xét</b></h6>
+                    <br />
+                    @if (sonhanxet == 0)
+                    {
+                        <p>Chưa có nhận xét nào</p>
+                    }
+                    @foreach (var item1 in ViewBag.NhanXet)
+                    {
+                        <div class="col-lg-12 comment" style="background-color:white;padding:5px;">
+                            @if (item1.thanhvien == false)
+                            {
+                                <div class="col-lg-12"><span class="glyphicon glyphicon-user"></span> <b>@item1.hoten</b></div>
+                            }
+                            else
+                            {
+                                <div class="col-lg-12"><span class="glyphicon glyphicon-user"></span> <b>@item1.hoten <i style="color:red;font-size:12px">(Thành viên)</i></b></div>
+                            }
+
+                            <div class="col-lg-12"><span>"</span> @item1.noidung <span>"</span></div>
+                            <div class="col-lg-12" style="font-style:italic;opacity:0.5;font-size:12px">@item1.ngaydang</div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

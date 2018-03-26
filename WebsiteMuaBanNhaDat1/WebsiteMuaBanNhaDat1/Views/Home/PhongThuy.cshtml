@@ -1,0 +1,93 @@
+﻿@using WebsiteMuaBanNhaDat1.Models
+@model IEnumerable<PhongThuy>
+@{
+    ViewBag.Title = "Phong thủy";
+    Layout = "~/Views/Shared/_LayoutNormal.cshtml";
+}
+<style>
+    .tabbable {
+        background-color: white;
+        
+    }
+
+    .tab-pane {
+        padding: 10px; border:1px solid #b4afaf; border-top:none;
+    }
+</style>
+<script>
+                $(document).ready(function () {
+                        // alert("hi");
+                            $('.nav-list > li').removeClass('active');
+                            $("#PhongThuy").addClass('active');
+                });
+</script>
+<div class="inside-banner">
+    <div class="container">
+        <span class="pull-right"><a href="@Url.Action("Index","Home")">Trang chủ</a> / @ViewBag.Title</span>
+        <h2>Phong thủy</h2>
+    </div>
+</div>
+<!-- banner -->
+
+
+<div class="container">
+    <div class="spacer blog">
+        <div class="row">
+            <div class="col-lg-8 col-sm-12 ">
+                @foreach(var item in Model) { 
+                <!-- blog list -->
+                <div class="row">
+                    <div class="col-lg-4 col-sm-4 "><a href="@Url.Action("DocTiep","Home",new {ma_baiviet=item.id })" class="thumbnail"><img src="~/Content/images/blog/@item.hinhbia" alt="blog title"></a></div>
+                    <div class="col-lg-8 col-sm-8 ">
+                        <h3><a href="@Url.Action("DocTiep","Home",new {ma_baiviet=item.id })" style="color:#304b0a">@item.tieude</a></h3>
+                        <div class="info">Ngày đăng: @item.ngaydang.Value.ToString("dd/MM/yyyy")</div>
+                        <p>@item.noidung.Substring(0,200) ...</p>
+                        <a href="@Url.Action("DocTiep","Home",new {ma_baiviet=item.id })" class="more">Đọc tiếp</a>
+                    </div>
+                </div>
+                <!-- blog list -->
+                }
+            </div>
+            <div class="col-lg-4 visible-lg">
+
+                <!-- tabs -->
+                <div class="tabbable">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">Bài đăng mới nhất</a></li>
+                        <li class=""><a href="#tab2" data-toggle="tab">Bài đăng nhiều nhận xét nhất</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane" id="tab1">
+                            <ul class="list-unstyled">
+                                @foreach (var item in ViewBag.MoiNhat)
+                                {
+                                    <li>
+                                        <h5><a href="@Url.Action("DocTiep","Home",new {ma_baiviet=item.id })">@item.tieude</a></h5>
+                                        <div class="info">Ngày đăng: @item.ngaydang</div>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                        <div class="tab-pane" id="tab2">
+                            <ul class="list-unstyled">
+                                @foreach (var item in ViewBag.NhieuNX)
+                                {
+                                    <li>
+                                        <h5><a href="@Url.Action("DocTiep","Home",new {ma_baiviet=item.id })">@item.tieude</a></h5>
+                                        <div class="info">Ngày đăng: @item.ngaydang</div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <!-- tabs -->
+
+            </div>
+        </div>
+    </div>
+</div>

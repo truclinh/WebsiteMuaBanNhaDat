@@ -10,10 +10,10 @@
 namespace WebsiteMuaBanNhaDat1.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class PhongThuy
+    public partial class sp_BaiDangNhieuNhanXet1_Result
     {
+        public Nullable<int> tong_nhanxet { get; set; }
         public int id { get; set; }
         public string tieude { get; set; }
         public string noidung { get; set; }

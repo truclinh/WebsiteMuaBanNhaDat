@@ -16,6 +16,7 @@ namespace WebsiteMuaBanNhaDat1.Models
     {
         public int id { get; set; }
         public Nullable<System.Guid> ma_tinrao { get; set; }
+        public Nullable<int> ma_baiviet { get; set; }
         public string hoten { get; set; }
         public string email { get; set; }
         public string noidung { get; set; }

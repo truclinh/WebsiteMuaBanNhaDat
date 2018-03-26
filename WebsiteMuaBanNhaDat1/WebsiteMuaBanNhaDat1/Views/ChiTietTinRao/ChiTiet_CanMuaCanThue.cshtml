@@ -3,7 +3,22 @@
 @{
     ViewBag.Title = ViewBag.TieuDeTin;
     Layout = "~/Views/Shared/_LayoutTheoLoai.cshtml";
+    var lienhe = ViewBag.LienHe;
+   int sonhanxet = ViewBag.NhanXet.Count;
 }
+<style>
+    .comments {
+        height: 300px;
+        overflow-y: scroll;
+    }
+
+    .comment {
+        border: 1px solid #b4afaf;
+    }
+    .demuc{
+        color:#304b0a;
+    }
+</style>
 <script>
                 $(document).ready(function () {
                         // alert("hi");
@@ -54,17 +69,17 @@
 
 
             <div class="spacer">
-                <h4><span class="glyphicon glyphicon-th-list"></span> Thông tin mô tả yêu cầu</h4>
+                <h4><b class="demuc"><span class="glyphicon glyphicon-th-list"></span> Thông tin mô tả yêu cầu</b></h4>
                 <p>@Html.Raw(item.noidung)</p>
             </div>
             <div>
-                <h4><span class="glyphicon glyphicon-map-marker"></span> Vị trí</h4>
+                <h4><b class="demuc"><span class="glyphicon glyphicon-map-marker"></span> Vị trí</b></h4>
                 <div class="well"><iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Pulchowk,+Patan,+Central+Region,+Nepal&amp;aq=0&amp;oq=pulch&amp;sll=37.0625,-95.677068&amp;sspn=39.371738,86.572266&amp;ie=UTF8&amp;hq=&amp;hnear=Pulchowk,+Patan+Dhoka,+Patan,+Bagmati,+Central+Region,+Nepal&amp;ll=27.678236,85.316853&amp;spn=0.001347,0.002642&amp;t=m&amp;z=14&amp;output=embed"></iframe></div>
             </div>
 
         </div>
         <div class="col-lg-4">
-            <div class="col-lg-12  col-sm-6">
+            <div class="col-lg-12  col-sm-4">
                 <div class="property-info">
                     <h5 style="border:3px solid #64a30a;background-color:white;padding:5px;">
                         Giá:
@@ -104,28 +119,72 @@
                         }
                     </h5>
                     <p class="area">
-                        <span class="glyphicon glyphicon-map-marker"></span>
-                        @(item.ten_duongpho), @(item.ten_phuongxa), @(item.ten_quanhuyen), @(item.ten_tinhtp)
-                    </p>
+                        <b class="demuc">
+                            <span class="glyphicon glyphicon-map-marker"></span></b>
+                            @(item.ten_duongpho), @(item.ten_phuongxa), @(item.ten_quanhuyen), @(item.ten_tinhtp)
+</p>
+
 
                     <div class="profile">
-                        <span class="glyphicon glyphicon-user"></span> Agent Details
-                        <p>John Parker<br>009 229 2929</p>
-                    </div>
+                        <b class="demuc">
+                            <span class="glyphicon glyphicon-user"></span> Liên hệ</b>
+                            <ul style="list-style-type:circle;">
+                                <li>@lienhe.ten_lienhe</li>
+                                <li>
+                                    @if (lienhe.diachi != "")
+                                    {
+                                        @(lienhe.diachi)
+                                    }
+                                </li>
+                                <li>
+                                    @if (lienhe.dienthoai != "")
+                                    {
+                                        @(lienhe.dienthoai)
+                                        <span> - </span>
+                                    }
+                                    @(lienhe.didong)
+                                </li>
+                                <li>@lienhe.email</li>
+                            </ul>
+</div>
                 </div>
                 <p>Ngày đăng: @item.ngaydang.ToString("dd/MM/yyyy")</p>
             </div>
-            <div class="col-lg-12 col-sm-6 ">
+            <div class="col-lg-12 col-sm-4 ">
                 <div class="enquiry">
-                    <h6><span class="glyphicon glyphicon-envelope"></span> Post Enquiry</h6>
+                    <h6><b class="demuc"><span class="glyphicon glyphicon-envelope"></span> Nhận xét</b></h6>
                     <form role="form">
-                        <input type="text" class="form-control" placeholder="Full Name" />
-                        <input type="text" class="form-control" placeholder="you@yourdomain.com" />
-                        <input type="text" class="form-control" placeholder="your number" />
-                        <textarea rows="6" class="form-control" placeholder="Whats on your mind?"></textarea>
-                        <button type="submit" class="btn btn-primary" name="Submit">Send Message</button>
+                        <input type="text" class="form-control" placeholder="Họ và tên" />
+                        <input type="text" class="form-control" placeholder="Địa chỉ Email" />
+                        <textarea rows="6" class="form-control" placeholder="Nhập nhận xét ..."></textarea>
+                        <button type="submit" class="btn btn-primary" name="Submit">Đăng</button>
                     </form>
                 </div>
+            </div>
+            <div class="col-lg-12 col-sm-4" style="visibility:hidden">Chèn hàng trắng</div>
+            <div class="col-lg-12 col-sm-4 comments">
+                <h6><b class="demuc"><span class="glyphicon glyphicon-comment"></span> Danh sách nhận xét</b></h6>
+                <br />
+                @if (sonhanxet == 0)
+                {
+                    <p>Chưa có nhận xét nào</p>
+                }
+                 @foreach (var item1 in ViewBag.NhanXet)
+                {
+                    <div class="col-lg-12 comment" style="background-color:white;">
+                        @if (item1.thanhvien == false)
+                    {
+                            <div class="col-lg-12"><span class="glyphicon glyphicon-user"></span> <b>@item1.hoten</b></div>
+                        }
+                        else
+                        {
+                            <div class="col-lg-12"><span class="glyphicon glyphicon-user"></span> <b>@item1.hoten <i style="color:red;font-size:12px">(Thành viên)</i></b></div>
+                        }
+
+                        <div class="col-lg-12"><span>"</span> @item1.noidung <span>"</span></div>
+                        <div class="col-lg-12" style="font-style:italic;opacity:0.5;font-size:12px">@item1.ngaydang</div>
+                    </div>
+                }              
             </div>
         </div>
     </div>

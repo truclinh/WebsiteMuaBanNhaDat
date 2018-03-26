@@ -76,6 +76,19 @@
           <Property Name="ma_loaihinh" Type="int" />
           <Property Name="ghichu" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="NhanXet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_tinrao" Type="uniqueidentifier" />
+          <Property Name="hoten" Type="nvarchar" MaxLength="100" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="noidung" Type="nvarchar" MaxLength="500" />
+          <Property Name="thanhvien" Type="bit" />
+          <Property Name="ngaydang" Type="datetime" />
+          <Property Name="ghichu" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="PhongThuy">
           <Key>
             <PropertyRef Name="id" />
@@ -230,6 +243,7 @@
           <EntitySet Name="LoaiHinh" EntityType="Self.LoaiHinh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiHinh_en" EntityType="Self.LoaiHinh_en" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NoiDungLoaiHinh" EntityType="Self.NoiDungLoaiHinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NhanXet" EntityType="Self.NhanXet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhongThuy" EntityType="Self.PhongThuy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhuongXa" EntityType="Self.PhuongXa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuanHuyen" EntityType="Self.QuanHuyen" Schema="dbo" store:Type="Tables" />
@@ -289,6 +303,7 @@
           <EntitySet Name="DangKyNhanThongBao" EntityType="MuaBanNhaDatModel.DangKyNhanThongBao" />
           <EntitySet Name="TaiKhoan" EntityType="MuaBanNhaDatModel.TaiKhoan" />
           <EntitySet Name="TinRaoCMCT" EntityType="MuaBanNhaDatModel.TinRaoCMCT" />
+          <EntitySet Name="NhanXet" EntityType="MuaBanNhaDatModel.NhanXet" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -485,6 +500,19 @@
           <Property Name="anh3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ngaydang" Type="DateTime" Precision="3" />
           <Property Name="ngayketthuc" Type="DateTime" Precision="3" />
+          <Property Name="ghichu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NhanXet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_tinrao" Type="Guid" />
+          <Property Name="hoten" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="noidung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="thanhvien" Type="Boolean" />
+          <Property Name="ngaydang" Type="DateTime" Precision="3" />
           <Property Name="ghichu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
@@ -715,6 +743,20 @@
                 <ScalarProperty Name="noidung" ColumnName="noidung" />
                 <ScalarProperty Name="tieude" ColumnName="tieude" />
                 <ScalarProperty Name="ma_tinrao" ColumnName="ma_tinrao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NhanXet">
+            <EntityTypeMapping TypeName="MuaBanNhaDatModel.NhanXet">
+              <MappingFragment StoreEntitySet="NhanXet">
+                <ScalarProperty Name="ghichu" ColumnName="ghichu" />
+                <ScalarProperty Name="ngaydang" ColumnName="ngaydang" />
+                <ScalarProperty Name="thanhvien" ColumnName="thanhvien" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="hoten" ColumnName="hoten" />
+                <ScalarProperty Name="ma_tinrao" ColumnName="ma_tinrao" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

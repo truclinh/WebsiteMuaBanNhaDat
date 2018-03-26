@@ -97,7 +97,10 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             {
                 if (kh1.maquyen == 2)
                 {
+                    Session["TaiKhoan"] = kh1;
                     Session["NguoiDung"] = kh1.tennguoidung;
+                    Session["TenDangNhap"] = kh1.tendangnhap;
+                    Session["Email"] = kh1.email;
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -112,10 +115,12 @@ namespace WebsiteMuaBanNhaDat1.Controllers
         //-------------------------------------- Đăng xuất
         public ActionResult DangXuat()
         {
-            if (Session["NguoiDung"] != null)
+            if (Session["TaiKhoan"] != null)
             {
+                Session["TaiKhoan"] = null;
                 Session["NguoiDung"] = null;
                 Session["AnhDaiDien"] = null;
+                Session["Email"] = null;
             }
             return RedirectToAction("Index", "Home");
         }
@@ -174,8 +179,10 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                
                 if (resultInsert > 0)
                 {
+                    Session["TaiKhoan"] = user;
                     Session["NguoiDung"] = user.tennguoidung;
                     Session["AnhDaiDien"] = user.anhdaidien;
+                    Session["Email"] = user.email;
                     return RedirectToAction("Index", "Home");
                 }
             }

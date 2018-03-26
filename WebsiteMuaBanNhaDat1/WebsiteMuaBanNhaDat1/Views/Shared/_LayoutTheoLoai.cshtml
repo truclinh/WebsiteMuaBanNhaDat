@@ -80,6 +80,7 @@
             color: white;
             font-weight: bold;
         }
+
     </style>
 </head>
 
@@ -87,7 +88,7 @@
     @Html.Partial("_PartialHeader")
     <div class="inside-banner">
         <div class="container">
-            <span class="pull-right"><a href="index.php">Trang chủ</a> / @ViewBag.Title</span>
+            <span class="pull-right"><a href="@Url.Action("Index","Home")">Trang chủ</a> / @ViewBag.Title</span>
             <h2>@ViewBag.Title</h2>
         </div>
     </div>

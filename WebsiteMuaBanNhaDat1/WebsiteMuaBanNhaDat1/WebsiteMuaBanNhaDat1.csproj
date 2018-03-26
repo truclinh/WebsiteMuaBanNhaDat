@@ -153,6 +153,8 @@
     <Content Include="Content\assets\css\bootstrap.css" />
     <Content Include="Content\assets\css\docs.css" />
     <Content Include="Content\assets\css\font-awesome.css" />
+    <Content Include="Content\assets\css\pannellum.css" />
+    <Content Include="Content\assets\css\pannellum.js" />
     <Content Include="Content\assets\fonts\din.svg" />
     <Content Include="Content\assets\fonts\font-awesome.min.css" />
     <Content Include="Content\assets\owl-carousel\AjaxLoader.gif" />
@@ -192,6 +194,7 @@
     <Content Include="Content\images\properties\3.jpg" />
     <Content Include="Content\images\properties\4.jpg" />
     <Content Include="Content\images\properties\5.jpg" />
+    <Content Include="Content\images\properties\anh360.jpg" />
     <Content Include="Content\images\slider\1.jpg" />
     <Content Include="Content\images\slider\2.jpg" />
     <Content Include="Content\images\slider\3.jpg" />
@@ -289,6 +292,8 @@
     <Content Include="Views\TinTheoLoaiHinh\XemThem_CanMuaCanThue.cshtml" />
     <Content Include="Views\ChiTietTinRao\ChiTiet_CanBanCanChoThue.cshtml" />
     <Content Include="Views\ChiTietTinRao\ChiTiet_CanMuaCanThue.cshtml" />
+    <Content Include="Views\Shared\_LayoutAnh360.cshtml" />
+    <Content Include="Views\ChiTietTinRao\Xem360.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -302,6 +307,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ChiTietTinRaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NhanXetController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Controllers\TinTheoLoaiHinhController.cs" />
@@ -327,6 +333,9 @@
       <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Metadata\TaiKhoan.metadata.cs" />
+    <Compile Include="Models\NhanXet.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TaiKhoanDAO.cs" />
     <Compile Include="Models\MuaBanNhaDatModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -382,6 +391,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\NhanXet\" />
     <Folder Include="Views\TimKiem\" />
   </ItemGroup>
   <ItemGroup>

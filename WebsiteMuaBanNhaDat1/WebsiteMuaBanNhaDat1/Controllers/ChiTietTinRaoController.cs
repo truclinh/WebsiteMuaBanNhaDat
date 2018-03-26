@@ -29,9 +29,12 @@ namespace WebsiteMuaBanNhaDat1.Controllers
         {
             string tenloaihinh = db.LoaiHinh.SingleOrDefault(n => n.ma_loaihinh == _ma_loaihinh).tenkhongdau.ToString();
             ViewBag.TenLoaiHinh = tenloaihinh;
-          var ma = db.TinRaoCBCHT.SingleOrDefault(n => n.ma_tinrao == _ma_tinrao);
-            ViewBag.TieuDeTin = db.NoiDungLoaiHinh.SingleOrDefault(n => n.ma_ndloaihinh ==ma.ma_ndloaihinh).ten_ndloaihinh.ToString();
+            var ma = db.TinRaoCBCHT.SingleOrDefault(n => n.ma_tinrao == _ma_tinrao);
+            ViewBag.TieuDeTin = db.NoiDungLoaiHinh.SingleOrDefault(n => n.ma_ndloaihinh == ma.ma_ndloaihinh).ten_ndloaihinh.ToString();
             // ViewBag.TenLoaiND = db.NoiDungLoaiHinh.SingleOrDefault(n => n.ma_ndloaihinh == _ma_ndloaihinh).ten_ndloaihinh.ToString();
+            var lienhe = db.LienHe.SingleOrDefault(n => n.ma_tinrao == _ma_tinrao);
+            ViewBag.LienHe = lienhe;
+            ViewBag.NhanXet = db.NhanXet.Where(n => n.ma_tinrao == _ma_tinrao).OrderByDescending(n=>n.ngaydang).ToList();
             ViewBag.TinRaoCBCHT = (from cb in db.TinRaoCBCHT
                                    join tp in db.TinhTP on cb.ma_tinhtp equals tp.ma_tinhtp
                                    join qh in db.QuanHuyen on tp.ma_tinhtp equals qh.ma_tinhtp
@@ -80,6 +83,11 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             ViewBag.TenLoaiHinh = tenloaihinh;
             int? ma = db.TinRaoCMCT.SingleOrDefault(n => n.ma_tinrao == _ma_tinrao).ma_ndloaihinh;
             ViewBag.TieuDeTin = db.NoiDungLoaiHinh.SingleOrDefault(n => n.ma_ndloaihinh == ma).ten_ndloaihinh.ToString();
+            var lienhe = db.LienHe.SingleOrDefault(n => n.ma_tinrao == _ma_tinrao);
+            ViewBag.LienHe = lienhe;
+            var nhanxet = db.NhanXet.Where(n => n.ma_tinrao == _ma_tinrao).OrderByDescending(n => n.ngaydang).ToList();
+            ViewBag.NhanXet = nhanxet;
+            //ViewBag.SoNhanXet = nhanxet;
             ViewBag.TinRaoCMCT = (from cb in db.TinRaoCMCT
                                   join tp in db.TinhTP on cb.ma_tinhtp equals tp.ma_tinhtp
                                   join qh in db.QuanHuyen on tp.ma_tinhtp equals qh.ma_tinhtp
@@ -113,6 +121,11 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                                   }
                           ).ToList();
             return View();
+        }
+        public ActionResult Xem360(Guid? ma_tinrao)
+        {
+            var da = db.TinRaoCBCHT.SingleOrDefault(n => n.ma_tinrao==ma_tinrao);
+            return View(da);
         }
     }
 }

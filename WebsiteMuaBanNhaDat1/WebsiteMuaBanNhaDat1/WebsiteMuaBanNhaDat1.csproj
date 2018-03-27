@@ -283,7 +283,6 @@
     <Content Include="Views\TaiKhoan\DangNhapPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutTheoLoai.cshtml" />
     <Content Include="Views\Shared\_PartialTimKiem.cshtml" />
-    <Content Include="Views\Shared\_PartialTinRaoNoiBat.cshtml" />
     <Content Include="Views\TinTheoLoaiHinh\L_CanBanCanChoThue.cshtml" />
     <Content Include="Views\TinTheoLoaiHinh\L_CanMuaCanThue.cshtml" />
     <Content Include="Views\TinTheoLoaiHinh\TinRaoMoiNhatPartial.cshtml" />

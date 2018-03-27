@@ -6,7 +6,7 @@
             {
                 <div class="properties">
                     <div class="image-holder">
-                        <img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" />
+                        <a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })"><img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" /></a>
                         <div class="status new">Mới</div>
                     </div>
                     <h4><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })" data-toggle="tooltip" title="@item.tieude!" style="color:#304b0a">@(item.tieude.Substring(0, 22))...</a></h4>
@@ -27,7 +27,7 @@
             else
             {
                 <div class="properties">
-                    <img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" />
+                    <a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })"><img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" /></a>
                     <h4><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })" data-toggle="tooltip" title="@item.tieude!" style="color:#304b0a">@(item.tieude.Substring(0, 22))...</a></h4>
                     <p class="price">Giá: <b>@(item.gia)  @(item.ten_donvi) </b> </p>
                     @if (item.so_phongngu > 0)

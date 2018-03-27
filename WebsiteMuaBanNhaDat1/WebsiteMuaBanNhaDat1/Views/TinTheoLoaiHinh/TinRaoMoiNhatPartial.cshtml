@@ -6,7 +6,7 @@
     @foreach (var item in ViewBag.TinRaoMoiNhat)
     {
         <div class="row">
-            <div class="col-lg-4 col-sm-5"><img src="~/Content/images/properties/@item.anh1" class="img-responsive img-circle" alt="properties"></div>
+            <div class="col-lg-4 col-sm-5"><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })"><img src="~/Content/images/properties/@item.anh1" class="img-responsive img-circle" alt="properties"></a></div>
             <div class="col-lg-8 col-sm-7">
                 <h5><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })" style="color:#304b0a">@(item.tieude.Substring(0, 22))...</a></h5>
                 <p class="price">Giá: <b>@(item.gia) @(item.ten_donvi)</b></p>

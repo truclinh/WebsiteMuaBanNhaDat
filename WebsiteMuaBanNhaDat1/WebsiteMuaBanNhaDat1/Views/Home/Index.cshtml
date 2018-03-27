@@ -206,7 +206,7 @@
                                 {
                                     <div class="item active">
                                         <div class="row">
-                                            <div class="col-lg-4"><img src="~/Content/images/properties/4.jpg" class="img-responsive" alt="properties" /></div>
+                                            <div class="col-lg-4"><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })"><img src="~/Content/images/properties/4.jpg" class="img-responsive" alt="properties" /></a></div>
                                             <div class="col-lg-7">
                                                 @if ((item.tieude.Length) <= 40)
                                                 {
@@ -228,7 +228,7 @@
                                 {
                                     <div class="item">
                                         <div class="row">
-                                            <div class="col-lg-4"><img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" /></div>
+                                            <div class="col-lg-4"><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })"><img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties" /></a></div>
                                             <div class="col-lg-7">
                                                 @if ((item.tieude.Length) <= 40)
                                                 {
@@ -258,18 +258,18 @@
                         <br />
                         <div class="row">
                          
-                            <div class="col-lg-4"><img src="~/Content/images/properties/4.jpg" class="img-responsive" alt="properties" /></div>
+                            <div class="col-lg-4"><a href="@Url.Action("DocTiep","Home",new {ma_baiviet=item.id })"><img src="~/Content/images/properties/4.jpg" class="img-responsive" alt="properties" /></a></div>
                             <div class="col-lg-7">
                                 @if (item.tieude.Length <= 50)
                                 {
-                                    <h5><b><a href="property-detail.html" style="color:#304b0a">@(item.tieude)</a></b></h5>
+                                    <h5><b><a href="@Url.Action("DocTiep","Home",new {ma_baiviet=item.id })" style="color:#304b0a">@(item.tieude)</a></b></h5>
                                 }
                                 else
                                 {
-                                    <h5><b><a href="property-detail.html" style="color:#304b0a">@(item.tieude.Substring(0, 50))...</a></b></h5>
+                                    <h5><b><a href="@Url.Action("DocTiep","Home",new {ma_baiviet=item.id })" style="color:#304b0a">@(item.tieude.Substring(0, 50))...</a></b></h5>
                                 }
                                 <p class="price">@(item.ngaydang.ToString("dd/MM/yyyy"))</p>
-                                <a href="#" class="more">Chi tiết</a>
+                                <a href="@Url.Action("DocTiep","Home",new {ma_baiviet=item.id })" class="more">Chi tiết</a>
                             </div>
                             <div class="col-lg-1"></div>
                         </div>

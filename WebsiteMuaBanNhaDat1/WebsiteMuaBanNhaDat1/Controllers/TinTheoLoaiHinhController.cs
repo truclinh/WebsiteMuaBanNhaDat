@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebsiteMuaBanNhaDat1.Models;
+using PagedList;
+using PagedList.Mvc;
 namespace WebsiteMuaBanNhaDat1.Controllers
 {
     public class TinTheoLoaiHinhController : Controller
@@ -25,8 +27,17 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             return null;
         }
         //--------------------------------------Tin cần bán, cần cho thuê
-        public ActionResult L_CanBanCanChoThue(int? _ma_ndloaihinh, int? _ma_loaihinh)
+        public ActionResult L_CanBanCanChoThue(int? page, int? _ma_ndloaihinh, int? _ma_loaihinh)
         {
+            //-------------------------------------- Phân trang
+            //Tạo biến số sản phẩm trên trang
+            int pageSize = 1;
+            //Tạo biến số trang
+            int pageNumber = (page??1);
+            //-------------------------------------- 
+            ViewBag.mandloaihinh = _ma_ndloaihinh;
+            ViewBag.maloaihinh = _ma_loaihinh;
+            //-------------------------------------- 
             string tenloaihinh = db.LoaiHinh.SingleOrDefault(n => n.ma_loaihinh == _ma_loaihinh).tenkhongdau.ToString();
             ViewBag.TenLoaiHinh = tenloaihinh;
             ViewBag.TenLoaiND = db.NoiDungLoaiHinh.SingleOrDefault(n => n.ma_ndloaihinh == _ma_ndloaihinh).ten_ndloaihinh.ToString();
@@ -65,12 +76,21 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                                              ngaydang = cb.ngaydang,
                                              ngayketthuc = cb.ngayketthuc
                                          }
-                          ).ToList();
+                          ).ToList().OrderByDescending(n=>n.ngaydang).ToPagedList(pageNumber,pageSize);
             return View();
         }
         //--------------------------------------Tin cần mua, cần thuê
-        public ActionResult L_CanMuaCanThue(int? _ma_ndloaihinh, int? _ma_loaihinh)
+        public ActionResult L_CanMuaCanThue(int? page,int? _ma_ndloaihinh, int? _ma_loaihinh)
         {
+            //-------------------------------------- Phân trang
+            //Tạo biến số sản phẩm trên trang
+            int pageSize = 1;
+            //Tạo biến số trang
+            int pageNumber = (page ?? 1);
+            //-------------------------------------- 
+            ViewBag.mandloaihinh = _ma_ndloaihinh;
+            ViewBag.maloaihinh = _ma_loaihinh;
+            //-------------------------------------- 
             string tenloaihinh = db.LoaiHinh.SingleOrDefault(n => n.ma_loaihinh == _ma_loaihinh).tenkhongdau.ToString();
             ViewBag.TenLoaiHinh = tenloaihinh;
             ViewBag.TenLoaiND = db.NoiDungLoaiHinh.SingleOrDefault(n => n.ma_ndloaihinh == _ma_ndloaihinh).ten_ndloaihinh.ToString();
@@ -105,7 +125,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                                             ngaydang = cb.ngaydang,
                                             ngayketthuc = cb.ngayketthuc
                                         }
-                          ).ToList();
+                          ).ToList().OrderByDescending(n => n.ngaydang).ToPagedList(pageNumber, pageSize); 
             return View();
         }
         //-------------------------------------- Tin nổi bật bên trái
@@ -164,8 +184,16 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             }
             return null;
         }
-        public ActionResult XemThem_CanBanCanChoThue(int? _ma_loaihinh)
+        public ActionResult XemThem_CanBanCanChoThue(int? page, int? _ma_loaihinh)
         {
+            //-------------------------------------- Phân trang
+            //Tạo biến số sản phẩm trên trang
+            int pageSize = 1;
+            //Tạo biến số trang
+            int pageNumber = (page ?? 1);
+            //-------------------------------------- 
+            ViewBag.maloaihinh = _ma_loaihinh;
+            //-------------------------------------- 
             var da = db.LoaiHinh.SingleOrDefault(n => n.ma_loaihinh == _ma_loaihinh);
             ViewBag.TenKhongDau = da.tenkhongdau.ToString();
             ViewBag.TenLoaiHinh = da.ten_loaihinh.ToString();
@@ -204,11 +232,19 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                                        ngaydang = cb.ngaydang,
                                        ngayketthuc = cb.ngayketthuc
                                    }
-                          ).ToList();
+                          ).ToList().OrderByDescending(n => n.ngaydang).ToPagedList(pageNumber, pageSize); 
             return View();
         }
-        public ActionResult XemThem_CanMuaCanThue(int? _ma_loaihinh)
+        public ActionResult XemThem_CanMuaCanThue(int? page, int? _ma_loaihinh)
         {
+            //-------------------------------------- Phân trang
+            //Tạo biến số sản phẩm trên trang
+            int pageSize = 1;
+            //Tạo biến số trang
+            int pageNumber = (page ?? 1);
+            //-------------------------------------- 
+            ViewBag.maloaihinh = _ma_loaihinh;
+            //-------------------------------------- 
             var da = db.LoaiHinh.SingleOrDefault(n => n.ma_loaihinh == _ma_loaihinh);
             ViewBag.TenKhongDau = da.tenkhongdau.ToString();
             ViewBag.TenLoaiHinh = da.ten_loaihinh.ToString();
@@ -243,7 +279,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                                       ngaydang = cb.ngaydang,
                                       ngayketthuc = cb.ngayketthuc
                                   }
-                          ).ToList();
+                          ).ToList().OrderByDescending(n => n.ngaydang).ToPagedList(pageNumber, pageSize);
             return View();
         }
     }

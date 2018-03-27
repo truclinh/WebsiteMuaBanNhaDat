@@ -1,15 +1,17 @@
 ﻿@using WebsiteMuaBanNhaDat1.Models
-@model IEnumerable<TinRaoCMCT>
+@using PagedList.Mvc;
+@model PagedList.PagedList<TinRaoCMCT>
 @{
     ViewBag.Title = ViewBag.TenLoaiHinh;
     Layout = "~/Views/Shared/_LayoutTheoLoai.cshtml";
+    int maloaihinh = ViewBag.maloaihinh;
 }
 <script>
-                $(document).ready(function () {
-                        // alert("hi");
-                            $('.nav-list > li').removeClass('active');
-                            $("#@(ViewBag.TenKhongDau)").addClass('active');
-                });
+    $(document).ready(function () {
+        // alert("hi");
+        $('.nav-list > li').removeClass('active');
+        $("#@(ViewBag.TenKhongDau)").addClass('active');
+    });
 </script>
 <div class="sortby clearfix">
     <div class="pull-left result">Showing: 12 of 100 </div>
@@ -76,6 +78,11 @@
         </div>
     <!-- properties -->
     }
+    @*Tạo link liên kết các trang*@
+    Trang @(ViewBag.TinRaoCMCT.PageCount < ViewBag.TinRaoCMCT.PageNumber ? 0 : ViewBag.TinRaoCMCT.PageNumber) / @ViewBag.TinRaoCMCT.PageCount;
+
+    @Html.PagedListPager((PagedList.IPagedList)ViewBag.TinRaoCMCT, page => Url.Action("XemThem_CanMuaCanThue", "TinTheoLoaiHinh", new { @page = page, _ma_loaihinh = maloaihinh }))
+
     @*<br />
         <div class="center">
             <ul class="pagination">

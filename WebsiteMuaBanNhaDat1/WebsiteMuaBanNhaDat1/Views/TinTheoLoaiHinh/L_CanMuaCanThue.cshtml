@@ -1,8 +1,11 @@
 ﻿@using WebsiteMuaBanNhaDat1.Models
-@model IEnumerable<TinRaoCMCT>
+@using PagedList.Mvc;
+@model PagedList.PagedList<TinRaoCMCT>
 @{
     ViewBag.Title = ViewBag.TenLoaiND;
     Layout = "~/Views/Shared/_LayoutTheoLoai.cshtml";
+    int mandloaihinh = ViewBag.mandloaihinh;
+    int maloaihinh = ViewBag.maloaihinh;
 }
 <script>
                 $(document).ready(function () {
@@ -76,6 +79,10 @@
         </div>
     <!-- properties -->
     }
+    @*Tạo link liên kết các trang*@
+    Trang @(ViewBag.TinRaoCMCT.PageCount < ViewBag.TinRaoCMCT.PageNumber ? 0 : ViewBag.TinRaoCMCT.PageNumber) / @ViewBag.TinRaoCMCT.PageCount;
+
+    @Html.PagedListPager((PagedList.IPagedList)ViewBag.TinRaoCMCT, page => Url.Action("L_CanMuaCanThue", "TinTheoLoaiHinh", new { @page = page, _ma_ndloaihinh = mandloaihinh, _ma_loaihinh = maloaihinh }))
     @*<br />
     <div class="center">
         <ul class="pagination">

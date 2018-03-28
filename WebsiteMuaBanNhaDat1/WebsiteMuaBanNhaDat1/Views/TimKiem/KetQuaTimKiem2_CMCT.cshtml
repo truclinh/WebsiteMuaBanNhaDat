@@ -2,19 +2,35 @@
 @using PagedList.Mvc;
 @model PagedList.PagedList<TinRaoCMCT>
 @{
-    ViewBag.Title = ViewBag.TenLoaiHinh;
+    ViewBag.Title = "Kết quả tìm kiếm";
     Layout = "~/Views/Shared/_LayoutTheoLoai.cshtml";
-    int maloaihinh = ViewBag.maloaihinh;
+    var lstCMCT = ViewBag.KQ_CMCT;
+    string _tukhoa = ViewBag.tukhoa;
+    int _loaihinh = ViewBag.loaihinh;
+    int _ndloaihinh = ViewBag.ndloaihinh;
 }
-<script>
-    $(document).ready(function () {
-        // alert("hi");
-        $('.nav-list > li').removeClass('active');
-        $("#@(ViewBag.TenKhongDau)").addClass('active');
-    });
-</script>
+@*<script>
+                    $(document).ready(function () {
+                            // alert("hi");
+                                $('.nav-list > li').removeClass('active');
+                                $("#@(ViewBag.TenLoaiHinh)").addClass('active');
+                    });
+    </script>*@
 <div class="sortby clearfix">
-    <div class="pull-left result">Showing: 12 of 100 </div>
+    <div class="pull-left result">
+        <h3>
+            Kết quả:
+            @if (ViewBag.KetQua != "0")
+            {
+                <b>@ViewBag.KetQua</b>
+            }
+            else
+            {
+                <b>Không tìm thấy</b>
+            }
+
+        </h3>
+    </div>
     <div class="pull-right">
         <select class="form-control">
             <option>Sort by</option>
@@ -25,9 +41,9 @@
 
 </div>
 <div class="row">
-    @foreach (var item in ViewBag.TinRaoCMCT)
+    @foreach (var item in lstCMCT)
     {
-            <!-- properties -->
+    <!-- properties -->
         <div class="col-lg-4 col-sm-6">
             <div class="properties" style="border:1px solid #1b5600">
                 <div class="image-holder">
@@ -80,9 +96,13 @@
     }
     <div class="col-lg-12 center">
         @*Tạo link liên kết các trang*@
-        Trang @(ViewBag.TinRaoCMCT.PageCount < ViewBag.TinRaoCMCT.PageNumber ? 0 : ViewBag.TinRaoCMCT.PageNumber) / @ViewBag.TinRaoCMCT.PageCount;
+        @if (ViewBag.KetQua != "0")
+        {
+            <span>Trang </span>
+            @(lstCMCT.PageCount < lstCMCT.PageNumber ? 0 : lstCMCT.PageNumber) <span>/ </span> @lstCMCT.PageCount;
+        }
 
-        @Html.PagedListPager((PagedList.IPagedList)ViewBag.TinRaoCMCT, page => Url.Action("XemThem_CanMuaCanThue", "TinTheoLoaiHinh", new { @page = page, _ma_loaihinh = maloaihinh }))
+        @Html.PagedListPager((PagedList.IPagedList)lstCMCT, page => Url.Action("KetQuaTimKiem2_CMCT", "TimKiem", new { @page = page, tukhoa = _tukhoa, loaihinh = _loaihinh, ndloaihinh = _ndloaihinh}));
+
     </div>
 </div>
-

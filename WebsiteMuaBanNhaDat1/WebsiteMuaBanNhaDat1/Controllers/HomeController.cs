@@ -96,7 +96,15 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             //ViewBag.TinRaoNoiBat = db.TinRaoCBCHT.Take(5).ToList();
             ViewBagData();
             ViewBag.KetQua = "";
+            ViewBag.DMLoaiHinh = new SelectList(db.LoaiHinh.ToList().Where(n=>n.nhom=="CBCHT"||n.nhom=="CMCT").OrderBy(n => n.ma_loaihinh), "ma_loaihinh", "ten_loaihinh");
+            ViewBag.DMTinhTP= new SelectList(db.TinhTP.ToList().OrderBy(n => n.ten_tinhtp), "ma_tinhtp", "ten_tinhtp"); 
             return View();
+        }
+        //-------------------------------------- Lấy nội dung loại hình theo mã loại hình
+        public JsonResult LayNoiDungLoaiHinh(int? ma_loaihinh)
+        {
+            var lstNoiDungLH = db.NoiDungLoaiHinh.Where(n => n.ma_loaihinh == ma_loaihinh).ToList();
+            return Json(new SelectList(lstNoiDungLH, "ma_ndloaihinh", "ten_ndloaihinh", JsonRequestBehavior.AllowGet));
         }
         //-------------------------------------- Menu chính
         public ActionResult MenuPartial()
@@ -253,5 +261,6 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             ViewBag.NhieuNX = db.sp_BaiDangNhieuNhanXet1().ToList().Take(5);
             return View(da);
         }
+        //-------------------------------------- 
     }
 }

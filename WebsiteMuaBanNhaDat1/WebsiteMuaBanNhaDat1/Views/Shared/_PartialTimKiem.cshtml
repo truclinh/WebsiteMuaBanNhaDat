@@ -1,35 +1,181 @@
-﻿<div class="search-form"  style="border-right:1px solid #bab6b6;">
+﻿<div id="frmTimKiem" class="search-form">
     <h4 style="background-color:#64a30a;color:white;font-weight:bold;padding:10px;"><span class="glyphicon glyphicon-search"></span> Tìm kiếm</h4>
-    <input type="text" class="form-control" placeholder="Search of Properties">
+    <input type="text" class="form-control" placeholder="Nhập từ khóa">
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-12">
             <select class="form-control">
-                <option>Buy</option>
+                <option>---Chọn loại hình---</option>
                 <option>Rent</option>
                 <option>Sale</option>
             </select>
         </div>
-        <div class="col-lg-7">
-            <select class="form-control">
-                <option>Price</option>
-                <option>$150,000 - $200,000</option>
-                <option>$200,000 - $250,000</option>
-                <option>$250,000 - $300,000</option>
-                <option>$300,000 - above</option>
-            </select>
-        </div>
     </div>
-
     <div class="row">
         <div class="col-lg-12">
             <select class="form-control">
-                <option>Property Type</option>
+                <option>---Chọn tin theo loại hình----</option>
+                <option>Rent</option>
+                <option>Sale</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <select class="form-control">
+                <option>---Chọn Tỉnh/TP---</option>
                 <option>Apartment</option>
                 <option>Building</option>
                 <option>Office Space</option>
             </select>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-12">Diện tích</div>
+        <div class="col-lg-12">
+            <div class="col-lg-6">
+                <input type="text" class="form-control" placeholder="Từ">
+            </div>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" placeholder="Đến">
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <input type="checkbox" value="Không xác định" id="chkDTKhongXacDinh" name="chkDTKhongXacDinh"/>
+            <label for="chkDTKhongXacDinh">Không xác định</label>
+        </div>
+    </div>
+    <hr style="border:1px solid #bbb7b7;" />
+    <div class="row">
+        <div class="col-lg-12">Giá</div>
+        <div class="col-lg-12">
+            <div class="col-lg-6">
+                <input type="text" class="form-control" placeholder="Từ">
+            </div>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" placeholder="Đến">
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <input type="checkbox" value="Thỏa thuận" id="chkGiaThoaThuan" name="chkGiaThoaThuan"/>
+            <label for="chkGiaThoaThuan">Thỏa thuận</label>
+        </div>
+    </div>
     <center><button class="btn btn-lg btn-danger" style="font-weight:bold">TÌM</button></center>
 
 </div>
+
+<div id="frmTimKiemNangCao" class="search-form" style="display:none">
+    <h4 style="background-color:#64a30a;color:white;font-weight:bold;padding:10px;"><span class="glyphicon glyphicon-search"></span> Tìm kiếm</h4>
+    <input type="text" class="form-control" placeholder="Nhập từ khóa">
+    <div class="row">
+        <div class="col-lg-12">
+            <select class="form-control">
+                <option>---Chọn loại hình---</option>
+                <option>Rent</option>
+                <option>Sale</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <select class="form-control">
+                <option>---Chọn tin theo loại hình----</option>
+                <option>Rent</option>
+                <option>Sale</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <select class="form-control">
+                <option>---Chọn Tỉnh/TP---</option>
+                <option>Apartment</option>
+                <option>Building</option>
+                <option>Office Space</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <select class="form-control">
+                <option>---Chọn Quận/Huyện---</option>
+                <option>Apartment</option>
+                <option>Building</option>
+                <option>Office Space</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <select class="form-control">
+                <option>---Chọn Phường/Xã---</option>
+                <option>Apartment</option>
+                <option>Building</option>
+                <option>Office Space</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <select class="form-control">
+                <option>---Chọn Đường/Phố---</option>
+                <option>Apartment</option>
+                <option>Building</option>
+                <option>Office Space</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">Diện tích</div>
+        <div class="col-lg-12">
+            <div class="col-lg-6">
+                <input type="text" class="form-control" placeholder="Từ">
+            </div>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" placeholder="Đến">
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <input type="checkbox" value="Không xác định" id="chkDTKhongXacDinh" name="chkDTKhongXacDinh" />
+            <label for="chkDTKhongXacDinh">Không xác định</label>
+        </div>
+        </div>
+    <hr style="border:1px solid #bbb7b7;" />
+    <div class="row">
+        <div class="col-lg-12">Giá</div>
+        <div class="col-lg-12">
+            <div class="col-lg-6">
+                <input type="text" class="form-control" placeholder="Từ">
+            </div>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" placeholder="Đến">
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <input type="checkbox" value="Thỏa thuận" id="chkGiaThoaThuan" name="chkGiaThoaThuan" />
+            <label for="chkGiaThoaThuan">Thỏa thuận</label>
+        </div>
+    </div>
+    <center><button class="btn btn-lg btn-danger" style="font-weight:bold">TÌM</button></center>
+
+</div>
+<h4 id="lblTimKiemNangCao" style="color:#ff0000">Tìm kiếm nâng cao</h4>
+<h4 id="lblBoTimKiemNangCao" style="display:none;color:#ff0000">Bỏ Tìm kiếm nâng cao</h4>
+<script>
+    $(document).ready(function () {
+        $("#lblTimKiemNangCao").click(function () {
+            $("#frmTimKiem").css("display", "none");
+            $("#frmTimKiemNangCao").css("display", "block");
+            $("#lblBoTimKiemNangCao").css("display", "block");
+            $("#lblTimKiemNangCao").css("display", "none");
+        });
+        $("#lblBoTimKiemNangCao").click(function () {
+            $("#frmTimKiem").css("display", "block");
+            $("#frmTimKiemNangCao").css("display", "none");
+            $("#lblTimKiemNangCao").css("display", "block");
+            $("#lblBoTimKiemNangCao").css("display", "none");
+
+        });
+    });
+</script>

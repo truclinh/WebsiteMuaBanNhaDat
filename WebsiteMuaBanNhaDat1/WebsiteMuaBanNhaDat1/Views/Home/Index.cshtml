@@ -108,41 +108,26 @@
     <div class="container">
         <!-- banner -->
         <h3>TÌM KIẾM</h3>
+@using (Html.BeginForm("TimKiem", "TimKiem", FormMethod.Post, new { id = "frmTimKiem" }))
+{
         <div class="searchbar">
             <div class="row">
-                <div class="col-lg-6 col-sm-6">
-                    <input type="text" class="form-control" placeholder="Nhập từ khóa để tìm theo cụm từ">
+                <div class="col-lg-9 col-sm-6">
+                    <input name="txtTuKhoa" type="text" class="form-control" placeholder="Nhập từ khóa để tìm theo cụm từ">
                     <div class="row">
-                        <div class="col-lg-3 col-sm-3 ">
-                            <select class="form-control">
-                                <option>Loại hình</option>
-                                <option>Nhà đất bán</option>
-                                <option>Nhà đất cho thuê</option>
-                                <option>Nhà đất cần mua</option>
-                                <option>Nhà đất cần thuê</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-3 col-sm-4">
-                            <select class="form-control">
-                                <option>Loại</option>
-                                <option>Bán A</option>
-                                <option>Bán A</option>
-                                <option>Bán A</option>
-                                <option>Bán A</option>
-                            </select>
+                        <div class="col-lg-3 col-sm-3">
+                            @Html.DropDownList("cboLoaiHinh", (IEnumerable<SelectListItem>)ViewBag.DMLoaiHinh, new { @class = "cbo form-control" })
+
                         </div>
                         <div class="col-lg-4 col-sm-4">
-                            <select class="form-control">
-                                <option>Tỉnh/Thành phố</option>
-                                <option>Apartment</option>
-                                <option>Building</option>
-                                <option>Office Space</option>
-                            </select>
+                            @Html.DropDownList("cboNoiDungLoaiHinh", new SelectList(string.Empty, "ma_ndloaihinh", "ten_ndloaihinh"), new { @class = "cbo form-control" })
                         </div>
-                        <div class="col-lg-2 col-sm-4">
-                            <a href="#" class="btn btn-success btn-lg">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </a>
+                        <div class="col-lg-3 col-sm-3">
+                            @Html.DropDownList("cboTinhTP", (IEnumerable<SelectListItem>)ViewBag.DMTinhTP, "---Chọn Tỉnh/TP---", new { @class = "cbo form-control" })
+
+                        </div>
+                        <div class="col-lg-2 col-sm-2"><button class="btn btn-success btn-lg" type="submit" ><span class="glyphicon glyphicon-search"></span></button>
+                               
                         </div>
                     </div>
 
@@ -152,6 +137,7 @@
                 </div>
             </div>
         </div>
+}
     </div>
 </div>
 <!-- banner -->
@@ -198,7 +184,7 @@
                         </ol>
                         <!-- Carousel items -->
                         <div class="carousel-inner">
-                            
+
                             @foreach (var item in ViewBag.TinRaoCBCHTNoiBat)
                             {
                                 y = y + 1;
@@ -257,7 +243,7 @@
                     {
                         <br />
                         <div class="row">
-                         
+
                             <div class="col-lg-4"><a href="@Url.Action("DocTiep","Home",new {ma_baiviet=item.id })"><img src="~/Content/images/properties/4.jpg" class="img-responsive" alt="properties" /></a></div>
                             <div class="col-lg-7">
                                 @if (item.tieude.Length <= 50)
@@ -286,7 +272,7 @@
 @foreach (var item in ViewBag.lstLoaiHinhCBCHT)
 {
     <script>
-        $(document).ready(function () {
+       
 
             $("#owl-example@(item.ma_loaihinh)").owlCarousel();
 
@@ -296,9 +282,6 @@
                 interval: 3000
             });
             $('.carousel').carousel('cycle');
-        });
-
-
     </script>
 }
 
@@ -307,4 +290,50 @@
 
         alert('@Html.Raw(ketqua.ToString())');
     }
+    $(document).ready(function () {
+        var selectedText = $("#cboLoaiHinh").find("option:selected").text();
+        var selectedValue = $("#cboLoaiHinh").val();
+        $("#cboNoiDungLoaiHinh").empty();
+        // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("LayNoiDungLoaiHinh", "Home")', // we are calling json method
+            dataType: 'json',
+            data: { ma_loaihinh: selectedValue },
+            success: function (data) {
+                // states contains the JSON formatted list
+                // of states passed from the controller
+                $.each(data, function (i, loaihinh) {
+                    $("#cboNoiDungLoaiHinh").append('<option value="' +loaihinh.Value + '">' +
+                        loaihinh.Text + '</option>');
+                });
+            },
+            error: function (ex) {
+                alert('Failed to retrieve states.' + ex);
+            }
+        });
+        $("#cboLoaiHinh").change(function () {
+            var selectedText = $(this).find("option:selected").text();
+            var selectedValue = $(this).val();
+            $("#cboNoiDungLoaiHinh").empty();
+            // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("LayNoiDungLoaiHinh", "Home")', // we are calling json method
+                dataType: 'json',
+                data: { ma_loaihinh: selectedValue },
+                success: function (data) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(data, function (i, loaihinh) {
+                        $("#cboNoiDungLoaiHinh").append('<option value="' +loaihinh.Value + '">' +
+                            loaihinh.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+        });
+    });
 </script>

@@ -304,6 +304,14 @@
     <Content Include="Views\Shared\_LayoutNormal.cshtml" />
     <Content Include="Views\Home\PhongThuy.cshtml" />
     <Content Include="Views\Home\DocTiep.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem1_CBCHT.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem1_CMCT.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem2_CBCHT.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem2_CMCT.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem3_CBCHT.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem3_CMCT.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem4_CBCHT.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem4_CMCT.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -409,7 +417,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\NhanXet\" />
-    <Folder Include="Views\TimKiem\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

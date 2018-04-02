@@ -100,12 +100,6 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             ViewBag.DMTinhTP= new SelectList(db.TinhTP.ToList().OrderBy(n => n.ten_tinhtp), "ma_tinhtp", "ten_tinhtp"); 
             return View();
         }
-        //-------------------------------------- Lấy nội dung loại hình theo mã loại hình
-        public JsonResult LayNoiDungLoaiHinh(int? ma_loaihinh)
-        {
-            var lstNoiDungLH = db.NoiDungLoaiHinh.Where(n => n.ma_loaihinh == ma_loaihinh).ToList();
-            return Json(new SelectList(lstNoiDungLH, "ma_ndloaihinh", "ten_ndloaihinh", JsonRequestBehavior.AllowGet));
-        }
         //-------------------------------------- Menu chính
         public ActionResult MenuPartial()
         {

@@ -297,10 +297,11 @@
         // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
         $.ajax({
             type: 'POST',
-            url: '@Url.Action("LayNoiDungLoaiHinh", "Home")', // we are calling json method
+            url: '@Url.Action("LayNoiDungLoaiHinh", "TimKiem")', // we are calling json method
             dataType: 'json',
             data: { ma_loaihinh: selectedValue },
             success: function (data) {
+                $("#cboNoiDungLoaiHinh").append('<option value="">---Chọn loại nhà đất---</option>');
                 // states contains the JSON formatted list
                 // of states passed from the controller
                 $.each(data, function (i, loaihinh) {
@@ -319,10 +320,11 @@
             // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("LayNoiDungLoaiHinh", "Home")', // we are calling json method
+                url: '@Url.Action("LayNoiDungLoaiHinh", "TimKiem")', // we are calling json method
                 dataType: 'json',
                 data: { ma_loaihinh: selectedValue },
                 success: function (data) {
+                    $("#cboNoiDungLoaiHinh").append('<option value="">---Chọn loại nhà đất---</option>');
                     // states contains the JSON formatted list
                     // of states passed from the controller
                     $.each(data, function (i, loaihinh) {

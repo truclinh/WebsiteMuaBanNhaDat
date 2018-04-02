@@ -1,169 +1,407 @@
-﻿<div id="frmTimKiem" class="search-form">
-    <h4 style="background-color:#64a30a;color:white;font-weight:bold;padding:10px;"><span class="glyphicon glyphicon-search"></span> Tìm kiếm</h4>
-    <input type="text" class="form-control" placeholder="Nhập từ khóa">
-    <div class="row">
-        <div class="col-lg-12">
-            <select class="form-control">
-                <option>---Chọn loại hình---</option>
-                <option>Rent</option>
-                <option>Sale</option>
-            </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <select class="form-control">
-                <option>---Chọn tin theo loại hình----</option>
-                <option>Rent</option>
-                <option>Sale</option>
-            </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <select class="form-control">
-                <option>---Chọn Tỉnh/TP---</option>
-                <option>Apartment</option>
-                <option>Building</option>
-                <option>Office Space</option>
-            </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">Diện tích</div>
-        <div class="col-lg-12">
-            <div class="col-lg-6">
-                <input type="text" class="form-control" placeholder="Từ">
-            </div>
-            <div class="col-lg-6">
-                <input type="text" class="form-control" placeholder="Đến">
+﻿@using (Html.BeginForm("TimKiem", "TimKiem", FormMethod.Post, new { id = "frmTimKiem" }))
+{
+    <div id="frmTimKiem" class="search-form" style="border-bottom:1px solid #64a30a;padding-bottom:20px">
+        <h4 style="background-color:#64a30a;color:white;font-weight:bold;padding:10px;"><span class="glyphicon glyphicon-search"></span> Tìm kiếm</h4>
+        <input name="txtTuKhoa" type="text" class="form-control" placeholder="Nhập từ khóa để tìm theo cụm từ">
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.DropDownList("cboLoaiHinh", (IEnumerable<SelectListItem>)ViewBag.DMLoaiHinh, new { @class = "cbo form-control" })
             </div>
         </div>
-        <div class="col-lg-12">
-            <input type="checkbox" value="Không xác định" id="chkDTKhongXacDinh" name="chkDTKhongXacDinh"/>
-            <label for="chkDTKhongXacDinh">Không xác định</label>
-        </div>
-    </div>
-    <hr style="border:1px solid #bbb7b7;" />
-    <div class="row">
-        <div class="col-lg-12">Giá</div>
-        <div class="col-lg-12">
-            <div class="col-lg-6">
-                <input type="text" class="form-control" placeholder="Từ">
-            </div>
-            <div class="col-lg-6">
-                <input type="text" class="form-control" placeholder="Đến">
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.DropDownList("cboNoiDungLoaiHinh", new SelectList(string.Empty, "ma_ndloaihinh", "ten_ndloaihinh"), new { @class = "cbo form-control" })
             </div>
         </div>
-        <div class="col-lg-12">
-            <input type="checkbox" value="Thỏa thuận" id="chkGiaThoaThuan" name="chkGiaThoaThuan"/>
-            <label for="chkGiaThoaThuan">Thỏa thuận</label>
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.DropDownList("cboTinhTP", (IEnumerable<SelectListItem>)ViewBag.DMTinhTP, "---Chọn Tỉnh/TP---", new { @class = "cbo form-control" })
+            </div>
         </div>
-    </div>
-    <center><button class="btn btn-lg btn-danger" style="font-weight:bold">TÌM</button></center>
+        <center><button type="submit" class="btn btn-lg btn-danger" style="font-weight:bold">TÌM</button></center>
 
-</div>
+    </div>
+}
+@using (Html.BeginForm("TimKiemNangCao", "TimKiem", FormMethod.Post, new { id = "frmTimKiem" }))
+{
+    <div id="frmTimKiemNangCao" class="search-form" style="display:none;border-bottom:1px solid #64a30a;padding-bottom:20px">
+        <h4 style="background-color:#64a30a;color:white;font-weight:bold;padding:10px;"><span class="glyphicon glyphicon-search"></span> Tìm kiếm nâng cao</h4>
+        <input type="text" name="txtTuKhoa1" class="form-control" placeholder="Nhập từ khóa">
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.DropDownList("cboLoaiHinh1", (IEnumerable<SelectListItem>)ViewBag.DMLoaiHinh1, new { @class = "cbo form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.DropDownList("cboNoiDungLoaiHinh1", new SelectList(string.Empty, "ma_ndloaihinh", "ten_ndloaihinh"), new { @class = "cbo form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.DropDownList("cboTinhTP1", (IEnumerable<SelectListItem>)ViewBag.DMTinhTP1, "---Chọn Tỉnh/TP---", new { @class = "cbo form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.DropDownList("cboQuanHuyen1", new SelectList(string.Empty, "ma_quanhuyen", "ten_quanhuyen"), new { @class = "cbo form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.DropDownList("cboPhuongXa1", new SelectList(string.Empty, "ma_phuongxa", "ten_phuongxa"), new { @class = "cbo form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.DropDownList("cboDuongPho1", new SelectList(string.Empty, "ma_duongpho", "ten_duongpho"), new { @class = "cbo form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">Diện tích</div>
+            <div class="col-lg-12" id="dientich">
+                <div class="col-lg-6"> <input type="text" name="DTMin" id="DTMin" class="form-control"> </div>
+                @*<div class="col-lg-6">
+                    <input type="text" name="DTMin" id="DTMin" class="form-control" placeholder="Từ">
+                </div>
+                <div class="col-lg-6">
+                    <input type="text" name="DTMax" id="DTMax" class="form-control" placeholder="Đến">
+                </div>*@
+            </div>
 
-<div id="frmTimKiemNangCao" class="search-form" style="display:none">
-    <h4 style="background-color:#64a30a;color:white;font-weight:bold;padding:10px;"><span class="glyphicon glyphicon-search"></span> Tìm kiếm</h4>
-    <input type="text" class="form-control" placeholder="Nhập từ khóa">
-    <div class="row">
-        <div class="col-lg-12">
-            <select class="form-control">
-                <option>---Chọn loại hình---</option>
-                <option>Rent</option>
-                <option>Sale</option>
-            </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <select class="form-control">
-                <option>---Chọn tin theo loại hình----</option>
-                <option>Rent</option>
-                <option>Sale</option>
-            </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <select class="form-control">
-                <option>---Chọn Tỉnh/TP---</option>
-                <option>Apartment</option>
-                <option>Building</option>
-                <option>Office Space</option>
-            </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <select class="form-control">
-                <option>---Chọn Quận/Huyện---</option>
-                <option>Apartment</option>
-                <option>Building</option>
-                <option>Office Space</option>
-            </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <select class="form-control">
-                <option>---Chọn Phường/Xã---</option>
-                <option>Apartment</option>
-                <option>Building</option>
-                <option>Office Space</option>
-            </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <select class="form-control">
-                <option>---Chọn Đường/Phố---</option>
-                <option>Apartment</option>
-                <option>Building</option>
-                <option>Office Space</option>
-            </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">Diện tích</div>
-        <div class="col-lg-12">
-            <div class="col-lg-6">
-                <input type="text" class="form-control" placeholder="Từ">
-            </div>
-            <div class="col-lg-6">
-                <input type="text" class="form-control" placeholder="Đến">
+            <div class="col-lg-12">
+                <input type="checkbox" value="Không xác định" id="chkDTKhongXacDinh" name="chkDTKhongXacDinh" />
+                <label for="chkDTKhongXacDinh">Không xác định</label>
             </div>
         </div>
+        <hr style="border:1px solid #bbb7b7;" />
+        <div class="row">
+            <div class="col-lg-12">Giá</div>
+            <div class="col-lg-12" id="gia">
+                <div class="col-lg-6"> <input type="text" name="GiaMin" id="GiaMin" class="form-control"> </div>
+                @*<div class="col-lg-6">
+                    <input type="text" name="GiaMin" id="GiaMin" class="form-control" placeholder="Từ">
+                </div>
+                <div class="col-lg-6">
+                    <input type="text" name="GiaMax" id="GiaMax" class="form-control" placeholder="Đến">
+                </div>*@
+            </div>
+            <div class="col-lg-12">
+                @Html.DropDownList("cboDonVi1", new SelectList(string.Empty, "ma_donvi", "ten_donvi"), new { @class = "cbo form-control" })
+                @*<input type="checkbox" value="Thỏa thuận" id="chkGiaThoaThuan" name="chkGiaThoaThuan" />
+                <label for="chkGiaThoaThuan">Thỏa thuận</label>*@
+            </div>
+        </div>
+        <center><button type="submit" class="btn btn-lg btn-danger" style="font-weight:bold">TÌM</button></center>
 
-        <div class="col-lg-12">
-            <input type="checkbox" value="Không xác định" id="chkDTKhongXacDinh" name="chkDTKhongXacDinh" />
-            <label for="chkDTKhongXacDinh">Không xác định</label>
-        </div>
-        </div>
-    <hr style="border:1px solid #bbb7b7;" />
-    <div class="row">
-        <div class="col-lg-12">Giá</div>
-        <div class="col-lg-12">
-            <div class="col-lg-6">
-                <input type="text" class="form-control" placeholder="Từ">
-            </div>
-            <div class="col-lg-6">
-                <input type="text" class="form-control" placeholder="Đến">
-            </div>
-        </div>
-        <div class="col-lg-12">
-            <input type="checkbox" value="Thỏa thuận" id="chkGiaThoaThuan" name="chkGiaThoaThuan" />
-            <label for="chkGiaThoaThuan">Thỏa thuận</label>
-        </div>
     </div>
-    <center><button class="btn btn-lg btn-danger" style="font-weight:bold">TÌM</button></center>
-
-</div>
+}
 <h4 id="lblTimKiemNangCao" style="color:#ff0000">Tìm kiếm nâng cao</h4>
 <h4 id="lblBoTimKiemNangCao" style="display:none;color:#ff0000">Bỏ Tìm kiếm nâng cao</h4>
 <script>
+    function TimKiem() {
+        //-------------------------------------- TÌM KIẾM
+        //--------------------------------------
+        var selectedText = $("#cboLoaiHinh").find("option:selected").text();
+        var selectedValue = $("#cboLoaiHinh").val();
+        $("#cboNoiDungLoaiHinh").empty();
+        // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("LayNoiDungLoaiHinh","TimKiem")', // we are calling json method
+            dataType: 'json',
+            data: { ma_loaihinh: selectedValue },
+            success: function (data) {
+                $("#cboNoiDungLoaiHinh").append('<option>---Chọn loại nhà đất---</option>');
+                // states contains the JSON formatted list
+                // of states passed from the controller
+                $.each(data, function (i, loaihinh) {
+
+                    $("#cboNoiDungLoaiHinh").append('<option value="' + loaihinh.Value + '">' +
+                        loaihinh.Text + '</option>');
+                });
+            },
+            error: function (ex) {
+                alert('Failed to retrieve states.' + ex);
+            }
+        });
+        $("#cboLoaiHinh").change(function () {
+            var selectedText = $(this).find("option:selected").text();
+            var selectedValue = $(this).val();
+            $("#cboNoiDungLoaiHinh").empty();
+            // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("LayNoiDungLoaiHinh", "TimKiem")', // we are calling json method
+                dataType: 'json',
+                data: { ma_loaihinh: selectedValue },
+                success: function (data) {
+                    $("#cboNoiDungLoaiHinh").append('<option>---Chọn loại nhà đất---</option>');
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(data, function (i, loaihinh) {
+
+                        $("#cboNoiDungLoaiHinh").append('<option value="' + loaihinh.Value + '">' +
+                            loaihinh.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+        });
+        //--------------------------------------
+        //-------------------------------------- END TÌM KIẾM
+    }
+    function TimKiemNangCao() {
+        //-------------------------------------- TÌM KIẾM NÂNG CAO
+        //--------------------------------------
+        var selectedText1 = $("#cboLoaiHinh1").find("option:selected").text();
+        var selectedValue1 = $("#cboLoaiHinh1").val();
+        $("#cboNoiDungLoaiHinh1").empty();
+
+        // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("LayNoiDungLoaiHinh", "TimKiem")', // we are calling json method
+            dataType: 'json',
+            data: { ma_loaihinh: selectedValue1 },
+            success: function (data) {
+                $("#cboNoiDungLoaiHinh1").append('<option>---Chọn loại nhà đất---</option>');
+                // states contains the JSON formatted list
+                // of states passed from the controller
+                $.each(data, function (i, loaihinh) {
+
+                    $("#cboNoiDungLoaiHinh1").append('<option value="' + loaihinh.Value + '">' +
+                        loaihinh.Text + '</option>');
+                });
+            },
+            error: function (ex) {
+                alert('Failed to retrieve states.' + ex);
+            }
+        });
+        if (selectedValue1 > 0) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("LayDonVi", "TimKiem")', // we are calling json method
+                dataType: 'json',
+                data: { ma_loaihinh: selectedValue1 },
+                success: function (data) {
+                    $("#cboDonVi1").append('<option>---Chọn loại đơn vị---</option>');
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(data, function (i, loaihinh) {
+
+                        $("#cboDonVi1").append('<option value="' + loaihinh.Value + '">' +
+                            loaihinh.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+        }
+        $("#cboLoaiHinh1").change(function () {
+            var selectedText1 = $(this).find("option:selected").text();
+            var selectedValue1 = $(this).val();
+            $("#cboNoiDungLoaiHinh1").empty();
+            $("#cboDonVi1").empty();
+
+            // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("LayDonVi", "TimKiem")', // we are calling json method
+                dataType: 'json',
+                data: { ma_loaihinh: selectedValue1 },
+                success: function (data) {
+                    $("#cboDonVi1").append('<option>---Chọn loại đơn vị---</option>');
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(data, function (i, loaihinh) {
+
+                        $("#cboDonVi1").append('<option value="' + loaihinh.Value + '">' +
+                            loaihinh.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            if (selectedValue1 == '3'|| selectedValue1 == '4') {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("LayNoiDungLoaiHinh", "TimKiem")', // we are calling json method
+                    dataType: 'json',
+                    data: { ma_loaihinh: selectedValue1 },
+                    success: function (data) {
+                        $("#cboNoiDungLoaiHinh1").append('<option>---Chọn loại nhà đất---</option>');
+                        // states contains the JSON formatted list
+                        // of states passed from the controller
+                        $.each(data, function (i, loaihinh) {
+
+                            $("#cboNoiDungLoaiHinh1").append('<option value="' + loaihinh.Value + '">' +
+                                loaihinh.Text + '</option>');
+                        });
+                        $("#dientich").empty();
+                        $("#gia").empty();
+                        $("#dientich").append('<div class="col-lg-6"> <input type="text" name="DTMin" id="DTMin" class="form-control" placeholder="Từ"> </div> <div class="col-lg-6"> <input type="text" name="DTMax" id="DTMax" class="form-control" placeholder="Đến"> </div>');
+                        $("#gia").append('<div class="col-lg-6"> <input type="text" name="GiaMin" id="GiaMin" class="form-control" placeholder="Từ"> </div> <div class="col-lg-6"> <input type="text" name="GiaMax" id="GiaMax" class="form-control" placeholder="Đến"> </div>');
+
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve states.' + ex);
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("LayNoiDungLoaiHinh", "TimKiem")', // we are calling json method
+                    dataType: 'json',
+                    data: { ma_loaihinh: selectedValue1 },
+                    success: function (data) {
+                        $("#cboNoiDungLoaiHinh1").append('<option>---Chọn loại nhà đất---</option>');
+                        // states contains the JSON formatted list
+                        // of states passed from the controller
+                        $.each(data, function (i, loaihinh) {
+
+                            $("#cboNoiDungLoaiHinh1").append('<option value="' + loaihinh.Value + '">' +
+                                loaihinh.Text + '</option>');
+                        });
+                        $("#dientich").empty();
+                        $("#gia").empty();
+                        $("#dientich").append('<div class="col-lg-6"> <input type="text" name="DTMin" id="DTMin" class="form-control"> </div> ');
+                        $("#gia").append('<div class="col-lg-6"> <input type="text" name="GiaMin" id="GiaMin" class="form-control"> </div>');
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve states.' + ex);
+                    }
+                });
+            }
+        });
+        $("#cboTinhTP1").change(function () {
+            var selectedText1 = $(this).find("option:selected").text();
+            var selectedValue1 = $(this).val();
+            $("#cboQuanHuyen1").empty();
+            $("#cboPhuongXa1").empty();
+            $("#cboDuongPho1").empty();
+            // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("LayQuanHuyen", "TimKiem")', // we are calling json method
+                dataType: 'json',
+                data: { ma_tinhtp: selectedValue1 },
+                success: function (data) {
+                    $("#cboQuanHuyen1").append('<option>---Chọn Quận/Huyện---</option>');
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(data, function (i, da) {
+
+                        $("#cboQuanHuyen1").append('<option value="' + da.Value + '">' +
+                            da.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+        });
+        $("#cboQuanHuyen1").change(function () {
+            var selectedText1 = $(this).find("option:selected").text();
+            var selectedValue1 = $(this).val();
+            $("#cboPhuongXa1").empty();
+            $("#cboDuongPho1").empty();
+            // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("LayPhuongXa", "TimKiem")', // we are calling json method
+                dataType: 'json',
+                data: { ma_quanhuyen: selectedValue1 },
+                success: function (data) {
+                    $("#cboPhuongXa1").append('<option>---Chọn Phường/Xã---</option>');
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(data, function (i, da) {
+
+                        $("#cboPhuongXa1").append('<option value="' + da.Value + '">' +
+                            da.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+        });
+        $("#cboPhuongXa1").change(function () {
+            var selectedText1 = $(this).find("option:selected").text();
+            var selectedValue1 = $(this).val();
+            $("#cboDuongPho1").empty();
+            // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("LayDuongPho", "TimKiem")', // we are calling json method
+                dataType: 'json',
+                data: { ma_phuongxa: selectedValue1 },
+                success: function (data) {
+                    $("#cboDuongPho1").append('<option>---Chọn Đường/Phố---</option>');
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(data, function (i, da) {
+
+                        $("#cboDuongPho1").append('<option value="' + da.Value + '">' +
+                            da.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+        });
+        $("#cboDonVi1").change(function () {
+            var selectedText2 = $("#cboDonVi1").find("option:selected").text();
+            var selectedValue2 = $("#cboDonVi1").val();
+            $("#cboDuongPho1").empty();
+            // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+
+            if (selectedText2 == "Thỏa thuận") {
+                $("#GiaMin").prop("disabled", true);
+                $("#GiaMax").prop("disabled", true);
+            } else {
+                $("#GiaMin").prop("disabled", false);
+                $("#GiaMax").prop("disabled", false);
+            }
+
+        });
+        //--------------------------------------
+        //-------------------------------------- END TÌM KIẾM NÂNG CAO
+    }
     $(document).ready(function () {
+        TimKiem();
+        //--------------------------------------
+        TimKiemNangCao();
+        //--------------------------------------
+        $("#chkDTKhongXacDinh").on('change', function () {
+            if ($(this).prop('checked')) {
+                $("#DTMin").prop("disabled", true);
+                $("#DTMax").prop("disabled", true);
+            } else {
+                $("#DTMin").prop("disabled", false);
+                $("#DTMax").prop("disabled", false);
+            }
+        });
+        //--------------------------------------
+
+        //--------------------------------------
+        $("#chkGiaThoaThuan").on('change', function () {
+            if ($(this).prop('checked')) {
+                $("#GiaMin").prop("disabled", true);
+                $("#GiaMax").prop("disabled", true);
+            } else {
+                $("#GiaMin").prop("disabled", false);
+                $("#GiaMax").prop("disabled", false);
+            }
+        });
+        //--------------------------------------
         $("#lblTimKiemNangCao").click(function () {
             $("#frmTimKiem").css("display", "none");
             $("#frmTimKiemNangCao").css("display", "block");

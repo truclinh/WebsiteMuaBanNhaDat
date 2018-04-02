@@ -312,6 +312,14 @@
     <Content Include="Views\TimKiem\KetQuaTimKiem3_CMCT.cshtml" />
     <Content Include="Views\TimKiem\KetQuaTimKiem4_CBCHT.cshtml" />
     <Content Include="Views\TimKiem\KetQuaTimKiem4_CMCT.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem5_CBCHT.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem5_CMCT.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem6_CBCHT.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem6_CMCT.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem7_CBCHT.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem7_CMCT.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem8_CBCHT.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem8_CMCT.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

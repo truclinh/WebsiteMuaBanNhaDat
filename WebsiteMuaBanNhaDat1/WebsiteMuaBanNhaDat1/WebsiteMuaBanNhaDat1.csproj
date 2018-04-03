@@ -320,6 +320,7 @@
     <Content Include="Views\TimKiem\KetQuaTimKiem7_CMCT.cshtml" />
     <Content Include="Views\TimKiem\KetQuaTimKiem8_CBCHT.cshtml" />
     <Content Include="Views\TimKiem\KetQuaTimKiem8_CMCT.cshtml" />
+    <Content Include="Views\TimKiemNangCao\KetQuaTimKiem1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -336,6 +337,7 @@
     <Compile Include="Controllers\NhanXetController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
+    <Compile Include="Controllers\TimKiemNangCaoController.cs" />
     <Compile Include="Controllers\TinTheoLoaiHinhController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

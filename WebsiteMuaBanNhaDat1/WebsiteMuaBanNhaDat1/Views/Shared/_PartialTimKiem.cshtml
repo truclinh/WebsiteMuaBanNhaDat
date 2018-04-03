@@ -22,7 +22,7 @@
 
     </div>
 }
-@using (Html.BeginForm("TimKiemNangCao", "TimKiem", FormMethod.Post, new { id = "frmTimKiem" }))
+@using (Html.BeginForm("TimKiemNangCao", "TimKiemNangCao", FormMethod.Post, new { id = "frmTimKiem" }))
 {
     <div id="frmTimKiemNangCao" class="search-form" style="display:none;border-bottom:1px solid #64a30a;padding-bottom:20px">
         <h4 style="background-color:#64a30a;color:white;font-weight:bold;padding:10px;"><span class="glyphicon glyphicon-search"></span> Tìm kiếm nâng cao</h4>
@@ -112,7 +112,7 @@
             dataType: 'json',
             data: { ma_loaihinh: selectedValue },
             success: function (data) {
-                $("#cboNoiDungLoaiHinh").append('<option>---Chọn loại nhà đất---</option>');
+                $("#cboNoiDungLoaiHinh").append('<option value="">---Chọn loại nhà đất---</option>');
                 // states contains the JSON formatted list
                 // of states passed from the controller
                 $.each(data, function (i, loaihinh) {
@@ -136,7 +136,7 @@
                 dataType: 'json',
                 data: { ma_loaihinh: selectedValue },
                 success: function (data) {
-                    $("#cboNoiDungLoaiHinh").append('<option>---Chọn loại nhà đất---</option>');
+                    $("#cboNoiDungLoaiHinh").append('<option value="">---Chọn loại nhà đất---</option>');
                     // states contains the JSON formatted list
                     // of states passed from the controller
                     $.each(data, function (i, loaihinh) {
@@ -167,7 +167,7 @@
             dataType: 'json',
             data: { ma_loaihinh: selectedValue1 },
             success: function (data) {
-                $("#cboNoiDungLoaiHinh1").append('<option>---Chọn loại nhà đất---</option>');
+                $("#cboNoiDungLoaiHinh1").append('<option value="">---Chọn loại nhà đất---</option>');
                 // states contains the JSON formatted list
                 // of states passed from the controller
                 $.each(data, function (i, loaihinh) {
@@ -180,14 +180,14 @@
                 alert('Failed to retrieve states.' + ex);
             }
         });
-        if (selectedValue1 > 0) {
+        if (selectedValue1 !=null) {
             $.ajax({
                 type: 'POST',
                 url: '@Url.Action("LayDonVi", "TimKiem")', // we are calling json method
                 dataType: 'json',
                 data: { ma_loaihinh: selectedValue1 },
                 success: function (data) {
-                    $("#cboDonVi1").append('<option>---Chọn loại đơn vị---</option>');
+                    $("#cboDonVi1").append('<option value="">---Chọn loại đơn vị---</option>');
                     // states contains the JSON formatted list
                     // of states passed from the controller
                     $.each(data, function (i, loaihinh) {
@@ -214,7 +214,7 @@
                 dataType: 'json',
                 data: { ma_loaihinh: selectedValue1 },
                 success: function (data) {
-                    $("#cboDonVi1").append('<option>---Chọn loại đơn vị---</option>');
+                    $("#cboDonVi1").append('<option value="">---Chọn loại đơn vị---</option>');
                     // states contains the JSON formatted list
                     // of states passed from the controller
                     $.each(data, function (i, loaihinh) {
@@ -234,7 +234,7 @@
                     dataType: 'json',
                     data: { ma_loaihinh: selectedValue1 },
                     success: function (data) {
-                        $("#cboNoiDungLoaiHinh1").append('<option>---Chọn loại nhà đất---</option>');
+                        $("#cboNoiDungLoaiHinh1").append('<option value="">---Chọn loại nhà đất---</option>');
                         // states contains the JSON formatted list
                         // of states passed from the controller
                         $.each(data, function (i, loaihinh) {
@@ -260,7 +260,7 @@
                     dataType: 'json',
                     data: { ma_loaihinh: selectedValue1 },
                     success: function (data) {
-                        $("#cboNoiDungLoaiHinh1").append('<option>---Chọn loại nhà đất---</option>');
+                        $("#cboNoiDungLoaiHinh1").append('<option value="">---Chọn loại nhà đất---</option>');
                         // states contains the JSON formatted list
                         // of states passed from the controller
                         $.each(data, function (i, loaihinh) {
@@ -292,7 +292,7 @@
                 dataType: 'json',
                 data: { ma_tinhtp: selectedValue1 },
                 success: function (data) {
-                    $("#cboQuanHuyen1").append('<option>---Chọn Quận/Huyện---</option>');
+                    $("#cboQuanHuyen1").append('<option value="">---Chọn Quận/Huyện---</option>');
                     // states contains the JSON formatted list
                     // of states passed from the controller
                     $.each(data, function (i, da) {
@@ -318,7 +318,7 @@
                 dataType: 'json',
                 data: { ma_quanhuyen: selectedValue1 },
                 success: function (data) {
-                    $("#cboPhuongXa1").append('<option>---Chọn Phường/Xã---</option>');
+                    $("#cboPhuongXa1").append('<option value="">---Chọn Phường/Xã---</option>');
                     // states contains the JSON formatted list
                     // of states passed from the controller
                     $.each(data, function (i, da) {
@@ -343,7 +343,7 @@
                 dataType: 'json',
                 data: { ma_phuongxa: selectedValue1 },
                 success: function (data) {
-                    $("#cboDuongPho1").append('<option>---Chọn Đường/Phố---</option>');
+                    $("#cboDuongPho1").append('<option value="">---Chọn Đường/Phố---</option>');
                     // states contains the JSON formatted list
                     // of states passed from the controller
                     $.each(data, function (i, da) {
@@ -360,7 +360,6 @@
         $("#cboDonVi1").change(function () {
             var selectedText2 = $("#cboDonVi1").find("option:selected").text();
             var selectedValue2 = $("#cboDonVi1").val();
-            $("#cboDuongPho1").empty();
             // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
 
             if (selectedText2 == "Thỏa thuận") {

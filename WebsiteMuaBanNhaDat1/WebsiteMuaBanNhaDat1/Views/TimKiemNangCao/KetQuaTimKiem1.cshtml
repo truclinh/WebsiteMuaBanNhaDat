@@ -2,13 +2,19 @@
 @using PagedList.Mvc;
 @model PagedList.PagedList<TinRaoCBCHT>
 @{
-    ViewBag.Title = "Kết quả tìm kiếm";
+    ViewBag.Title = "Kết quả tìm kiếm nâng cao";
     Layout = "~/Views/Shared/_LayoutTheoLoai.cshtml";
     var lstCBCHT = ViewBag.KQ_CBCHT;
     string _tukhoa = ViewBag.tukhoa;
     int _loaihinh = ViewBag.loaihinh;
     int _ndloaihinh = ViewBag.ndloaihinh;
     int _tinhtp = ViewBag.tinhtp;
+    int _quanhuyen = ViewBag.quanhuyen;
+    int _phuongxa = ViewBag.phuongxa;
+    int _duongpho = ViewBag.duongpho;
+    double _dientich = ViewBag.dientich;
+   double _gia = ViewBag.gia;
+    int _donvi = ViewBag.donvi;
 }
 @*<script>
                     $(document).ready(function () {
@@ -75,7 +81,20 @@
             @(lstCBCHT.PageCount < lstCBCHT.PageNumber ? 0 : lstCBCHT.PageNumber)<span>/ </span>@lstCBCHT.PageCount;
         }
 
-        @Html.PagedListPager((PagedList.IPagedList)lstCBCHT, page => Url.Action("KetQuaTimKiem1_CBCHT", "TimKiem", new { @page = page, tukhoa = _tukhoa, loaihinh = _loaihinh, ndloaihinh = _ndloaihinh, tinhtp = _tinhtp }));
+        @Html.PagedListPager((PagedList.IPagedList)lstCBCHT, page => Url.Action("KetQuaTimKiem1", "TimKiemNangCao", new
+   {
+       @page = page,
+       tukhoa = _tukhoa,
+       loaihinh = _loaihinh,
+       ndloaihinh = _ndloaihinh,
+       tinhtp = _tinhtp,
+       quanhuyen = _quanhuyen,
+       phuongxa = _phuongxa,
+       duongpho = _duongpho,
+       dientich = _dientich,
+       gia = _gia,
+       donvi = _donvi
+   }));
 
     </div>
 </div>

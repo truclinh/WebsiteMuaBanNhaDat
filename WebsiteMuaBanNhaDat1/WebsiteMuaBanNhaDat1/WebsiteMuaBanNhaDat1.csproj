@@ -321,6 +321,21 @@
     <Content Include="Views\TimKiem\KetQuaTimKiem8_CBCHT.cshtml" />
     <Content Include="Views\TimKiem\KetQuaTimKiem8_CMCT.cshtml" />
     <Content Include="Views\TimKiemNangCao\KetQuaTimKiem1.cshtml" />
+    <Content Include="Views\TimKiemNangCao\KetQuaTimKiem2.cshtml" />
+    <Content Include="Views\TimKiemNangCao\KetQuaTimKiem3.cshtml" />
+    <Content Include="Views\TimKiemNangCao\KetQuaTimKiem4.cshtml" />
+    <Content Include="Views\TimKiemNangCao\KetQuaTimKiem5.cshtml" />
+    <Content Include="Views\TimKiemNangCao\KetQuaTimKiem6.cshtml" />
+    <Content Include="Views\TimKiemNangCao\KetQuaTimKiem7.cshtml" />
+    <Content Include="Views\TimKiemNangCao\KetQuaTimKiem8.cshtml" />
+    <Content Include="Views\TimKiemNangCao\KetQuaTimKiem9.cshtml" />
+    <Content Include="Views\TimKiemNangCao\KetQuaTimKiem10.cshtml" />
+    <Content Include="Views\TimKiemNangCao\KetQuaTimKiem11.cshtml" />
+    <Content Include="Views\TimKiemNangCao\KetQuaTimKiem12.cshtml" />
+    <Content Include="Views\TimKiemNangCao\KetQuaTimKiem13.cshtml" />
+    <Content Include="Views\TimKiemNangCao\KetQuaTimKiem14.cshtml" />
+    <Content Include="Views\TimKiemNangCao\KetQuaTimKiem15.cshtml" />
+    <Content Include="Views\TimKiemNangCao\KetQuaTimKiem16.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

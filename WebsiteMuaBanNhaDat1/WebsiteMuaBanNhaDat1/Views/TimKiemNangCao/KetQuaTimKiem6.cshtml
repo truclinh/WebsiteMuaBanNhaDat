@@ -1,0 +1,100 @@
+﻿@using WebsiteMuaBanNhaDat1.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<TinRaoCBCHT>
+@{
+    ViewBag.Title = "Kết quả tìm kiếm nâng cao";
+    Layout = "~/Views/Shared/_LayoutTheoLoai.cshtml";
+    var lstCBCHT = ViewBag.KQ_CBCHT;
+    string _tukhoa = ViewBag.tukhoa;
+    int _loaihinh = ViewBag.loaihinh;
+    int _ndloaihinh = ViewBag.ndloaihinh;
+    int _tinhtp = ViewBag.tinhtp;
+    int _quanhuyen = ViewBag.quanhuyen;
+    int _phuongxa = ViewBag.phuongxa;
+    int _duongpho = ViewBag.duongpho;
+    //double _dientich = ViewBag.dientich;
+    double _gia = ViewBag.gia;
+    //int _donvi = ViewBag.donvi;
+}
+@*<script>
+                    $(document).ready(function () {
+                            // alert("hi");
+                                $('.nav-list > li').removeClass('active');
+                                $("#@(ViewBag.TenLoaiHinh)").addClass('active');
+                    });
+    </script>*@
+<div class="sortby clearfix">
+    <div class="pull-left result">
+        <h3>
+            Kết quả:
+            @if (ViewBag.KetQua != "0")
+            {
+                <b>@ViewBag.KetQua</b>
+            }
+            else
+            {
+                <b>Không tìm thấy</b>
+            }
+
+        </h3>
+    </div>
+    <div class="pull-right">
+        <select class="form-control">
+            <option>Sort by</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+        </select>
+    </div>
+
+</div>
+<div class="row">
+    @foreach (var item in lstCBCHT)
+    {
+            <!-- properties -->
+        <div class="col-lg-4 col-sm-6">
+            <div class="properties" style="border:1px solid #1b5600">
+                <div class="image-holder">
+                    <img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties">
+                    <div class="status new">Mới</div>
+                </div>
+                <h4><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })" data-toggle="tooltip" title="@item.tieude!">@(item.tieude.Substring(0, 15))...</a></h4>
+                <p class="price">Giá: @(item.gia) @(item.ten_donvi)</p>
+                @if (item.so_phongngu > 0)
+                {
+                    <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
+
+                }
+                else
+                {
+                    <div style="visibility:hidden" class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng ngủ">@item.so_phongngu</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Phòng khách">@item.so_phongkhach</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Nhà bếp">@item.so_nhabep</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Toilet">@item.so_toilet</span> </div>
+                }
+                <a class="btn btn-primary" href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })">Chi tiết</a>
+            </div>
+        </div>
+    <!-- properties -->
+    }
+    <div class="col-lg-12 center">
+        @*Tạo link liên kết các trang*@
+        @if (ViewBag.KetQua != "0")
+        {
+            <span>Trang </span>
+            @(lstCBCHT.PageCount < lstCBCHT.PageNumber ? 0 : lstCBCHT.PageNumber)<span>/ </span>@lstCBCHT.PageCount;
+        }
+
+        @Html.PagedListPager((PagedList.IPagedList)lstCBCHT, page => Url.Action("KetQuaTimKiem6", "TimKiemNangCao", new
+   {
+       @page = page,
+       tukhoa = _tukhoa,
+       loaihinh = _loaihinh,
+       ndloaihinh = _ndloaihinh,
+       tinhtp = _tinhtp,
+       quanhuyen = _quanhuyen,
+       phuongxa = _phuongxa,
+       duongpho = _duongpho,
+       //dientich = _dientich,
+       gia = _gia
+       //,donvi = _donvi
+   }));
+
+    </div>
+</div>

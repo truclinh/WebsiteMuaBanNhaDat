@@ -141,5 +141,10 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             var da = db.TinRaoCBCHT.SingleOrDefault(n => n.ma_tinrao==ma_tinrao);
             return View(da);
         }
+        public ActionResult MapPartial(Guid? ma_tinrao)
+        {
+            var da = db.ToaDo.Where(n => n.ma_tinrao == ma_tinrao).ToList();
+            return PartialView("MapPartial", da);
+        }
     }
 }

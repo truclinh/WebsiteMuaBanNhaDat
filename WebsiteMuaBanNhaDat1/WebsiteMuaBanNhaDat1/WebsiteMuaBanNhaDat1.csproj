@@ -352,6 +352,7 @@
     <Content Include="Views\TimKiemNangCao\KetQuaTimKiemCMCT14.cshtml" />
     <Content Include="Views\TimKiemNangCao\KetQuaTimKiemCMCT15.cshtml" />
     <Content Include="Views\TimKiemNangCao\KetQuaTimKiemCMCT16.cshtml" />
+    <Content Include="Views\ChiTietTinRao\MapPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -451,6 +452,9 @@
       <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TinRaoCMCT.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ToaDo.cs">
       <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

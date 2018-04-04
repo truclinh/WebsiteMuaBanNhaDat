@@ -206,6 +206,25 @@
           <Property Name="ten_tinhtp" Type="nvarchar" MaxLength="100" />
           <Property Name="ghichu" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="ToaDo">
+          <Key>
+            <PropertyRef Name="ma_toado" />
+          </Key>
+          <Property Name="ma_toado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_tinrao" Type="uniqueidentifier" />
+          <Property Name="lat1" Type="real" />
+          <Property Name="lng1" Type="real" />
+          <Property Name="lat2" Type="real" />
+          <Property Name="lng2" Type="real" />
+          <Property Name="lat3" Type="real" />
+          <Property Name="lng3" Type="real" />
+          <Property Name="lat4" Type="real" />
+          <Property Name="lng4" Type="real" />
+          <Property Name="lat5" Type="real" />
+          <Property Name="lng5" Type="real" />
+          <Property Name="lat6" Type="real" />
+          <Property Name="lng6" Type="real" />
+        </EntityType>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -256,6 +275,7 @@
           <EntitySet Name="TinRaoCBCHT" EntityType="Self.TinRaoCBCHT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinRaoCMCT" EntityType="Self.TinRaoCMCT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinhTP" EntityType="Self.TinhTP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToaDo" EntityType="Self.ToaDo" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -310,6 +330,7 @@
           <EntitySet Name="TaiKhoan" EntityType="MuaBanNhaDatModel.TaiKhoan" />
           <FunctionImport Name="sp_BaiDangNhieuNhanXet" ReturnType="Collection(MuaBanNhaDatModel.sp_BaiDangNhieuNhanXet_Result)" />
           <FunctionImport Name="sp_BaiDangNhieuNhanXet1" ReturnType="Collection(MuaBanNhaDatModel.sp_BaiDangNhieuNhanXet1_Result)" />
+          <EntitySet Name="ToaDo" EntityType="MuaBanNhaDatModel.ToaDo" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -535,6 +556,25 @@
           <Property Type="String" Name="hinhbia" Nullable="true" MaxLength="200" />
           <Property Type="DateTime" Name="ngaydang" Nullable="true" Precision="23" />
         </ComplexType>
+        <EntityType Name="ToaDo">
+          <Key>
+            <PropertyRef Name="ma_toado" />
+          </Key>
+          <Property Name="ma_toado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_tinrao" Type="Guid" />
+          <Property Name="lat1" Type="Single" />
+          <Property Name="lng1" Type="Single" />
+          <Property Name="lat2" Type="Single" />
+          <Property Name="lng2" Type="Single" />
+          <Property Name="lat3" Type="Single" />
+          <Property Name="lng3" Type="Single" />
+          <Property Name="lat4" Type="Single" />
+          <Property Name="lng4" Type="Single" />
+          <Property Name="lat5" Type="Single" />
+          <Property Name="lng5" Type="Single" />
+          <Property Name="lat6" Type="Single" />
+          <Property Name="lng6" Type="Single" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -802,6 +842,26 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="ToaDo">
+            <EntityTypeMapping TypeName="MuaBanNhaDatModel.ToaDo">
+              <MappingFragment StoreEntitySet="ToaDo">
+                <ScalarProperty Name="lng6" ColumnName="lng6" />
+                <ScalarProperty Name="lat6" ColumnName="lat6" />
+                <ScalarProperty Name="lng5" ColumnName="lng5" />
+                <ScalarProperty Name="lat5" ColumnName="lat5" />
+                <ScalarProperty Name="lng4" ColumnName="lng4" />
+                <ScalarProperty Name="lat4" ColumnName="lat4" />
+                <ScalarProperty Name="lng3" ColumnName="lng3" />
+                <ScalarProperty Name="lat3" ColumnName="lat3" />
+                <ScalarProperty Name="lng2" ColumnName="lng2" />
+                <ScalarProperty Name="lat2" ColumnName="lat2" />
+                <ScalarProperty Name="lng1" ColumnName="lng1" />
+                <ScalarProperty Name="lat1" ColumnName="lat1" />
+                <ScalarProperty Name="ma_tinrao" ColumnName="ma_tinrao" />
+                <ScalarProperty Name="ma_toado" ColumnName="ma_toado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

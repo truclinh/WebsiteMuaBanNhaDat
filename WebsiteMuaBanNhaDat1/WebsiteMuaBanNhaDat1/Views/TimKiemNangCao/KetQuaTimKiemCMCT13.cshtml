@@ -1,0 +1,132 @@
+﻿@using WebsiteMuaBanNhaDat1.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<TinRaoCMCT>
+@{
+    ViewBag.Title = "Kết quả tìm kiếm nâng cao";
+    Layout = "~/Views/Shared/_LayoutTheoLoai.cshtml";
+    var lstCMCT = ViewBag.KQ_CMCT;
+    string _tukhoa = ViewBag.tukhoa;
+    int _loaihinh = ViewBag.loaihinh;
+    int _ndloaihinh = ViewBag.ndloaihinh;
+    int _tinhtp = ViewBag.tinhtp;
+    int _quanhuyen = ViewBag.quanhuyen;
+    int _phuongxa = ViewBag.phuongxa;
+    int _duongpho = ViewBag.duongpho;
+    double _dientichtu = ViewBag.dientichtu;
+    //double _dientichden = ViewBag.dientichden;
+    //double _giatu = ViewBag.giatu;
+    double _giaden = ViewBag.giaden;
+     int _donvi = ViewBag.donvi;
+}
+@*<script>
+                    $(document).ready(function () {
+                            // alert("hi");
+                                $('.nav-list > li').removeClass('active');
+                                $("#@(ViewBag.TenLoaiHinh)").addClass('active');
+                    });
+    </script>*@
+<div class="sortby clearfix">
+    <div class="pull-left result">
+        <h3>
+            Kết quả:
+            @if (ViewBag.KetQua != "0")
+            {
+                <b>@ViewBag.KetQua</b>
+            }
+            else
+            {
+                <b>Không tìm thấy</b>
+            }
+
+        </h3>
+    </div>
+    <div class="pull-right">
+        <select class="form-control">
+            <option>Sort by</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+        </select>
+    </div>
+
+</div>
+<div class="row">
+    @foreach (var item in lstCMCT)
+    {
+    <!-- properties -->
+        <div class="col-lg-4 col-sm-6">
+            <div class="properties" style="border:1px solid #1b5600">
+                <div class="image-holder">
+                    <img src="~/Content/images/properties/@item.anh1" class="img-responsive" alt="properties">
+                    <div class="status new">Mới</div>
+                </div>
+                <h4><a href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })" data-toggle="tooltip" title="@item.tieude!">@(item.tieude.Substring(0, 15))...</a></h4>
+                <p class="price">
+                    Giá:
+                    @if (item.gia_tu != null && item.gia_den != null)
+                {
+                        <b>@(item.gia_tu) @(item.ten_donvi) - @(item.gia_den) @(item.ten_donvi)</b>
+                    }
+                    else if (item.gia_tu != null && item.gia_den == null)
+                    {
+                        <b> Trên @(item.gia_tu)@(item.ten_donvi)</b>
+                    }
+                    else if (item.gia_tu == null && item.gia_den != null)
+                    {
+                        <b> Dưới @(item.gia_den) @(item.ten_donvi)</b>
+                    }
+                    else if (item.gia_tu == null && item.gia_den == null)
+                    {
+                        <b>Thỏa thuận</b>
+                    }
+                    &nbsp;&nbsp;<br />
+                    Diện tích:
+                    @if (item.dientich_tu != null && item.dientich_den != null)
+                {
+                        <b>@(item.dientich_tu)m<sup>2</sup> - @(item.dientich_den) m<sup>2</sup></b>
+                    }
+                    else if (item.dientich_tu != null && item.dientich_den == null)
+                    {
+                        <b> Trên @(item.dientich_tu) m<sup>2</sup></b>
+                    }
+                    else if (item.dientich_tu == null && item.dientich_den != null)
+                    {
+                        <b> Dưới @(item.dientich_den) m<sup>2</sup></b>
+                    }
+                    else if (item.dientich_tu == null && item.dientich_den == null)
+                    {
+                        <b>Không xác định</b>
+                    }
+                </p>
+                <div class="listing-detail"><span class="fa fa-location-arrow"></span> @(item.ten_quanhuyen), @(item.ten_tinhtp)</div>
+                <a class="btn btn-primary" href="@Url.Action("ChiTiet","ChiTietTinRao", new {ma_tinrao=item.ma_tinrao, ma_loaihinh=item.ma_loaihinh })">Chi tiết</a>
+            </div>
+        </div>
+    <!-- properties -->
+    }
+    <div class="col-lg-12 center">
+        @*Tạo link liên kết các trang*@
+        @if (ViewBag.KetQua != "0")
+        {
+            <span>Trang </span>
+            @(lstCMCT.PageCount < lstCMCT.PageNumber ? 0 : lstCMCT.PageNumber) <span>/ </span> @lstCMCT.PageCount;
+        }
+
+        @Html.PagedListPager((PagedList.IPagedList)lstCMCT, page => Url.Action("KetQuaTimKiemCMCT13", "TimKiem", new
+   {
+       @page = page,
+       tukhoa = _tukhoa,
+       loaihinh = _loaihinh,
+       ndloaihinh = _ndloaihinh,
+       tinhtp = _tinhtp,
+       quanhuyen = _quanhuyen,
+       phuongxa = _phuongxa,
+       duongpho = _duongpho,
+       dientichtu = _dientichtu,
+       //dientichden = _dientichden,
+       //giatu = _giatu,
+       giaden = _giaden,
+       donvi = _donvi
+   }));
+
+    </div>
+</div>

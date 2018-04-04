@@ -14,6 +14,10 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
         public ActionResult ChiTiet(Guid? ma_tinrao, int? ma_loaihinh)
         {
+            ViewBag.DMLoaiHinh = new SelectList(db.LoaiHinh.ToList().Where(n => n.nhom == "CBCHT" || n.nhom == "CMCT").OrderBy(n => n.ma_loaihinh), "ma_loaihinh", "ten_loaihinh");
+            ViewBag.DMTinhTP = new SelectList(db.TinhTP.ToList().OrderBy(n => n.ten_tinhtp), "ma_tinhtp", "ten_tinhtp");
+            ViewBag.DMLoaiHinh1 = new SelectList(db.LoaiHinh.ToList().Where(n => n.nhom == "CBCHT" || n.nhom == "CMCT").OrderBy(n => n.ma_loaihinh), "ma_loaihinh", "ten_loaihinh");
+            ViewBag.DMTinhTP1 = new SelectList(db.TinhTP.ToList().OrderBy(n => n.ten_tinhtp), "ma_tinhtp", "ten_tinhtp");
             if (ma_loaihinh == 1 || ma_loaihinh == 2)
             {
                 return RedirectToAction("ChiTiet_CanBanCanChoThue", "ChiTietTinRao", new { _ma_tinrao = ma_tinrao, _ma_loaihinh = ma_loaihinh });
@@ -27,6 +31,11 @@ namespace WebsiteMuaBanNhaDat1.Controllers
         //-------------------------------------- Chi tiết CB-CHT
         public ActionResult ChiTiet_CanBanCanChoThue(Guid? _ma_tinrao, int? _ma_loaihinh)
         {
+            ViewBag.DMLoaiHinh = new SelectList(db.LoaiHinh.ToList().Where(n => n.nhom == "CBCHT" || n.nhom == "CMCT").OrderBy(n => n.ma_loaihinh), "ma_loaihinh", "ten_loaihinh");
+            ViewBag.DMTinhTP = new SelectList(db.TinhTP.ToList().OrderBy(n => n.ten_tinhtp), "ma_tinhtp", "ten_tinhtp");
+            ViewBag.DMLoaiHinh1 = new SelectList(db.LoaiHinh.ToList().Where(n => n.nhom == "CBCHT" || n.nhom == "CMCT").OrderBy(n => n.ma_loaihinh), "ma_loaihinh", "ten_loaihinh");
+            ViewBag.DMTinhTP1 = new SelectList(db.TinhTP.ToList().OrderBy(n => n.ten_tinhtp), "ma_tinhtp", "ten_tinhtp");
+
             string tenloaihinh = db.LoaiHinh.SingleOrDefault(n => n.ma_loaihinh == _ma_loaihinh).tenkhongdau.ToString();
             ViewBag.TenLoaiHinh = tenloaihinh;
             var ma = db.TinRaoCBCHT.SingleOrDefault(n => n.ma_tinrao == _ma_tinrao);
@@ -79,6 +88,11 @@ namespace WebsiteMuaBanNhaDat1.Controllers
         //-------------------------------------- Chi tiết CM - CT
         public ActionResult ChiTiet_CanMuaCanThue(Guid? _ma_tinrao, int? _ma_loaihinh)
         {
+            ViewBag.DMLoaiHinh = new SelectList(db.LoaiHinh.ToList().Where(n => n.nhom == "CBCHT" || n.nhom == "CMCT").OrderBy(n => n.ma_loaihinh), "ma_loaihinh", "ten_loaihinh");
+            ViewBag.DMTinhTP = new SelectList(db.TinhTP.ToList().OrderBy(n => n.ten_tinhtp), "ma_tinhtp", "ten_tinhtp");
+            ViewBag.DMLoaiHinh1 = new SelectList(db.LoaiHinh.ToList().Where(n => n.nhom == "CBCHT" || n.nhom == "CMCT").OrderBy(n => n.ma_loaihinh), "ma_loaihinh", "ten_loaihinh");
+            ViewBag.DMTinhTP1 = new SelectList(db.TinhTP.ToList().OrderBy(n => n.ten_tinhtp), "ma_tinhtp", "ten_tinhtp");
+
             string tenloaihinh = db.LoaiHinh.SingleOrDefault(n => n.ma_loaihinh == _ma_loaihinh).tenkhongdau.ToString();
             ViewBag.TenLoaiHinh = tenloaihinh;
             int? ma = db.TinRaoCMCT.SingleOrDefault(n => n.ma_tinrao == _ma_tinrao).ma_ndloaihinh;

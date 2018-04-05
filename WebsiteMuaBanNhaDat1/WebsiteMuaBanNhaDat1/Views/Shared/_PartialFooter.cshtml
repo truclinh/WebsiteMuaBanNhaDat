@@ -1,6 +1,45 @@
-﻿
+﻿<style>
+    @@keyframes example {
+    from {background-color:red;color:white;border:1px solid white;}
+    to {background-color:white;color:black;border:1px solid black;}
+}
 
+/* The element to apply the animation to */
+#openchat{
+    animation-name: example;
+    animation-duration: 8s;
+     animation-iteration-count: infinite;
+     animation-delay:2s;
+}
+</style>
+<script>
+    $(document).ready(function () {
+        $("#fr").css("display", "none");
+        $("#chatbot").css("display", "none");
+        $("#closechat").css("display", "none");
+        $("#closechat").click(function () {
+            $("#fr").css("display", "none");
+            $("#chatbot").css("display", "none");
+            $("#closechat").css("display", "none");
+            $("#openchat").css("display", "block");
+        });
+        $("#openchat").click(function () {
+            $("#fr").css("display", "block");
+            $("#chatbot").css("display", "block");
+            $("#closechat").css("display", "block");
+            $("#openchat").css("display", "none");
+        });
+       // 
+    });
+</script>
 
+<div class="fbchatbox hidden-xs" id="chatbot" style="position:fixed;right:10px;bottom:0;z-index:9999;border: 1px solid blue;">
+    <iframe id="fr" width="305"
+            height="320"
+            src="https://console.dialogflow.com/api-client/demo/embedded/20ab32f4-038a-4bcd-89d2-a203e1d19299"></iframe>
+    <span id="closechat" style="z-index:9999;right:0px;white-space: nowrap;position:absolute;bottom:299px;width:25px;padding:7px; background: red;color: #fff;cursor: pointer;float: right;font-weight: bold;font-size: 15px;text-align: center;">X</span>
+</div>
+<span id="openchat" style="position:fixed;z-index:9999;right:0;white-space: nowrap;bottom:0;width:100px;padding:7px; background: red;color: #fff;cursor: pointer;float: right;font-weight: bold;font-size: 15px;text-align: center;"><i class="far fa-comments"><span class="glyphicon glyphicon-comment"></span> Hỗ trợ</span>
 
 <div class="footer">
 

@@ -197,6 +197,7 @@
     <Content Include="Content\images\instagram.png" />
     <Content Include="Content\images\linkedin.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\map-icon-detail.png" />
     <Content Include="Content\images\properties\1.jpg" />
     <Content Include="Content\images\properties\2.jpg" />
     <Content Include="Content\images\properties\3.jpg" />
@@ -353,6 +354,7 @@
     <Content Include="Views\TimKiemNangCao\KetQuaTimKiemCMCT15.cshtml" />
     <Content Include="Views\TimKiemNangCao\KetQuaTimKiemCMCT16.cshtml" />
     <Content Include="Views\ChiTietTinRao\MapPartial.cshtml" />
+    <Content Include="Views\DangTin\DangTinCBCHT.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -365,6 +367,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ChiTietTinRaoController.cs" />
+    <Compile Include="Controllers\DangTinController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NhanXetController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />

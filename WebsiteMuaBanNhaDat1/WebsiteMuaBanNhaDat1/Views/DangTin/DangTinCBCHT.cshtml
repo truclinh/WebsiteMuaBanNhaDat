@@ -1,0 +1,526 @@
+﻿
+@{
+    ViewBag.Title = "Cần bán - Cho thuê";
+    Layout = "~/Views/Shared/_LayoutTheoLoai.cshtml";
+}
+<style>
+    .khung {
+    }
+
+    .muc {
+        background-color: #64a30a;
+        color: white;
+        font-size: 17px;
+        padding: 8px;
+    }
+    #map{
+         height: 300px;
+        width: 100%;
+    }
+</style>
+<div class="col-lg-12">
+    <button class="btn btn-danger" type="button" disabled style="width:40%;border-radius:0px;font-size:16px;">Cần bán/Cho thuê</button>
+    <button class="btn btn-danger" type="button" style="width:40%;border-radius:0px;font-size:16px;">Cần mua/Cần thuê</button>
+</div>
+<hr />
+@using (Html.BeginForm("DangTinCBCHT", "DangTin", FormMethod.Post, new { @class = "form-inline" }))
+{
+    @*-------------------THÔNG TIN CƠ BẢN------------------- *@
+    <div class="col-lg-12">
+        <div class="col-lg-12 muc">
+            <b>THÔNG TIN CƠ BẢN</b>
+        </div>
+        <div class="col-lg-12" style="border:1px solid #808080;background-color:white;padding-top:8px;">
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                    Tiêu đề (<b style="color:red;">*</b>)
+                </div>
+                <div class="col-lg-10" style="">
+                    <input type="text" maxlength="100" style="width:100%" />
+                </div>
+            </div>
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                    Hình thức (<b style="color:red;">*</b>)
+                </div>
+                <div class="col-lg-4" style="">
+                    <input type="text" maxlength="100" style="width:100%" />
+                </div>
+                <div class="col-lg-2" style="">
+                    Loại (<b style="color:red;">*</b>)
+                </div>
+                <div class="col-lg-4" style="">
+                    <input type="text" maxlength="100" style="width:100%" />
+                </div>
+            </div>
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                    Tỉnh/TP (<b style="color:red;">*</b>)
+                </div>
+                <div class="col-lg-4" style="">
+                    <input id="TinhTP" type="text" maxlength="100" style="width:100%" />
+                </div>
+                <div class="col-lg-2" style="">
+                    Quận/Huyện (<b style="color:red;">*</b>)
+                </div>
+                <div class="col-lg-4" style="">
+                    <input type="text" maxlength="100" style="width:100%" />
+                </div>
+            </div>
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                    Phường/Xã(<b style="color:red;">*</b>)
+                </div>
+                <div class="col-lg-4" style="">
+                    <input type="text" maxlength="100" style="width:100%" />
+                </div>
+                <div class="col-lg-2" style="">
+                    Đường/Phố (<b style="color:red;">*</b>)
+                </div>
+                <div class="col-lg-4" style="">
+                    <input type="text" maxlength="100" style="width:100%" />
+                </div>
+            </div>
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                    Diện tích (<b style="color:red;">*</b>)
+                </div>
+                <div class="col-lg-10" style="">
+                    <input type="text" style="width:50%" />&nbsp; m<sup>2</sup>
+                </div>
+            </div>
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                    Giá(<b style="color:red;">*</b>)
+                </div>
+                <div class="col-lg-4" style="">
+                    <input type="text" style="width:100%" />
+                </div>
+                <div class="col-lg-2" style="">
+                    Đơn vị (<b style="color:red;">*</b>)
+                </div>
+                <div class="col-lg-4" style="">
+                    <input type="text" style="width:100%" />
+                </div>
+            </div>
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                    Tổng giá tiền:
+                </div>
+                <div class="col-lg-10" style="">
+                    <p id="TongTien"> <b style="color:red;">78 triệu</b></p>
+                </div>
+            </div>
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                    Địa chỉ (<b style="color:red;">*</b>)
+                </div>
+                <div class="col-lg-10" style="">
+                    <input type="text" maxlength="100" style="width:100%" />
+                </div>
+            </div>
+        </div>
+    </div>
+    @*-------------------END THÔNG TIN CƠ BẢN------------------- *@
+    @*-------------------THÔNG TIN CƠ BẢN------------------- *@
+    <div class="col-lg-12">
+        <div class="col-lg-12 muc">
+            <b>THÔNG TIN MÔ TẢ</b>
+        </div>
+        <div class="col-lg-12" style="border:1px solid #808080;background-color:white;padding-top:8px;">
+            <div class="col-lg-12 khung">
+                <div class="col-lg-12">(<b style="color:red;">*</b>) Tối đa chỉ 3000 ký tự</div>
+                <div class="col-lg-8" style="">
+                    <textarea style="width:100%;height:130px" minlength="30" maxlength="2000"></textarea>
+                </div>
+                <div class="col-lg-4" style="">
+                    Giới thiệu chung về bất động sản của bạn. Ví dụ: Khu nhà có vị trí thuận lợi: Gần công viên, gần trường học ... Tổng diện tích 52m2, đường đi ô tô vào tận cửa.
+                    <br /><i style="color:red;">Lưu ý: tin rao chỉ để mệnh giá tiền Việt Nam Đồng.</i>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*-------------------END THÔNG TIN CƠ BẢN------------------- *@
+    @*-------------------THÔNG TIN KHÁC------------------- *@
+    <div class="col-lg-12">
+        <div class="col-lg-12 muc">
+            <b>THÔNG TIN KHÁC</b>
+        </div>
+        <div class="col-lg-12" style="border:1px solid #808080;background-color:white;padding-top:8px;">
+            <br />
+            <div class="col-lg-12">Quý vị nên điền đầy đủ thông tin vào các mục dưới đây để tin đăng có hiệu quả hơn</div>
+            <hr />
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                    Số phòng ngủ
+                </div>
+                <div class="col-lg-4" style="">
+                    <input type="text" style="width:100%" />
+                </div>
+                <div class="col-lg-2" style="">
+                    Số phòng khách
+                </div>
+                <div class="col-lg-4" style="">
+                    <input type="text" style="width:100%" />
+                </div>
+            </div>
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                    Số nhà bếp
+                </div>
+                <div class="col-lg-4" style="">
+                    <input type="text" style="width:100%" />
+                </div>
+                <div class="col-lg-2" style="">
+                    Số toilet
+                </div>
+                <div class="col-lg-4" style="">
+                    <input type="text" style="width:100%" />
+                </div>
+            </div>
+        </div>
+    </div>
+    @*-------------------END THÔNG TIN CƠ KHÁC------------------- *@
+    @*-------------------HÌNH ẢNH------------------- *@
+    <div class="col-lg-12">
+        <div class="col-lg-12 muc">
+            <b>HÌNH ẢNH</b>
+        </div>
+        <div class="col-lg-12" style="border:1px solid #808080;background-color:white;padding-top:8px;">
+            <br />
+            <div class="col-lg-12">** Tối đa 4 ảnh chụp thường</div>
+
+            <br />
+            <div class="col-lg-12 khung">
+                <input type="file" name="files" multiple id="up">
+                <div class="gallery"></div>
+            </div>
+            <br />
+            <div class="col-lg-12">** Ảnh 360 (Kích thước <= 4096KB (4,096MB))</div>
+            <br />
+            <div class="col-lg-12 khung">
+                <input type="file" class="single" name="files" id="anh360" />
+                <img id="blah" width="360" height="250" src="#" alt="your image" style="display:none" />
+                <br />
+            </div>
+        </div>
+    </div>
+    @*-------------------END HÌNH ẢNH------------------- *@
+    @*-------------------BẢN ĐỒ------------------- *@
+    <div class="col-lg-12">
+        <div class="col-lg-12 muc">
+            <b>BẢN ĐỒ</b>
+        </div>
+        <div class="col-lg-12" style="border:1px solid #808080;background-color:white;padding-top:8px;">
+            <br />
+            <div class="col-lg-12">Để tăng độ tin cậy và tin rao được nhiều người quan tâm hơn, hãy đặt vị trí bao quanh địa điểm tin rao của bạn trên bản đồ bằng cách kéo icon <img src="~/Content/images/map-icon-detail.png" width="14"> tới đúng 6 vị trí bao quanh địa điểm tin rao.</div>
+            <hr />
+            <div class="col-lg-12 khung">
+                <div class="col-lg-12" style="">
+                    <div class="col-lg-4">Vị trí 1</div>
+                    <div class="col-lg-8" id="1">
+                        <input type="text" id="latclicked1" name="">
+                        <input type="text" id="longclicked1" name="">
+                    </div>
+                    <div class="col-lg-4">Vị trí 2</div>
+                    <div class="col-lg-8" id="2">
+                        <input type="text" id="latclicked2" name="">
+                        <input type="text" id="longclicked2" name="">
+                    </div>
+                    <div class="col-lg-4">Vị trí 3</div>
+                    <div class="col-lg-8" id="3">
+                        <input type="text" id="latclicked3" name="">
+                        <input type="text" id="longclicked3" name="">
+                    </div>
+                    <div class="col-lg-4">Vị trí 4</div>
+                    <div class="col-lg-8" id="4">
+                        <input type="text" id="latclicked4" name="">
+                        <input type="text" id="longclicked4" name="">
+                    </div>
+                    <div class="col-lg-4">Vị trí 5</div>
+                    <div class="col-lg-8" id="5">
+                        <input type="text" id="latclicked5" name="">
+                        <input type="text" id="longclicked5" name="">
+                    </div>
+                    <div class="col-lg-4">Vị trí 6</div>
+                    <div class="col-lg-8" id="6">
+                        <input type="text" id="latclicked6" name="">
+                        <input type="text" id="longclicked6" name="">
+                    </div>
+                </div>
+                <div class="col-lg-12" style="padding-bottom:10px">
+                    <div id="map"></div>
+                    <br />
+                    <input type="button" id="btnLamMoiMap" class="btn btn-github" value="Đặt lại vị trí" onclick="LamMoiMap()"><br />
+                </div>
+        </div>
+    </div>
+    </div>
+        @*-------------------END BẢN ĐỒ------------------- *@
+    @*------------------LIÊN HỆ-------------------- *@
+    <div class="col-lg-12">
+        <div class="col-lg-12 muc">
+            <b>LIÊN HỆ</b>
+        </div>
+        <div class="col-lg-12" style="border:1px solid #808080;background-color:white;padding-top:8px;">
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                    Tên liên hệ (<b style="color:red;">*</b>)
+                </div>
+                <div class="col-lg-10" style="">
+                    <input type="text" maxlength="100" style="width:100%" />
+                </div>
+            </div>
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                    Địa chỉ (<b style="color:red;">*</b>)
+                </div>
+                <div class="col-lg-10" style="">
+                    <input type="text" maxlength="100" style="width:100%" />
+                </div>
+            </div>
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                    Điện thoại (<b style="color:red;">*</b>)
+                </div>
+                <div class="col-lg-10" style="">
+                    <input type="text" maxlength="100" style="width:60%" />
+                </div>
+            </div>
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                    Di động (<b style="color:red;">*</b>)
+                </div>
+                <div class="col-lg-10" style="">
+                    <input type="text" maxlength="100" style="width:60%" />
+                </div>
+            </div>
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                    Email (<b style="color:red;">*</b>)
+                </div>
+                <div class="col-lg-10" style="">
+                    <input type="text" maxlength="100" style="width:60%" />
+                </div>
+            </div>
+        </div>
+    </div>
+@*-------------------END LIÊN HỆ------------------- *@
+    @*------------------LỊCH ĐĂNG TIN-------------------- *@
+    <div class="col-lg-12">
+        <div class="col-lg-12 muc">
+            <b>LỊCH ĐĂNG TIN</b>
+        </div>
+        <div class="col-lg-12" style="border:1px solid #808080;background-color:white;padding-top:8px;">
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                    Ngày bắt đầu
+                </div>
+                <div class="col-lg-10" style="">
+                    <input type="text" maxlength="100" style="width:60%" />
+                </div>
+            </div>
+            <div class="col-lg-12 khung">
+                <div class="col-lg-2" style="">
+                   Ngày kết thúc
+                </div>
+                <div class="col-lg-10" style="">
+                    <input type="text" maxlength="100" style="width:60%" />
+                </div>
+            </div>
+        </div>
+    </div>
+    @*-------------------END LỊCH ĐĂNG TIN------------------- *@
+        <div class="col-lg-12">
+            <br />
+            <center>
+                <input type="submit" value="Đăng tin" class="btn btn-lg btn-facebook" style="border-radius:0px;width:40%" />
+            </center>
+        </div>
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    var map;
+    function LamMoiMap() {
+        initMap();
+        $("#latclicked1").val('');
+        $("#longclicked1").val('');
+        $("#latclicked2").val('');
+        $("#longclicked2").val('');
+        $("#latclicked3").val('');
+        $("#longclicked3").val('');
+        $("#latclicked4").val('');
+        $("#longclicked4").val('');
+        $("#latclicked5").val('');
+        $("#longclicked5").val('');
+        $("#latclicked6").val('');
+        $("#longclicked6").val('');
+ 
+}
+    function initMap() {
+        var latitude = 0; // YOUR LATITUDE VALUE
+        var longitude = 0; // YOUR LONGITUDE VALUE
+        geocoder = new google.maps.Geocoder();
+        var address;
+            address = "167 Đại lộ Bình Dương, TX. Thủ Dầu Một, Binh Dương, Vietnam";    
+        geocoder.geocode({ 'address': address }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                latitude = latitude + results[0].geometry.location.lat()
+                longitude = longitude + results[0].geometry.location.lng()
+                // alert("Latitude: " + results[0].geometry.location.lat());
+                // alert("Longitude: " + results[0].geometry.location.lng());
+
+
+
+
+                var myLatLng = { lat: latitude, lng: longitude };
+
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: myLatLng,
+                    zoom: 15,
+                    disableDoubleClickZoom: true, // disable the default map zoom on double click
+                });
+                var dem = 0;
+                // Update lat/long value of div when anywhere in the map is clicked    
+                google.maps.event.addListener(map, 'dblclick', function(event) {
+                    dem = dem + 1;
+                    document.getElementById('latclicked' + dem).value = event.latLng.lat();
+                    document.getElementById('longclicked' + dem).value = event.latLng.lng();
+                });
+
+                // Update lat/long value of div when you move the mouse over the map
+                // google.maps.event.addListener(map,'mousemove',function(event) {
+                //     document.getElementById('latmoved').innerHTML = event.latLng.lat();
+                //     document.getElementById('longmoved').innerHTML = event.latLng.lng();
+                // });
+
+                var marker = new google.maps.Marker({
+                    // position: myLatLng,
+                    map: map,
+                    //title: 'Hello World'
+
+                    // setting latitude & longitude as title of the marker
+                    // title is shown when you hover over the marker
+                    title: latitude + ', ' + longitude
+                });
+
+                // Update lat/long value of div when the marker is clicked
+                marker.addListener('click', function(event) {
+                    document.getElementById('latclicked').innerHTML = event.latLng.lat();
+                    document.getElementById('longclicked').innerHTML = event.latLng.lng();
+                });
+
+                // Create new marker on double click event on the map
+                google.maps.event.addListener(map, 'dblclick', function(event) {
+                    var marker = new google.maps.Marker({
+                        position: event.latLng,
+                        map: map,
+                        title: event.latLng.lat() + ', ' + event.latLng.lng()
+                    });
+
+                    // Update lat/long value of div when the marker is clicked
+                    marker.addListener('click', function() {
+                        document.getElementById('latclicked').innerHTML = event.latLng.lat();
+                        document.getElementById('longclicked').innerHTML = event.latLng.lng();
+                    });
+                });
+            } else {
+                alert("Geocode was not successful for the following reason: " + status);
+            }
+        });
+        // Create new marker on single click event on the map
+        /*google.maps.event.addListener(map,'click',function(event) {
+            var marker = new google.maps.Marker({
+              position: event.latLng, 
+              map: map, 
+              title: event.latLng.lat()+', '+event.latLng.lng()
+            });                
+        });*/
+    }
+    </script>
+<script>
+    //$("input[type='submit']").click(function(){
+    //    var $fileUpload = $("#up");
+    //    if (parseInt($fileUpload.get(0).files.length)>4){
+    //        alert("You can only upload a maximum of 2 files");
+    //    }
+    //});
+    $(document).ready(function () {
+        var $fileUpload = $("#up");
+        $("input[type='submit']").click(function () {
+            if (parseInt($fileUpload.get(0).files.length) > 4) {
+                alert("Chỉ được chọn tối đa 4 ảnh thường!");
+                $("#up").click();
+                return false;
+            }
+            var fileInput = $("#anh360")[0];
+            var imgbytes = fileInput.files[0].size; // Size returned in bytes.
+            var imgkbytes = Math.round(parseInt(imgbytes) / 1024);
+            // alert(imgkbytes + ' KB');
+            if (imgkbytes > 4096) {
+                alert("Kích thước ảnh 360 độ phải <= 4096 KB");
+                return false;
+            }
+        });
+        $fileUpload.change(function () {
+            if (parseInt($fileUpload.get(0).files.length) > 4) {
+                alert("Chỉ được chọn tối đa 4 ảnh thường!");
+                $("#up").click();
+                return false;
+            }
+        });
+        $("#anh360").change(function () {
+            var fileInput = $("#anh360")[0];
+            var imgbytes = fileInput.files[0].size; // Size returned in bytes.
+            var imgkbytes = Math.round(parseInt(imgbytes) / 1024);
+            // alert(imgkbytes + ' KB');
+            if (imgkbytes > 4096) {
+                alert("Kích thước ảnh 360 độ phải <= 4096 KB");
+                return false;
+            }
+        });
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#anh360").change(function () {
+            readURL(this);
+            $('#blah').css("display", "block");
+        });
+        //   });
+    });
+    $(function () {
+        // Multiple images preview in browser
+        var imagesPreview = function (input, placeToInsertImagePreview) {
+
+            if (input.files) {
+                var filesAmount = input.files.length;
+
+                for (i = 0; i < filesAmount; i++) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (event) {
+                        $($.parseHTML('<img width="70" height="70" style="margin-right:15px"> ')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                    }
+
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+
+        };
+
+        $('#up').on('change', function () {
+            imagesPreview(this, 'div.gallery');
+        });
+    });
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuki0Qg6CPfLna1c2e97kGitDNU3ftUxQ&callback=initMap" async defer></script>

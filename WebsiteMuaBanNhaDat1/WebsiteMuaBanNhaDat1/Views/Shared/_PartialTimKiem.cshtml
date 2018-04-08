@@ -22,7 +22,7 @@
 
     </div>
 }
-@using (Html.BeginForm("TimKiemNangCao", "TimKiemNangCao", FormMethod.Post, new { id = "frmTimKiem" }))
+@using (Html.BeginForm("TimKiemNangCao", "TimKiemNangCao", FormMethod.Post, new { id = "frmTimKiemNC" }))
 {
     <div id="frmTimKiemNangCao" class="search-form" style="display:none;border-bottom:1px solid #64a30a;padding-bottom:20px">
         <h4 style="background-color:#64a30a;color:white;font-weight:bold;padding:10px;"><span class="glyphicon glyphicon-search"></span> Tìm kiếm nâng cao</h4>
@@ -374,7 +374,6 @@
         //--------------------------------------
         //-------------------------------------- END TÌM KIẾM NÂNG CAO
     }
-    $(document).ready(function () {
         TimKiem();
         //--------------------------------------
         TimKiemNangCao();
@@ -414,5 +413,4 @@
             $("#lblBoTimKiemNangCao").css("display", "none");
 
         });
-    });
 </script>

@@ -44,13 +44,13 @@
                     Hình thức (<b style="color:red;">*</b>)
                 </div>
                 <div class="col-lg-4" style="">
-                    <input type="text" maxlength="100" style="width:100%" />
+                    @Html.DropDownList("cboLoaiHinh2", (IEnumerable<SelectListItem>)ViewBag.DMLoaiHinh1, new { @class = "cbo form-control" })
                 </div>
                 <div class="col-lg-2" style="">
                     Loại (<b style="color:red;">*</b>)
                 </div>
                 <div class="col-lg-4" style="">
-                    <input type="text" maxlength="100" style="width:100%" />
+                    @Html.DropDownList("cboNoiDungLoaiHinh2", new SelectList(string.Empty, "ma_ndloaihinh", "ten_ndloaihinh"), new { @class = "cbo form-control" })
                 </div>
             </div>
             <div class="col-lg-12 khung">
@@ -58,13 +58,13 @@
                     Tỉnh/TP (<b style="color:red;">*</b>)
                 </div>
                 <div class="col-lg-4" style="">
-                    <input id="TinhTP" type="text" maxlength="100" style="width:100%" />
+                    @Html.DropDownList("cboTinhTP2", (IEnumerable<SelectListItem>)ViewBag.DMTinhTP1, "---Chọn Tỉnh/TP---", new { @class = "cbo form-control" })
                 </div>
                 <div class="col-lg-2" style="">
                     Quận/Huyện (<b style="color:red;">*</b>)
                 </div>
                 <div class="col-lg-4" style="">
-                    <input type="text" maxlength="100" style="width:100%" />
+                    @Html.DropDownList("cboQuanHuyen2", new SelectList(string.Empty, "ma_quanhuyen", "ten_quanhuyen"), new { @class = "cbo form-control" })
                 </div>
             </div>
             <div class="col-lg-12 khung">
@@ -72,13 +72,13 @@
                     Phường/Xã(<b style="color:red;">*</b>)
                 </div>
                 <div class="col-lg-4" style="">
-                    <input type="text" maxlength="100" style="width:100%" />
+                    @Html.DropDownList("cboPhuongXa2", new SelectList(string.Empty, "ma_phuongxa", "ten_phuongxa"), new { @class = "cbo form-control" })
                 </div>
                 <div class="col-lg-2" style="">
                     Đường/Phố (<b style="color:red;">*</b>)
                 </div>
                 <div class="col-lg-4" style="">
-                    <input type="text" maxlength="100" style="width:100%" />
+                    @Html.DropDownList("cboDuongPho2", new SelectList(string.Empty, "ma_duongpho", "ten_duongpho"), new { @class = "cbo form-control" })
                 </div>
             </div>
             <div class="col-lg-12 khung">
@@ -94,13 +94,13 @@
                     Giá(<b style="color:red;">*</b>)
                 </div>
                 <div class="col-lg-4" style="">
-                    <input type="text" name="txtGia" style="width:100%" />
+                    <input type="text" name="txtGiaMin" id="txtGiaMin" style="width:100%" />
                 </div>
                 <div class="col-lg-2" style="">
                     Đơn vị (<b style="color:red;">*</b>)
                 </div>
                 <div class="col-lg-4" style="">
-                    <input type="text" style="width:100%" />
+                    @Html.DropDownList("cboDonVi2", new SelectList(string.Empty, "ma_donvi", "ten_donvi"), new { @class = "cbo form-control" })
                 </div>
             </div>
             <div class="col-lg-12 khung">
@@ -431,7 +431,232 @@
     }
     </script>
 <script>
+    function LayDuLieu() {
+        //-------------------------------------- TÌM KIẾM NÂNG CAO
+        //--------------------------------------
+        var selectedText1 = $("#cboLoaiHinh2").find("option:selected").text();
+        var selectedValue1 = $("#cboLoaiHinh2").val();
+        $("#cboNoiDungLoaiHinh2").empty();
+
+        // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("LayNoiDungLoaiHinh", "TimKiem")', // we are calling json method
+            dataType: 'json',
+            data: { ma_loaihinh: selectedValue1 },
+            success: function (data) {
+                $("#cboNoiDungLoaiHinh2").append('<option value="">---Chọn loại nhà đất---</option>');
+                // states contains the JSON formatted list
+                // of states passed from the controller
+                $.each(data, function (i, loaihinh) {
+
+                    $("#cboNoiDungLoaiHinh2").append('<option value="' + loaihinh.Value + '">' +
+                        loaihinh.Text + '</option>');
+                });
+            },
+            error: function (ex) {
+                alert('Failed to retrieve states.' + ex);
+            }
+        });
+        if (selectedValue1 != null) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("LayDonVi", "TimKiem")', // we are calling json method
+                dataType: 'json',
+                data: { ma_loaihinh: selectedValue1 },
+                success: function (data) {
+                    $("#cboDonVi2").append('<option value="">---Chọn loại đơn vị---</option>');
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(data, function (i, loaihinh) {
+
+                        $("#cboDonVi2").append('<option value="' + loaihinh.Value + '">' +
+                            loaihinh.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+        }
+        $("#cboLoaiHinh2").change(function () {
+            var selectedText1 = $(this).find("option:selected").text();
+            var selectedValue1 = $(this).val();
+            $("#cboNoiDungLoaiHinh2").empty();
+            $("#cboDonVi2").empty();
+
+            // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("LayDonVi", "TimKiem")', // we are calling json method
+                dataType: 'json',
+                data: { ma_loaihinh: selectedValue1 },
+                success: function (data) {
+                    $("#cboDonVi2").append('<option value="">---Chọn loại đơn vị---</option>');
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(data, function (i, loaihinh) {
+
+                        $("#cboDonVi2").append('<option value="' + loaihinh.Value + '">' +
+                            loaihinh.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            if (selectedValue1 == '1' || selectedValue1 == '2') {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("LayNoiDungLoaiHinh", "TimKiem")', // we are calling json method
+                    dataType: 'json',
+                    data: { ma_loaihinh: selectedValue1 },
+                    success: function (data) {
+                        $("#cboNoiDungLoaiHinh2").append('<option value="">---Chọn loại nhà đất---</option>');
+                        // states contains the JSON formatted list
+                        // of states passed from the controller
+                        $.each(data, function (i, loaihinh) {
+
+                            $("#cboNoiDungLoaiHinh2").append('<option value="' + loaihinh.Value + '">' +
+                                loaihinh.Text + '</option>');
+                        });
+                        $("#dientich").empty();
+                        $("#gia").empty();
+                        $("#dientich").append('<div class="col-lg-6"> <input type="text" name="DTMin" id="DTMin" class="form-control" placeholder="Từ"> </div> <div class="col-lg-6"> <input type="text" name="DTMax" id="DTMax" class="form-control" placeholder="Đến"> </div>');
+                        $("#gia").append('<div class="col-lg-6"> <input type="text" name="GiaMin" id="GiaMin" class="form-control" placeholder="Từ"> </div> <div class="col-lg-6"> <input type="text" name="GiaMax" id="GiaMax" class="form-control" placeholder="Đến"> </div>');
+
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve states.' + ex);
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("LayNoiDungLoaiHinh", "TimKiem")', // we are calling json method
+                    dataType: 'json',
+                    data: { ma_loaihinh: selectedValue1 },
+                    success: function (data) {
+                        $("#cboNoiDungLoaiHinh2").append('<option value="">---Chọn loại nhà đất---</option>');
+                        // states contains the JSON formatted list
+                        // of states passed from the controller
+                        $.each(data, function (i, loaihinh) {
+
+                            $("#cboNoiDungLoaiHinh2").append('<option value="' + loaihinh.Value + '">' +
+                                loaihinh.Text + '</option>');
+                        });
+                        $("#dientich").empty();
+                        $("#gia").empty();
+                        $("#dientich").append('<div class="col-lg-6"> <input type="text" name="DTMin" id="DTMin" class="form-control"> </div> ');
+                        $("#gia").append('<div class="col-lg-6"> <input type="text" name="GiaMin" id="GiaMin" class="form-control"> </div>');
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve states.' + ex);
+                    }
+                });
+            }
+        });
+        $("#cboTinhTP2").change(function () {
+            var selectedText1 = $(this).find("option:selected").text();
+            var selectedValue1 = $(this).val();
+            $("#cboQuanHuyen2").empty();
+            $("#cboPhuongXa2").empty();
+            $("#cboDuongPho2").empty();
+            // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("LayQuanHuyen", "TimKiem")', // we are calling json method
+                dataType: 'json',
+                data: { ma_tinhtp: selectedValue1 },
+                success: function (data) {
+                    $("#cboQuanHuyen2").append('<option value="">---Chọn Quận/Huyện---</option>');
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(data, function (i, da) {
+
+                        $("#cboQuanHuyen2").append('<option value="' + da.Value + '">' +
+                            da.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+        });
+        $("#cboQuanHuyen2").change(function () {
+            var selectedText1 = $(this).find("option:selected").text();
+            var selectedValue1 = $(this).val();
+            $("#cboPhuongXa2").empty();
+            $("#cboDuongPho2").empty();
+            // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("LayPhuongXa", "TimKiem")', // we are calling json method
+                dataType: 'json',
+                data: { ma_quanhuyen: selectedValue1 },
+                success: function (data) {
+                    $("#cboPhuongXa2").append('<option value="">---Chọn Phường/Xã---</option>');
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(data, function (i, da) {
+
+                        $("#cboPhuongXa2").append('<option value="' + da.Value + '">' +
+                            da.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+        });
+        $("#cboPhuongXa2").change(function () {
+            var selectedText1 = $(this).find("option:selected").text();
+            var selectedValue1 = $(this).val();
+            $("#cboDuongPho2").empty();
+            // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("LayDuongPho", "TimKiem")', // we are calling json method
+                dataType: 'json',
+                data: { ma_phuongxa: selectedValue1 },
+                success: function (data) {
+                    $("#cboDuongPho2").append('<option value="">---Chọn Đường/Phố---</option>');
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(data, function (i, da) {
+
+                        $("#cboDuongPho2").append('<option value="' + da.Value + '">' +
+                            da.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+        });
+        $("#cboDonVi2").change(function () {
+            var selectedText2 = $("#cboDonVi2").find("option:selected").text();
+            var selectedValue2 = $("#cboDonVi2").val();
+            // alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+
+            if (selectedText2 == "Thỏa thuận") {
+                $("#txtGiaMin").prop("disabled", true);
+                $("#txtGiaMax").prop("disabled", true);
+            } else {
+                $("#txtGiaMin").prop("disabled", false);
+                $("#txtGiaMax").prop("disabled", false);
+            }
+
+        });
+        //--------------------------------------
+        //-------------------------------------- END TÌM KIẾM NÂNG CAO
+    }
+    //-------------------------------------- 
     $(document).ready(function () {
+        //-------------------------------------- 
+        LayDuLieu();
+        //-------------------------------------- 
         var now = new Date();
         var day = ("0" + now.getDate()).slice(-2);
         var month1 = ("0" + (now.getMonth() + 1)).slice(-2);

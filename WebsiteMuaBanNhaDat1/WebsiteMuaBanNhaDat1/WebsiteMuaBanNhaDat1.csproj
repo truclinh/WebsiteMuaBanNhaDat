@@ -355,6 +355,7 @@
     <Content Include="Views\TimKiemNangCao\KetQuaTimKiemCMCT16.cshtml" />
     <Content Include="Views\ChiTietTinRao\MapPartial.cshtml" />
     <Content Include="Views\DangTin\DangTinCBCHT.cshtml" />
+    <Content Include="Views\DangTin\DangTinCMCT.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

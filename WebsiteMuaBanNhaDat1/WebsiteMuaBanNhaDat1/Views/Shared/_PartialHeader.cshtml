@@ -41,7 +41,7 @@
             }
             else
             {
-                <li><button class="btn btn-lg btn-danger" onclick="window.location.href='@Url.Action("DangTin","DangTin")'"><span class="glyphicon glyphicon-pencil"></span>Đăng tin miễn phí </button></li>
+                <li><button class="btn btn-lg btn-danger" onclick="window.location.href='@Url.Action("DangTinCBCHT","DangTin")'"><span class="glyphicon glyphicon-pencil"></span>Đăng tin miễn phí </button></li>
                 if (Session["AnhDaiDien"]!=null)
                 {
                     <li><img src="https://graph.facebook.com/@(Session["AnhDaiDien"].ToString())/picture" /></li>

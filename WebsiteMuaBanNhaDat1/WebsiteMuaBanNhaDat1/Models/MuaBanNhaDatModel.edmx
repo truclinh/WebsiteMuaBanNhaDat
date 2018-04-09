@@ -212,18 +212,18 @@
           </Key>
           <Property Name="ma_toado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ma_tinrao" Type="uniqueidentifier" />
-          <Property Name="lat1" Type="real" />
-          <Property Name="lng1" Type="real" />
-          <Property Name="lat2" Type="real" />
-          <Property Name="lng2" Type="real" />
-          <Property Name="lat3" Type="real" />
-          <Property Name="lng3" Type="real" />
-          <Property Name="lat4" Type="real" />
-          <Property Name="lng4" Type="real" />
-          <Property Name="lat5" Type="real" />
-          <Property Name="lng5" Type="real" />
-          <Property Name="lat6" Type="real" />
-          <Property Name="lng6" Type="real" />
+          <Property Name="lat1" Type="float" />
+          <Property Name="lng1" Type="float" />
+          <Property Name="lat2" Type="float" />
+          <Property Name="lng2" Type="float" />
+          <Property Name="lat3" Type="float" />
+          <Property Name="lng3" Type="float" />
+          <Property Name="lat4" Type="float" />
+          <Property Name="lng4" Type="float" />
+          <Property Name="lat5" Type="float" />
+          <Property Name="lng5" Type="float" />
+          <Property Name="lat6" Type="float" />
+          <Property Name="lng6" Type="float" />
         </EntityType>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -562,18 +562,18 @@
           </Key>
           <Property Name="ma_toado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ma_tinrao" Type="Guid" />
-          <Property Name="lat1" Type="Single" />
-          <Property Name="lng1" Type="Single" />
-          <Property Name="lat2" Type="Single" />
-          <Property Name="lng2" Type="Single" />
-          <Property Name="lat3" Type="Single" />
-          <Property Name="lng3" Type="Single" />
-          <Property Name="lat4" Type="Single" />
-          <Property Name="lng4" Type="Single" />
-          <Property Name="lat5" Type="Single" />
-          <Property Name="lng5" Type="Single" />
-          <Property Name="lat6" Type="Single" />
-          <Property Name="lng6" Type="Single" />
+          <Property Name="lat1" Type="Double" />
+          <Property Name="lng1" Type="Double" />
+          <Property Name="lat2" Type="Double" />
+          <Property Name="lng2" Type="Double" />
+          <Property Name="lat3" Type="Double" />
+          <Property Name="lng3" Type="Double" />
+          <Property Name="lat4" Type="Double" />
+          <Property Name="lng4" Type="Double" />
+          <Property Name="lat5" Type="Double" />
+          <Property Name="lng5" Type="Double" />
+          <Property Name="lat6" Type="Double" />
+          <Property Name="lng6" Type="Double" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>

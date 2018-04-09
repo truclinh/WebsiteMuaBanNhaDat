@@ -16,17 +16,17 @@ namespace WebsiteMuaBanNhaDat1.Models
     {
         public int ma_toado { get; set; }
         public Nullable<System.Guid> ma_tinrao { get; set; }
-        public Nullable<float> lat1 { get; set; }
-        public Nullable<float> lng1 { get; set; }
-        public Nullable<float> lat2 { get; set; }
-        public Nullable<float> lng2 { get; set; }
-        public Nullable<float> lat3 { get; set; }
-        public Nullable<float> lng3 { get; set; }
-        public Nullable<float> lat4 { get; set; }
-        public Nullable<float> lng4 { get; set; }
-        public Nullable<float> lat5 { get; set; }
-        public Nullable<float> lng5 { get; set; }
-        public Nullable<float> lat6 { get; set; }
-        public Nullable<float> lng6 { get; set; }
+        public Nullable<double> lat1 { get; set; }
+        public Nullable<double> lng1 { get; set; }
+        public Nullable<double> lat2 { get; set; }
+        public Nullable<double> lng2 { get; set; }
+        public Nullable<double> lat3 { get; set; }
+        public Nullable<double> lng3 { get; set; }
+        public Nullable<double> lat4 { get; set; }
+        public Nullable<double> lng4 { get; set; }
+        public Nullable<double> lat5 { get; set; }
+        public Nullable<double> lng5 { get; set; }
+        public Nullable<double> lat6 { get; set; }
+        public Nullable<double> lng6 { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<script src="~/Content/tinymce/js/tinymce/tinymce.min.js"></script>
-<script>tinymce.init({ selector:'textarea' });</script>
+<script>tinymce.init({ selector: 'textarea' });</script>
 @{
     ViewBag.Title = "Cần mua - Cần thuê";
     Layout = "~/Views/Shared/_LayoutTheoLoai.cshtml";
@@ -25,7 +25,7 @@
     <a href="@Url.Action("DangTinCMCT","DangTin")" class="btn btn-github" style="width:40%;border-radius:0px;font-size:16px;">Cần mua/Cần thuê</a>
 </div>
 <hr />
-@using (Html.BeginForm("DangTinCMCT", "DangTin", FormMethod.Post, new { @class = "form-inline" }))
+@using (Html.BeginForm("DangTinCMCT", "DangTin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @*------------------LỊCH ĐĂNG TIN-------------------- *@
     <div class="col-lg-12">
@@ -141,13 +141,13 @@
                 <div class="col-lg-2" style="">
                     Diện tích từ(<b style="color:red;">*</b>)
                 </div>
-                <div class="col-lg-2" style="">
+                <div class="col-lg-4" style="">
                     <input type="text" name="txtDTMin" id="txtDTMin" style="width:100%" />
                 </div>
                 <div class="col-lg-2" style="">
                     Diện tích đến (<b style="color:red;">*</b>)
                 </div>
-                <div class="col-lg-2" style="">
+                <div class="col-lg-4" style="">
                     <input type="text" name="txtDTMax" id="txtDTMax" style="width:100%" />
                 </div>
             </div>
@@ -173,7 +173,7 @@
                     Địa chỉ (<b style="color:red;">*</b>)
                 </div>
                 <div class="col-lg-10" style="">
-                    <input type="text" maxlength="100" style="width:100%" />
+                    <input type="text" id="DiaChi" maxlength="100" style="width:100%" />
                 </div>
             </div>
         </div>
@@ -458,8 +458,15 @@
         //--------------------------------------
         //-------------------------------------- END TÌM KIẾM NÂNG CAO
     }
-    //-------------------------------------- 
+    //--------------------------------------
     $(document).ready(function () {
+        $("#cboDuongPho2").change(function () {
+            $("#DiaChi").val($("#cboDuongPho2 option:selected").text() + ', '
+                + $("#cboPhuongXa2 option:selected").text() + ', '
+                + $("#cboQuanHuyen2 option:selected").text() + ', '
+                + $("#cboTinhTP2 option:selected").text());
+        });
+        //--------------------------------------
         LayDuLieu();
         var now = new Date();
         var day = ("0" + now.getDate()).slice(-2);
@@ -490,8 +497,8 @@
 
         var $fileUpload = $("#up");
         $("input[type='submit']").click(function () {
-            if (parseInt($fileUpload.get(0).files.length) > 4) {
-                alert("Chỉ được chọn tối đa 4 ảnh thường!");
+            if (parseInt($fileUpload.get(0).files.length) > 3) {
+                alert("Chỉ được chọn tối đa 3 ảnh thường!");
                 $("#up").click();
                 return false;
             }

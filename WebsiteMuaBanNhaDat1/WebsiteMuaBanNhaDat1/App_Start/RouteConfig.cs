@@ -14,7 +14,7 @@ namespace WebsiteMuaBanNhaDat1 {
             routes.MapRoute(
                 name: "Default", // Route name
                 url: "{controller}/{action}/{id}", // URL with parameters
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                defaults: new { controller = "DangTin", action = "DangTinCMCT", id = UrlParameter.Optional } // Parameter defaults
             );
             // BotDetect requests must not be routed
             routes.IgnoreRoute("{*botdetect}",

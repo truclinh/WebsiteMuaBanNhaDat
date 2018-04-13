@@ -40,7 +40,8 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             int? phuongxa = int.Parse(f["cboPhuongXa2"].ToString());
             int? duongpho = int.Parse(f["cboDuongPho2"].ToString());
             double? dientich = double.Parse(f["txtDienTich"].ToString());
-            double? gia = double.Parse(f["txtGiaMin"].ToString());
+            var gia = f["txtGiaMin"];
+            // double? gia1 = double.Parse(f["txtGiaMin"].ToString());
             int? donvi = int.Parse(f["cboDonVi2"].ToString());
             string mota = f["txtMoTa"].ToString();
             int? so_phongngu = int.Parse(f["txt_PhongNgu"].ToString());
@@ -108,7 +109,17 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             tr.ma_phuongxa = phuongxa;
             tr.ma_duongpho = duongpho;
             tr.dientich = dientich;
-            tr.gia = gia;
+            string ten_donvi = db.DonVi.SingleOrDefault(n => n.ma_donvi == donvi).ten_donvi.ToString();
+            if (gia == null && ten_donvi == "Thỏa thuận")
+            {
+                tr.gia = null;
+            }
+            else
+            {
+                double? gia1 = double.Parse(f["txtGiaMin"].ToString());
+                tr.gia = gia1;
+            }
+
             tr.ma_donvi = donvi;
             tr.mota = mota;
             tr.so_phongngu = so_phongngu;
@@ -128,7 +139,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- 
 
-            double? lat1 = double.Parse(f["lat1"].ToString().Replace('.',','));
+            double? lat1 = double.Parse(f["lat1"].ToString().Replace('.', ','));
             double? lng1 = double.Parse(f["lng1"].ToString().Replace('.', ','));
             double? lat2 = double.Parse(f["lat2"].ToString().Replace('.', ','));
             double? lng2 = double.Parse(f["lng2"].ToString().Replace('.', ','));
@@ -171,7 +182,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             lh.didong = didong;
             lh.email = email;
             db.LienHe.Add(lh);
-                db.SaveChanges();
+            db.SaveChanges();
             //-------------------------------------- 
             return View();
         }
@@ -203,18 +214,101 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             int? duongpho = int.Parse(f["cboDuongPho2"].ToString());
             double? dientichtu = double.Parse(f["txtDTMin"].ToString());
             double? dientichden = double.Parse(f["txtDTMax"].ToString());
-            double? giatu = double.Parse(f["txtGiaMin"].ToString());
-            double? giaden = double.Parse(f["txtGiaMax"].ToString());
+            var giatu1 = f["txtGiaMin"];
+            var giaden1 = f["txtGiaMax"];
+            //double? giatu = double.Parse(f["txtGiaMin"].ToString());
+            //double? giaden = double.Parse(f["txtGiaMax"].ToString());
             int? donvi = int.Parse(f["cboDonVi2"].ToString());
             string mota = f["txtMoTa"].ToString();
             string ngay_batdau = f["txtNgayBatDau"].ToString();
             string ngay_ketthuc = f["txtNgayKetThuc"].ToString();
+            string ten_donvi = db.DonVi.SingleOrDefault(n => n.ma_donvi == donvi).ten_donvi.ToString();
+            //-------------------------------------- 
+            string anh1 = "";
+            string anh2 = "";
+            string anh3 = "";
+            //--------------------------------------
+            int i = 0;
+
+            foreach (var file in files)
+            {
+                i++;
+                if (file != null && file.ContentLength > 0)
+                {
+                    //file.SaveAs(Path.Combine(Server.MapPath("~/Image/"), Path.GetFileNameWithoutExtension(file.FileName) + Guid.NewGuid() + Path.GetExtension(file.FileName)));
+                    string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                    string extension = Path.GetExtension(file.FileName);
+                    fileName = fileName + DateTime.Now.ToString("ddMMyyyy") + extension;
+                    switch (i)
+                    {
+                        case 1:
+                            anh1 += fileName;
+                            break;
+                        case 2:
+                            anh2 += fileName;
+                            break;
+                        case 3:
+                            anh3 += fileName;
+                            break;
+                    }
+                    //db.SaveChanges();
+                    //file.ImagePath = "~/Image/" + fileName;
+                        fileName = Path.Combine(Server.MapPath("~/Content/images1/"), fileName);
+
+                    file.SaveAs(fileName);
+
+                }
+            }
+            string a1 = anh1;
+            string a2 = anh2;
+            string a3 = anh3;
+            //-------------------------------------- 
+            TinRaoCMCT tr = new TinRaoCMCT();
+            tr.ma_tinrao = Guid.NewGuid();
+            tr.noidung = mota;
+            tr.ma_loaihinh = loaihinh;
+            tr.ma_ndloaihinh = ndloaihinh;
+            tr.ma_tinhtp = tinhtp;
+            tr.ma_quanhuyen = quanhuyen;
+            tr.ma_phuongxa = phuongxa;
+            tr.ma_duongpho = duongpho;
+            tr.dientich_tu = dientichtu;
+            tr.dientich_den = dientichden;
+            tr.ma_donvi = donvi;
+
+            if (giatu1 == null && giaden1==null&& ten_donvi == "Thỏa thuận")
+            {
+                tr.gia_tu = null;
+                tr.gia_den = null;
+            }
+            else
+            {
+                double? giatu = double.Parse(f["txtGiaMin"].ToString());
+                double? giaden = double.Parse(f["txtGiaMax"].ToString());
+                tr.gia_tu = giatu;
+                tr.gia_den = giaden;
+            }
+            tr.anh1 = anh1;
+            tr.anh2 = anh2;
+            tr.anh3 = anh3;
+            tr.ngaydang = DateTime.Parse(ngay_batdau);
+            tr.ngayketthuc = DateTime.Parse(ngay_ketthuc);
+            db.TinRaoCMCT.Add(tr);
+            db.SaveChanges();
             //-------------------------------------- 
             string ten_lienhe = f["txtTenLienHe"].ToString();
             string diachi = f["txtDiaChi"].ToString();
             string dienthoai = f["txtDienThoai"].ToString();
             string didong = f["txtDiDong"].ToString();
             string email = f["txtEmail"].ToString();
+            LienHe lh = new LienHe();
+            lh.ma_tinrao = tr.ma_tinrao;
+            lh.ten_lienhe = ten_lienhe;
+            lh.dienthoai = dienthoai;
+            lh.didong = didong;
+            lh.email = email;
+            db.LienHe.Add(lh);
+            db.SaveChanges();
             //-------------------------------------- 
             return View();
         }

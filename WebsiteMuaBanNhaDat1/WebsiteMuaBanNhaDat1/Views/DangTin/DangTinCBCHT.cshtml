@@ -1,5 +1,5 @@
 ﻿<script src="~/Content/tinymce/js/tinymce/tinymce.min.js"></script>
-<script>tinymce.init({ selector:'textarea' });</script>
+<script>tinymce.init({ selector: 'textarea' });</script>
 @{
     ViewBag.Title = "Cần bán - Cho thuê";
     Layout = "~/Views/Shared/_LayoutTheoLoai.cshtml";
@@ -14,13 +14,14 @@
         font-size: 17px;
         padding: 8px;
     }
-    #map{
-         height: 300px;
+
+    #map {
+        height: 300px;
         width: 100%;
     }
 </style>
 <div class="col-lg-12">
-   <a href="@Url.Action("DangTinCBCHT","DangTin")" class="btn btn-github" style="width:40%;border-radius:0px;font-size:16px;">Cần bán/Cho thuê</a>
+    <a href="@Url.Action("DangTinCBCHT","DangTin")" class="btn btn-github" style="width:40%;border-radius:0px;font-size:16px;">Cần bán/Cho thuê</a>
     <a href="@Url.Action("DangTinCMCT","DangTin")" class="btn" style="width:40%;border-radius:0px;font-size:16px;background-color:#64a30a;color:white;opacity:0.6;">Cần mua/Cần thuê</a>
 </div>
 <hr />
@@ -109,7 +110,7 @@
                     Tổng giá tiền:
                 </div>
                 <div class="col-lg-10" style="">
-                    <p id="TongTien"> <b style="color:red;">78 triệu</b></p>
+                    <p id="TongTien" style="color:red;font-weight:bold;"></p>
                 </div>
             </div>
             <div class="col-lg-12 khung">
@@ -117,7 +118,7 @@
                     Địa chỉ (<b style="color:red;">*</b>)
                 </div>
                 <div class="col-lg-10" style="">
-                    <input type="text" maxlength="100" style="width:100%" />
+                    <input type="text" id="DiaChi" maxlength="100" style="width:100%" />
                 </div>
             </div>
         </div>
@@ -254,10 +255,10 @@
                     <br />
                     <input type="button" id="btnLamMoiMap" class="btn btn-github" value="Đặt lại vị trí" onclick="LamMoiMap()"><br />
                 </div>
+            </div>
         </div>
     </div>
-    </div>
-        @*-------------------END BẢN ĐỒ------------------- *@
+    @*-------------------END BẢN ĐỒ------------------- *@
     @*------------------LIÊN HỆ-------------------- *@
     <div class="col-lg-12">
         <div class="col-lg-12 muc">
@@ -306,7 +307,7 @@
             </div>
         </div>
     </div>
-@*-------------------END LIÊN HỆ------------------- *@
+    @*-------------------END LIÊN HỆ------------------- *@
     @*------------------LỊCH ĐĂNG TIN-------------------- *@
     <div class="col-lg-12">
         <div class="col-lg-12 muc">
@@ -323,7 +324,7 @@
             </div>
             <div class="col-lg-12 khung">
                 <div class="col-lg-2" style="">
-                   Ngày kết thúc
+                    Ngày kết thúc
                 </div>
                 <div class="col-lg-10" style="">
                     <input type="date" id="ngayketthuc1" name="txtNgayKetThuc" value="@DateTime.Now.ToString("yyyy-MM-dd")" style="width:60%" />
@@ -332,15 +333,15 @@
         </div>
     </div>
     @*-------------------END LỊCH ĐĂNG TIN------------------- *@
-        <div class="col-lg-12">
-            <br />
-            <center>
-                <input type="submit" value="ĐĂNG TIN" class="btn btn-lg btn-facebook" style="border-radius:0px;width:40%;font-weight:bold" />
-            </center>
-        </div>
+    <div class="col-lg-12">
+        <br />
+        <center>
+            <input type="submit" value="ĐĂNG TIN" class="btn btn-lg btn-facebook" style="border-radius:0px;width:40%;font-weight:bold" />
+        </center>
+    </div>
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
     var map;
     function LamMoiMap() {
         initMap();
@@ -356,15 +357,15 @@
         $("#longclicked5").val('');
         $("#latclicked6").val('');
         $("#longclicked6").val('');
- 
-}
+
+    }
     function initMap() {
         var latitude = 0; // YOUR LATITUDE VALUE
         var longitude = 0; // YOUR LONGITUDE VALUE
         geocoder = new google.maps.Geocoder();
         var address;
-            address = "167 Đại lộ Bình Dương, TX. Thủ Dầu Một, Binh Dương, Vietnam";    
-        geocoder.geocode({ 'address': address }, function(results, status) {
+        address = "167 Đại lộ Bình Dương, TX. Thủ Dầu Một, Binh Dương, Vietnam";
+        geocoder.geocode({ 'address': address }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 latitude = latitude + results[0].geometry.location.lat()
                 longitude = longitude + results[0].geometry.location.lng()
@@ -382,8 +383,8 @@
                     disableDoubleClickZoom: true, // disable the default map zoom on double click
                 });
                 var dem = 0;
-                // Update lat/long value of div when anywhere in the map is clicked    
-                google.maps.event.addListener(map, 'dblclick', function(event) {
+                // Update lat/long value of div when anywhere in the map is clicked
+                google.maps.event.addListener(map, 'dblclick', function (event) {
                     dem = dem + 1;
                     document.getElementById('latclicked' + dem).value = event.latLng.lat();
                     document.getElementById('longclicked' + dem).value = event.latLng.lng();
@@ -406,13 +407,13 @@
                 });
 
                 // Update lat/long value of div when the marker is clicked
-                marker.addListener('click', function(event) {
+                marker.addListener('click', function (event) {
                     document.getElementById('latclicked').innerHTML = event.latLng.lat();
                     document.getElementById('longclicked').innerHTML = event.latLng.lng();
                 });
 
                 // Create new marker on double click event on the map
-                google.maps.event.addListener(map, 'dblclick', function(event) {
+                google.maps.event.addListener(map, 'dblclick', function (event) {
                     var marker = new google.maps.Marker({
                         position: event.latLng,
                         map: map,
@@ -420,7 +421,7 @@
                     });
 
                     // Update lat/long value of div when the marker is clicked
-                    marker.addListener('click', function() {
+                    marker.addListener('click', function () {
                         document.getElementById('latclicked').innerHTML = event.latLng.lat();
                         document.getElementById('longclicked').innerHTML = event.latLng.lng();
                     });
@@ -430,7 +431,7 @@
             }
         });
     }
-    </script>
+</script>
 <script>
     function LayDuLieu() {
         //-------------------------------------- TÌM KIẾM NÂNG CAO
@@ -653,23 +654,37 @@
         //--------------------------------------
         //-------------------------------------- END TÌM KIẾM NÂNG CAO
     }
-    //-------------------------------------- 
+    //--------------------------------------
     $(document).ready(function () {
-        //-------------------------------------- 
+        $("#cboDuongPho2").change(function () {
+            $("#DiaChi").val($("#cboDuongPho2 option:selected").text() + ', '
+                + $("#cboPhuongXa2 option:selected").text() + ', '
+                + $("#cboQuanHuyen2 option:selected").text() + ', '
+                + $("#cboTinhTP2 option:selected").text());
+        });
+        $("#cboDonVi2").change(function () {
+            if ($("#cboDonVi2 option:selected").text() != "Thỏa thuận") {
+                $("#TongTien").text($("#txtGiaMin").val() + " " + $("#cboDonVi2 option:selected").text());
+            } else {
+                $("#TongTien").text($("#cboDonVi2 option:selected").text());
+            }
+
+        });
+        //--------------------------------------
         LayDuLieu();
-        //-------------------------------------- 
+        //--------------------------------------
         var now = new Date();
         var day = ("0" + now.getDate()).slice(-2);
         var month1 = ("0" + (now.getMonth() + 1)).slice(-2);
         var month2 = ("0" + (now.getMonth() + 2)).slice(-2);
         var today = now.getFullYear() + "-" + (month1) + "-" + (day);
         var nextday = now.getFullYear() + "-" + (month2) + "-" + (day);
-        
+
         $('#ngayketthuc1').val(nextday);
         $('#ngayketthuc1').change(function () {
             var startDate = $('#ngaybatdau1').val().replace('-', '');
             var endDate = $('#ngayketthuc1').val().replace('-', '');
-            if (startDate >=endDate) {
+            if (startDate >= endDate) {
                 alert("Ngày kết thúc phải muộn hơn Ngày đăng ký!");
                 $('#ngayketthuc1').val(nextday);
                 return false;
@@ -684,7 +699,7 @@
                 return false;
             }
         });
-       
+
         var $fileUpload = $("#up");
         $("input[type='submit']").click(function () {
             if (parseInt($fileUpload.get(0).files.length) > 4) {

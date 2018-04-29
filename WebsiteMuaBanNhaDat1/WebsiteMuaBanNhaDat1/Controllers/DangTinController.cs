@@ -180,6 +180,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             lh.ten_lienhe = ten_lienhe;
             lh.dienthoai = dienthoai;
             lh.didong = didong;
+            lh.diachi = diachi;
             lh.email = email;
             db.LienHe.Add(lh);
             db.SaveChanges();
@@ -265,6 +266,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             //-------------------------------------- 
             TinRaoCMCT tr = new TinRaoCMCT();
             tr.ma_tinrao = Guid.NewGuid();
+            tr.tieude = tieude;
             tr.noidung = mota;
             tr.ma_loaihinh = loaihinh;
             tr.ma_ndloaihinh = ndloaihinh;
@@ -305,6 +307,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             lh.ma_tinrao = tr.ma_tinrao;
             lh.ten_lienhe = ten_lienhe;
             lh.dienthoai = dienthoai;
+            lh.diachi = diachi;
             lh.didong = didong;
             lh.email = email;
             db.LienHe.Add(lh);

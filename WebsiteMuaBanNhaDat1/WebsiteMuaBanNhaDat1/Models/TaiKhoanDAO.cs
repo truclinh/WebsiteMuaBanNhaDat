@@ -31,6 +31,7 @@ namespace WebsiteMuaBanNhaDat1.Models
             var user = db.TaiKhoan.SingleOrDefault(x => x.tendangnhap == tk.tendangnhap);
             if (user == null)
             {
+                tk.tendangnhap = tk.matkhau;
                 db.TaiKhoan.Add(tk);
                 db.SaveChanges();
                 return tk.ma_taikhoan;

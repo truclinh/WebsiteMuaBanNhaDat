@@ -1489,7 +1489,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -1566,7 +1566,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -1643,7 +1643,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -1720,7 +1720,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -1797,7 +1797,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -1873,7 +1873,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -1949,7 +1949,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -2025,7 +2025,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -2101,7 +2101,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -2178,7 +2178,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -2255,7 +2255,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -2332,7 +2332,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -2409,7 +2409,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -2485,7 +2485,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -2561,7 +2561,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -2638,7 +2638,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -2717,7 +2717,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -2794,7 +2794,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -2870,7 +2870,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -2946,7 +2946,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -3022,7 +3022,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -3098,7 +3098,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -3173,7 +3173,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -3249,7 +3249,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -3324,7 +3324,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -3400,7 +3400,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -3476,7 +3476,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -3552,7 +3552,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -3628,7 +3628,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -3704,7 +3704,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -3780,7 +3780,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 
@@ -3857,7 +3857,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
             //-------------------------------------- Phân trang
             //Tạo biến số sản phẩm trên trang
-            int pageSize = 1;
+            int pageSize =10;
             //Tạo biến số trang
             int pageNumber = (page ?? 1);
             //-------------------------------------- 

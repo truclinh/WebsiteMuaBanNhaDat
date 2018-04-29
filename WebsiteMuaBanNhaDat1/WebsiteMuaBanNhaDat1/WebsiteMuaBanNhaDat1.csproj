@@ -512,6 +512,8 @@
     <Content Include="Views\QuanLy\Index.cshtml" />
     <Content Include="Views\Shared\_PartialMenu.cshtml" />
     <Content Include="Views\Shared\_PartialMsg.cshtml" />
+    <Content Include="Views\QuanLy\MenuPartial.cshtml" />
+    <Content Include="Views\QuanLy\MenuItemPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

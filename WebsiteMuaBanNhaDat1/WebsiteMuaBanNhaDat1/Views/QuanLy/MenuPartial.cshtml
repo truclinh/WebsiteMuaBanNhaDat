@@ -1,0 +1,61 @@
+﻿@using WebsiteMuaBanNhaDat1.Models
+@model IEnumerable<LoaiHinh>
+
+<ul class="nav" id="side-menu">
+
+    <li class="backgr_item1">
+        <a class="act" href="@Url.Action("Index","QuanLy")"><i class="fa fa-dashboard fa-fw nav_icon act"></i><b>Trang chủ</b></a>
+    </li>
+    @foreach (var item in Model)
+    {
+        if (item.comenucon == false)
+        {
+            <li id="@item.tenkhongdau" class="backgr_item1">
+                <a class="act" href="@Url.Action(item.tenkhongdau, "QuanLy")"><i class="fa fa-book nav_icon act"></i><b>@item.ten_loaihinh</b></a>
+            </li>
+        }
+        else
+        {
+            <li id="@item.tenkhongdau" class="backgr_item1">
+                <a class="act" href="#"><i class="fa fa-book nav_icon act"></i><b>@item.ten_loaihinh</b><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level backgr">
+                    @Html.Action("MenuItemPartial", "QuanLy", new { ma = item.ma_loaihinh })
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+        }
+    }
+    <li class="backgr_item1">
+        <a class="act" href="#"><i class="fa fa-book nav_icon act"></i><b>Nhận xét</b><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level backgr">
+            <li class="backgr_item">
+                <a href="#">Tin rao nhà đất</a>
+            </li>
+            <li class="backgr_item">
+                <a href="#">Bài đăng phong thủy</a>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<style>
+    .backgr {
+        background-color: #400909;
+    }
+
+    .backgr_item1:hover .act {
+        color: blue;
+    }
+
+    .backgr_item :hover {
+        font-weight: bold;
+        color: red;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        alert('kjkj');
+    });
+  
+</script>

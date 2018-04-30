@@ -4,6 +4,6 @@
 @foreach (var item in Model)
 {
     <li class="backgr_item">
-        <a href="@Url.Action("TinTheoLoaiHinh", "TinTheoLoaiHinh", new {@ma_ndloaihinh=item.ma_ndloaihinh,@ma_loaihinh=item.ma_loaihinh })">@item.ten_ndloaihinh</a>
+        <a href="@Url.Action("TinTheoLoaiHinh", "QuanLy", new {@ma_ndloaihinh=item.ma_ndloaihinh,@ma_loaihinh=item.ma_loaihinh })">@item.ten_ndloaihinh</a>
     </li>
 }

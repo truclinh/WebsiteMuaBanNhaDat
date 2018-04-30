@@ -8,7 +8,8 @@
     <div class="widget_1">
         @foreach (var item in Model)
         {
-            <a href="#">
+            if (item.comenucon==true) { 
+            <a href="@Url.Action("XemThem", "QuanLy",new {ma_loaihinh=item.ma_loaihinh})">
                 <div class="col-sm-4 widget_1_box btnIndex" style="margin-top:20px;margin-bottom:30px">
                     <div class="tile-progress bg-green1">
                         <div class="content">
@@ -17,6 +18,19 @@
                     </div>
                 </div>
             </a>
+            }
+            else
+            {
+                <a href="@Url.Action(item.tenkhongdau, "QuanLy")">
+                    <div class="col-sm-4 widget_1_box btnIndex" style="margin-top:20px;margin-bottom:30px">
+                        <div class="tile-progress bg-green1">
+                            <div class="content">
+                                <h3><i class="fa fa-book nav_icon"></i>  @item.ten_loaihinh</h3>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
         }
         <div class="clearfix"> </div>
     </div>
@@ -25,20 +39,20 @@
 <fieldset>
     <legend>NHẬN XÉT</legend>
     <div class="widget_1">
-            <a href="#">
+            <a href="@Url.Action("NhanXet", "QuanLy", new {loai="TinRaoNhaDat"})">
                 <div class="col-sm-6 widget_1_box btnIndex" style="margin-top:20px;margin-bottom:30px">
                     <div class="tile-progress bg-primary">
                         <div class="content">
-                            <h3><i class="fa fa-book nav_icon"></i> TIN RAO NHÀ ĐẤT</h3>
+                            <h3><i class="fa fa-comments-o nav_icon"></i> TIN RAO NHÀ ĐẤT</h3>
                         </div>
                     </div>
                 </div>
             </a>
-        <a href="#">
+        <a href="@Url.Action("NhanXet", "QuanLy",new {loai="BaiDangPhongThuy"})">
             <div class="col-sm-6 widget_1_box btnIndex" style="margin-top:20px;margin-bottom:30px">
                 <div class="tile-progress bg-primary">
                     <div class="content">
-                        <h3><i class="fa fa-book nav_icon"></i>  BÀI ĐĂNG PHONG THỦY</h3>
+                        <h3><i class="fa fa-comments-o nav_icon"></i>  BÀI ĐĂNG PHONG THỦY</h3>
                     </div>
                 </div>
             </div>

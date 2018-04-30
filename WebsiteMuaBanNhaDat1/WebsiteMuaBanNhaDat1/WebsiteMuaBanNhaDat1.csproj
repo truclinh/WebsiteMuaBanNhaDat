@@ -514,6 +514,7 @@
     <Content Include="Views\Shared\_PartialMsg.cshtml" />
     <Content Include="Views\QuanLy\MenuPartial.cshtml" />
     <Content Include="Views\QuanLy\MenuItemPartial.cshtml" />
+    <Content Include="Views\QuanLy\XemThem.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -525,11 +526,24 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CanBanCanChoThueController.cs" />
+    <Compile Include="Controllers\CanMuaCanThueController.cs" />
     <Compile Include="Controllers\ChiTietTinRaoController.cs" />
     <Compile Include="Controllers\DangTinController.cs" />
+    <Compile Include="Controllers\DMDonViController.cs" />
+    <Compile Include="Controllers\DMDuongPhoController.cs" />
+    <Compile Include="Controllers\DMPhuongXaController.cs" />
+    <Compile Include="Controllers\DMQuanHuyenController.cs" />
+    <Compile Include="Controllers\DMTinhTPController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NhanXetController.cs" />
+    <Compile Include="Controllers\QuanLyBaiDangPhongThuyController.cs" />
     <Compile Include="Controllers\QuanLyController.cs" />
+    <Compile Include="Controllers\QuanLyEmailDangKyController.cs" />
+    <Compile Include="Controllers\QuanLyLienHeController.cs" />
+    <Compile Include="Controllers\QuanLyLoaiHinhController.cs" />
+    <Compile Include="Controllers\QuanLyNoiDungLoaiHinhController.cs" />
+    <Compile Include="Controllers\QuanLyTaiKhoanController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Controllers\TimKiemNangCaoController.cs" />
@@ -624,7 +638,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CanBanCanChoThue\" />
+    <Folder Include="Views\CanMuaCanThue\" />
+    <Folder Include="Views\DMDonVi\" />
+    <Folder Include="Views\DMDuongPho\" />
+    <Folder Include="Views\DMPhuongXa\" />
+    <Folder Include="Views\DMQuanHuyen\" />
+    <Folder Include="Views\DMTinhTP\" />
     <Folder Include="Views\NhanXet\" />
+    <Folder Include="Views\QuanLyBaiDangPhongThuy\" />
+    <Folder Include="Views\QuanLyEmailDangKy\" />
+    <Folder Include="Views\QuanLyLienHe\" />
+    <Folder Include="Views\QuanLyLoaiHinh\" />
+    <Folder Include="Views\QuanLyNoiDungLoaiHinh\" />
+    <Folder Include="Views\QuanLyTaiKhoan\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -11,7 +11,7 @@
         if (item.comenucon == false)
         {
             <li id="@item.tenkhongdau" class="backgr_item1">
-                <a class="act" href="@Url.Action("XemThem", "QuanLy",new {ma_loaihinh=item.ma_loaihinh})"><i class="fa fa-book nav_icon act"></i><b>@item.ten_loaihinh</b></a>
+                <a class="act" href="@Url.Action(@item.tenkhongdau, "QuanLy")"><i class="fa fa-book nav_icon act"></i><b>@item.ten_loaihinh</b></a>
             </li>
         }
         else

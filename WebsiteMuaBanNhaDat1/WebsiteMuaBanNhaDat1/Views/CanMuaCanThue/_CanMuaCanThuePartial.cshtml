@@ -1,0 +1,54 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "CanMuaCanThue";
+        settings.CallbackRouteValues = new { Controller = "CanMuaCanThue", Action = "CanMuaCanThuePartial" };
+
+				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "CanMuaCanThue", Action = "CanMuaCanThuePartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "CanMuaCanThue", Action = "CanMuaCanThuePartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "CanMuaCanThue", Action = "CanMuaCanThuePartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+		settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+		settings.KeyFieldName = "ma_tinrao";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = false;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+		settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+		settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+		settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+		settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+		settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+				settings.Columns.Add("tieude");
+				settings.Columns.Add("noidung");
+				settings.Columns.Add("ma_loaihinh");
+				settings.Columns.Add("ma_ndloaihinh");
+				settings.Columns.Add("ma_tinhtp");
+				settings.Columns.Add("ma_quanhuyen");
+				settings.Columns.Add("ma_phuongxa");
+				settings.Columns.Add("ma_duongpho");
+				settings.Columns.Add("gia_tu");
+				settings.Columns.Add("gia_den");
+				settings.Columns.Add("ma_donvi");
+				settings.Columns.Add("dientich_tu");
+				settings.Columns.Add("dientich_den");
+				settings.Columns.Add("anh1");
+				settings.Columns.Add("anh2");
+				settings.Columns.Add("anh3");
+				settings.Columns.Add("ngaydang");
+				settings.Columns.Add("ngayketthuc");
+				settings.Columns.Add("ghichu");
+			});
+		if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

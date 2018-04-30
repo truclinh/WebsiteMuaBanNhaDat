@@ -52,6 +52,19 @@
       <HintPath>..\packages\Captcha.4.3.0\lib\net45\BotDetect.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.Charts.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.CodeParser.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.Resources.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v17.1.Web, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -416,7 +429,9 @@
     <Content Include="Content\admin\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
@@ -515,6 +530,34 @@
     <Content Include="Views\QuanLy\MenuPartial.cshtml" />
     <Content Include="Views\QuanLy\MenuItemPartial.cshtml" />
     <Content Include="Views\QuanLy\XemThem.cshtml" />
+    <Content Include="Views\QuanLyTaiKhoan\Index.cshtml" />
+    <Content Include="Views\QuanLyTaiKhoan\_QuanLyTaiKhoanPartial.cshtml" />
+    <Content Include="Views\QuanLyLienHe\Index.cshtml" />
+    <Content Include="Views\QuanLyLienHe\_QuanLyLienHePartial.cshtml" />
+    <Content Include="Views\QuanLyLoaiHinh\Index.cshtml" />
+    <Content Include="Views\QuanLyLoaiHinh\_QuanLyLoaiHinhPartial.cshtml" />
+    <Content Include="Views\QuanLyNoiDungLoaiHinh\Index.cshtml" />
+    <Content Include="Views\QuanLyNoiDungLoaiHinh\_QuanLyNoiDungLoaiHinhPartial.cshtml" />
+    <Content Include="Views\BaiDangPhongThuy\Index.cshtml" />
+    <Content Include="Views\BaiDangPhongThuy\_BaiDangPhongThuyPartial.cshtml" />
+    <Content Include="Views\QuanLyEmailDangKy\Index.cshtml" />
+    <Content Include="Views\QuanLyEmailDangKy\_QuanLyEmailDangKyPartial.cshtml" />
+    <Content Include="Views\CanBanCanChoThue\Index.cshtml" />
+    <Content Include="Views\CanBanCanChoThue\_CanBanCanChoThuePartial.cshtml" />
+    <Content Include="Views\CanMuaCanThue\Index.cshtml" />
+    <Content Include="Views\CanMuaCanThue\_CanMuaCanThuePartial.cshtml" />
+    <Content Include="Views\DMDonVi\Index.cshtml" />
+    <Content Include="Views\DMDonVi\_DanhMucDonViPartial.cshtml" />
+    <Content Include="Views\DMTinhTP\Index.cshtml" />
+    <Content Include="Views\DMTinhTP\_DanhMucTinhTPPartial.cshtml" />
+    <Content Include="Views\DMQuanHuyen\Index.cshtml" />
+    <Content Include="Views\DMQuanHuyen\_DanhMucQuanHuyenPartial.cshtml" />
+    <Content Include="Views\DMPhuongXa\Index.cshtml" />
+    <Content Include="Views\DMPhuongXa\_DanhMucPhuongXaPartial.cshtml" />
+    <Content Include="Views\DMDuongPho\Index.cshtml" />
+    <Content Include="Views\DMDuongPho\_DanhMucDuongPhoPartial.cshtml" />
+    <Content Include="Views\QuanLyBaiDangPhongThuy\Index.cshtml" />
+    <Content Include="Views\QuanLyBaiDangPhongThuy\_QuanLyBaiDangPhongThuyPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -526,6 +569,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BaiDangPhongThuyController.cs" />
     <Compile Include="Controllers\CanBanCanChoThueController.cs" />
     <Compile Include="Controllers\CanMuaCanThueController.cs" />
     <Compile Include="Controllers\ChiTietTinRaoController.cs" />
@@ -547,6 +591,7 @@
     <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Controllers\TimKiemNangCaoController.cs" />
+    <Compile Include="Controllers\TinRaoNhaDatController.cs" />
     <Compile Include="Controllers\TinTheoLoaiHinhController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -638,20 +683,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CanBanCanChoThue\" />
-    <Folder Include="Views\CanMuaCanThue\" />
-    <Folder Include="Views\DMDonVi\" />
-    <Folder Include="Views\DMDuongPho\" />
-    <Folder Include="Views\DMPhuongXa\" />
-    <Folder Include="Views\DMQuanHuyen\" />
-    <Folder Include="Views\DMTinhTP\" />
     <Folder Include="Views\NhanXet\" />
-    <Folder Include="Views\QuanLyBaiDangPhongThuy\" />
-    <Folder Include="Views\QuanLyEmailDangKy\" />
-    <Folder Include="Views\QuanLyLienHe\" />
-    <Folder Include="Views\QuanLyLoaiHinh\" />
-    <Folder Include="Views\QuanLyNoiDungLoaiHinh\" />
-    <Folder Include="Views\QuanLyTaiKhoan\" />
+    <Folder Include="Views\TinRaoNhaDat\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

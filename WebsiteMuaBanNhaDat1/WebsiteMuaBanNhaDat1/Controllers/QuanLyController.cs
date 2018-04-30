@@ -43,6 +43,15 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             ViewBag.TenMuc = da1.ten_loaihinh.ToString();
             return RedirectToAction("Index",da.tenkhongdau.ToString());
         }
+        //-------------------------------------- Nhận xét
+        public ActionResult NhanXet(string loai)
+        {
+            if (loai.Length!=0)
+            {
+                return RedirectToAction("Index", loai);
+            }
+            return View();
+        }
         //-------------------------------------- Tài khoản
         public ActionResult TaiKhoan()
         {

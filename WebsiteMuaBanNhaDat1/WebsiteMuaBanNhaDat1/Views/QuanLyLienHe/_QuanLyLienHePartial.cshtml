@@ -1,0 +1,42 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "QuanLyLienHe";
+        settings.CallbackRouteValues = new { Controller = "QuanLyLienHe", Action = "QuanLyLienHePartial" };
+
+				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "QuanLyLienHe", Action = "QuanLyLienHePartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "QuanLyLienHe", Action = "QuanLyLienHePartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "QuanLyLienHe", Action = "QuanLyLienHePartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+		settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+		settings.KeyFieldName = "ma_lienhe";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = false;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+		settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+		settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+		settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+		settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+		settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+				settings.Columns.Add("ten_lienhe");
+				settings.Columns.Add("ma_tinrao");
+				settings.Columns.Add("diachi");
+				settings.Columns.Add("dienthoai");
+				settings.Columns.Add("didong");
+				settings.Columns.Add("email");
+				settings.Columns.Add("ghichu");
+			});
+		if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

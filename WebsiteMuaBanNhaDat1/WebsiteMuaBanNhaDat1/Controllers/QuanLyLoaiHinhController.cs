@@ -18,6 +18,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
 
         [ValidateInput(false)]
         public ActionResult QuanLyLoaiHinhPartial()
+
         {
             var model = db.LoaiHinh.OrderBy(n => n.ma_loaihinh).ToList();
             return PartialView("_QuanLyLoaiHinhPartial", model);

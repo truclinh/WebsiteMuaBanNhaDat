@@ -1,38 +1,96 @@
-@{
-	var grid = Html.DevExpress().GridView(settings => {
+﻿@{
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+    var grid = Html.DevExpress().GridView(settings => {
         settings.Name = "QuanLyBaiDangPhongThuy";
         settings.CallbackRouteValues = new { Controller = "QuanLyBaiDangPhongThuy", Action = "QuanLyBaiDangPhongThuyPartial" };
 
-				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "QuanLyBaiDangPhongThuy", Action = "QuanLyBaiDangPhongThuyPartialAddNew" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "QuanLyBaiDangPhongThuy", Action = "QuanLyBaiDangPhongThuyPartialAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "QuanLyBaiDangPhongThuy", Action = "QuanLyBaiDangPhongThuyPartialUpdate" };
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "QuanLyBaiDangPhongThuy", Action = "QuanLyBaiDangPhongThuyPartialDelete" };
         settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
         settings.SettingsBehavior.ConfirmDelete = true;
 
-		settings.CommandColumn.Visible = true;
-        settings.CommandColumn.ShowNewButton = true;
-        settings.CommandColumn.ShowDeleteButton = true;
-        settings.CommandColumn.ShowEditButton = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
 
-		settings.KeyFieldName = "id";
+        settings.CommandColumn.Visible = true;
+        //settings.CommandColumn.ShowNewButton = true;
+        //settings.CommandColumn.ShowDeleteButton = true;
+        //settings.CommandColumn.ShowEditButton = true;
 
-		settings.SettingsPager.Visible = true;
-		settings.Settings.ShowGroupPanel = false;
-		settings.Settings.ShowFilterRow = true;
-		settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.KeyFieldName = "id";
 
-		settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
-		settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
-		settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
-		settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
-		settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
 
-				settings.Columns.Add("tieude");
-				settings.Columns.Add("noidung");
-				settings.Columns.Add("hinhbia");
-				settings.Columns.Add("ngaydang");
-			});
-		if (ViewData["EditError"] != null){
+        settings.SettingsCommandButton.NewButton.Text = "Thêm";
+        settings.SettingsCommandButton.EditButton.Text = "Sửa";
+        settings.SettingsCommandButton.DeleteButton.Text = "Xóa";
+
+        settings.SettingsCommandButton.UpdateButton.RenderMode = DevExpress.Web.GridCommandButtonRenderMode.Button;
+        settings.SettingsCommandButton.UpdateButton.Text = "Cập nhật";
+        settings.SettingsCommandButton.CancelButton.RenderMode = DevExpress.Web.GridCommandButtonRenderMode.Button;
+        settings.SettingsCommandButton.CancelButton.Text = "Hủy bỏ";
+        settings.Styles.CommandColumn.Font.Size = System.Web.UI.WebControls.FontUnit.Large;
+        settings.Styles.CommandColumn.Spacing = System.Web.UI.WebControls.Unit.Pixel(5);
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        settings.CommandColumn.ShowClearFilterButton = true;
+        settings.SettingsCommandButton.ClearFilterButton.Text = "Hủy";
+
+        settings.SettingsText.ConfirmDelete = "Bạn có chắc chắn muốn xóa?";
+
+        settings.SettingsPager.PageSize = 12;
+        settings.SettingsPager.FirstPageButton.Visible = true;
+        settings.SettingsPager.FirstPageButton.Text = "Trang đầu";
+        settings.SettingsPager.LastPageButton.Visible = true;
+
+        settings.SettingsPager.LastPageButton.Text = "Trang cuối";
+        settings.SettingsPager.Summary.Text = " Trang {0}/{1} (Tổng số bài đăng: {2})";
+        settings.PreRender = (s, e) =>
+        {
+            var sender = s as MVCxGridView;
+            // Set the zero-based index of the initially displayed page
+            sender.PageIndex = 0;
+        };
+
+        //settings.Columns.Add("tieude");
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "tieude";
+            column.Caption = "Tiêu đề";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+        // settings.Columns.Add("noidung");
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "noidung";
+            column.Caption = "Nội dung";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+        //settings.Columns.Add("hinhbia");
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "hinhbia";
+            column.Caption = "Ảnh bìa";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+        //settings.Columns.Add("ngaydang");
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "ngaydang";
+            column.Caption = "Ngày đăng";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+    });
+    if (ViewData["EditError"] != null){
         grid.SetEditErrorText((string)ViewData["EditError"]);
     }
 }

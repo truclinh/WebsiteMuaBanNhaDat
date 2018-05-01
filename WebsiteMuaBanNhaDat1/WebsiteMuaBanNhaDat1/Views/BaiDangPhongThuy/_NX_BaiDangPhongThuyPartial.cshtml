@@ -2,12 +2,12 @@
     Html.EnableClientValidation();
     Html.EnableUnobtrusiveJavaScript();
     var grid = Html.DevExpress().GridView(settings => {
-        settings.Name = "QuanLyEmailDangKy";
-        settings.CallbackRouteValues = new { Controller = "QuanLyEmailDangKy", Action = "QuanLyEmailDangKyPartial" };
+        settings.Name = "NX_BaiDangPhongThuy";
+        settings.CallbackRouteValues = new { Controller = "BaiDangPhongThuy", Action = "NX_BaiDangPhongThuyPartial" };
 
-        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "QuanLyEmailDangKy", Action = "QuanLyEmailDangKyPartialAddNew" };
-        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "QuanLyEmailDangKy", Action = "QuanLyEmailDangKyPartialUpdate" };
-        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "QuanLyEmailDangKy", Action = "QuanLyEmailDangKyPartialDelete" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BaiDangPhongThuy", Action = "NX_BaiDangPhongThuyPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BaiDangPhongThuy", Action = "NX_BaiDangPhongThuyPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BaiDangPhongThuy", Action = "NX_BaiDangPhongThuyPartialDelete" };
         settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
         settings.SettingsBehavior.ConfirmDelete = true;
 
@@ -53,7 +53,7 @@
         settings.SettingsPager.LastPageButton.Visible = true;
 
         settings.SettingsPager.LastPageButton.Text = "Trang cuối";
-        settings.SettingsPager.Summary.Text = " Trang {0}/{1} (Tổng số email: {2})";
+        settings.SettingsPager.Summary.Text = " Trang {0}/{1} (Tổng số nhận xét: {2})";
         settings.PreRender = (s, e) =>
         {
             var sender = s as MVCxGridView;
@@ -61,6 +61,22 @@
             sender.PageIndex = 0;
         };
 
+        //settings.Columns.Add("ma_baiviet");
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "ma_baiviet";
+            column.Caption = "Mã bài viết";
+            column.Width = 50;
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+        // settings.Columns.Add("hoten");
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "hoten";
+            column.Caption = "Họ tên";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
         // settings.Columns.Add("email");
         settings.Columns.Add(column =>
         {
@@ -68,11 +84,26 @@
             column.Caption = "Email";
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
         });
-        // settings.Columns.Add("ngaydangky");
+        //settings.Columns.Add("noidung");
         settings.Columns.Add(column =>
         {
-            column.FieldName = "ngaydangky";
-            column.Caption = "Ngày đăng ký";
+            column.FieldName = "noidung";
+            column.Caption = "Nội dung";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+        //settings.Columns.Add("thanhvien");
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "thanhvien";
+            column.Caption = "Thành viên";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+        //settings.Columns.Add("ngaydang");
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "ngaydang";
+            column.Caption = "Ngày đăng";
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
         });
         //settings.Columns.Add("ghichu");

@@ -558,6 +558,9 @@
     <Content Include="Views\DMDuongPho\_DanhMucDuongPhoPartial.cshtml" />
     <Content Include="Views\QuanLyBaiDangPhongThuy\Index.cshtml" />
     <Content Include="Views\QuanLyBaiDangPhongThuy\_QuanLyBaiDangPhongThuyPartial.cshtml" />
+    <Content Include="Views\BaiDangPhongThuy\_NX_BaiDangPhongThuyPartial.cshtml" />
+    <Content Include="Views\TinRaoNhaDat\Index.cshtml" />
+    <Content Include="Views\TinRaoNhaDat\_NX_TinRaoNhaDatPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -684,7 +687,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\NhanXet\" />
-    <Folder Include="Views\TinRaoNhaDat\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

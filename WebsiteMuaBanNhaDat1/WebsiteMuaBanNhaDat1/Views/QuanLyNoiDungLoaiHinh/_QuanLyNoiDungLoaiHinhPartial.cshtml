@@ -12,6 +12,8 @@
         settings.SettingsBehavior.ConfirmDelete = true;
 
         settings.SettingsBehavior.AllowFocusedRow = true;
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
+
 
         settings.CommandColumn.Visible = true;
         //settings.CommandColumn.ShowNewButton = true;
@@ -82,6 +84,13 @@
             column.Caption = "Mã loại hình";
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
             column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.EnableCallbackMode = true;
+            comboBoxProperties.DataSource = ViewBag.DMLoaiHinh1;
+            comboBoxProperties.TextField = "TenLH";
+            comboBoxProperties.ValueField = "MaLH";
+            comboBoxProperties.ValueType = typeof(int);
         });
         //settings.Columns.Add("ghichu");
         settings.Columns.Add(column =>

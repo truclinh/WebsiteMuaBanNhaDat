@@ -1,6 +1,7 @@
 ﻿using DevExpress.Web.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -20,19 +21,29 @@ namespace WebsiteMuaBanNhaDat1.Controllers
         public ActionResult QuanLyLoaiHinhPartial()
 
         {
-            var model = db.LoaiHinh.OrderBy(n => n.ma_loaihinh).ToList();
+            var model = db.LoaiHinh.OrderByDescending(n => n.ma_loaihinh).ToList();
             return PartialView("_QuanLyLoaiHinhPartial", model);
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult QuanLyLoaiHinhPartialAddNew(WebsiteMuaBanNhaDat1.Models.LoaiHinh item)
+        public ActionResult SaveNewDocument(FormCollection f)
         {
-            var model = new object[0];
+            string tenloaihinh = f["txtNew_ten_loaihinh"].ToString();
+            string nhom = f["txtNew_nhom"].ToString();
+            bool comenucon =Boolean.Parse(f["txtNew_comenucon"].ToString());
+            string tenkhongdau = f["txtNew_tenkhongdau"].ToString();
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // Insert here a code to insert the new item in your model
+                    LoaiHinh lh = new LoaiHinh();
+                    lh.ten_loaihinh = tenloaihinh;
+                    lh.nhom = nhom;
+                    lh.comenucon = comenucon;
+                    lh.tenkhongdau = tenkhongdau;
+
+                    db.LoaiHinh.Add(lh);
+                    db.SaveChanges();
                 }
                 catch (Exception e)
                 {
@@ -41,17 +52,29 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_QuanLyLoaiHinhPartial", model);
+            return RedirectToAction("Index", "QuanLyLoaiHinh");
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult QuanLyLoaiHinhPartialUpdate(WebsiteMuaBanNhaDat1.Models.LoaiHinh item)
+        public ActionResult SaveEditDocument(FormCollection f)
         {
-            var model = new object[0];
+            int maloaihinh = int.Parse(f["txtHiddenId"].ToString());
+            string tenloaihinh = f["txt_ten_loaihinh"].ToString();
+            string nhom = f["txt_nhom"].ToString();
+            bool comenucon = Boolean.Parse(f["txt_comenucon"].ToString());
+            string tenkhongdau = f["txt_tenkhongdau"].ToString();
+            var lh = db.LoaiHinh.SingleOrDefault(n => n.ma_loaihinh == maloaihinh);
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // Insert here a code to update the item in your model
+                    lh.ten_loaihinh = tenloaihinh;
+                    lh.nhom = nhom;
+                    lh.comenucon = comenucon;
+                    lh.tenkhongdau = tenkhongdau;
+
+                    db.Entry(lh).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
                 catch (Exception e)
                 {
@@ -60,24 +83,29 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_QuanLyLoaiHinhPartial", model);
+            return RedirectToAction("Index", "QuanLyLoaiHinh");
         }
-        [HttpPost, ValidateInput(false)]
-        public ActionResult QuanLyLoaiHinhPartialDelete(System.Int32 ma_loaihinh)
+        public ActionResult Xoa(int? id)
         {
-            var model = new object[0];
-            if (ma_loaihinh >= 0)
+            var model = db.LoaiHinh.OrderByDescending(n => n.ma_loaihinh).ToList();
+            if (id >= 0)
             {
                 try
                 {
-                    // Insert here a code to delete the item from your model
+                    var item = model.FirstOrDefault(it => it.ma_loaihinh == id);
+                    if (item != null)
+                    {
+                        db.LoaiHinh.Remove(item);
+                        db.SaveChanges();
+                    }
+
                 }
                 catch (Exception e)
                 {
                     ViewData["EditError"] = e.Message;
                 }
             }
-            return PartialView("_QuanLyLoaiHinhPartial", model);
+            return RedirectToAction("Index", "QuanLyLoaiHinh");
         }
     }
 }

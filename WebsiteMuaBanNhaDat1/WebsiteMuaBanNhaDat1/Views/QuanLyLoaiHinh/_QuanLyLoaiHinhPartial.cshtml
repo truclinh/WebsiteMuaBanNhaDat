@@ -12,6 +12,7 @@
         settings.SettingsBehavior.ConfirmDelete = true;
 
         settings.SettingsBehavior.AllowFocusedRow = true;
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
 
         settings.CommandColumn.Visible = true;
         //settings.CommandColumn.ShowNewButton = true;
@@ -83,6 +84,7 @@
         {
             column.FieldName = "comenucon";
             column.Caption = "Có menu con";
+
             column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
         });

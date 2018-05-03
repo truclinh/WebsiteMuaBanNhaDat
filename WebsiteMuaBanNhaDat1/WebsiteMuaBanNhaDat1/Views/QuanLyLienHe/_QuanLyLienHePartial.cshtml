@@ -12,6 +12,7 @@
         settings.SettingsBehavior.ConfirmDelete = true;
 
         settings.SettingsBehavior.AllowFocusedRow = true;
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
 
         settings.CommandColumn.Visible = true;
         //settings.CommandColumn.ShowNewButton = true;
@@ -74,8 +75,15 @@
         settings.Columns.Add(column =>
         {
             column.FieldName = "ma_tinrao";
-            column.Caption = "Mã tin rao";
+            column.Caption = "Tin rao";
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.EnableCallbackMode = true;
+            comboBoxProperties.DataSource = ViewBag.DMTinRao1;
+            comboBoxProperties.TextField = "TieuDe";
+            comboBoxProperties.ValueField = "MaTinRao";
+            comboBoxProperties.ValueType = typeof(Guid);
         });
         //settings.Columns.Add("diachi");
         settings.Columns.Add(column =>

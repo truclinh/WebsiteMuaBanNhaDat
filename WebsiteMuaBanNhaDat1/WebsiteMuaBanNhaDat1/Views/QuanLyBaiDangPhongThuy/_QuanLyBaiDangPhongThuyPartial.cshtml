@@ -83,6 +83,16 @@
             column.FieldName = "hinhbia";
             column.Caption = "Ảnh bìa";
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.SetDataItemTemplateContent(e =>
+            {
+                Html.DevExpress().Image(imgSettings =>
+                {
+                    var Image = DataBinder.Eval(e.DataItem, "hinhbia");
+                    imgSettings.ImageUrl = "../Content/images/blog/" + Image;
+                    imgSettings.Height = 40;
+                    imgSettings.Width = 40;
+                }).Render();
+            });
         });
         //settings.Columns.Add("ngaydang");
         settings.Columns.Add(column =>

@@ -41,7 +41,7 @@
                     <div class="col-lg-8 col-sm-8 ">
                         <h3><a href="@Url.Action("DocTiep","Home",new {ma_baiviet=item.id })" style="color:#304b0a">@item.tieude</a></h3>
                         <div class="info">Ngày đăng: @item.ngaydang.Value.ToString("dd/MM/yyyy")</div>
-                        <p>@item.noidung.Substring(0,200) ...</p>
+                        <p>@Html.Raw(@item.noidung.Substring(0,200)) ...</p>
                         <a href="@Url.Action("DocTiep","Home",new {ma_baiviet=item.id })" class="more">Đọc tiếp</a>
                     </div>
                 </div>

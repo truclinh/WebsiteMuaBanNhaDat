@@ -1,6 +1,7 @@
 ﻿using DevExpress.Web.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -24,14 +25,18 @@ namespace WebsiteMuaBanNhaDat1.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult QuanLyEmailDangKyPartialAddNew(WebsiteMuaBanNhaDat1.Models.DangKyNhanThongBao item)
+        public ActionResult SaveNewDocument(FormCollection f)
         {
-            var model = new object[0];
+            string email = f["txtNew_email"].ToString();
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // Insert here a code to insert the new item in your model
+                    DangKyNhanThongBao dk = new DangKyNhanThongBao();
+                    dk.email = email;
+                    dk.ngaydangky = DateTime.Now;
+                    db.DangKyNhanThongBao.Add(dk);
+                    db.SaveChanges();
                 }
                 catch (Exception e)
                 {
@@ -40,17 +45,24 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_QuanLyEmailDangKyPartial", model);
+            return RedirectToAction("Index", "QuanLyEmailDangKy");
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult QuanLyEmailDangKyPartialUpdate(WebsiteMuaBanNhaDat1.Models.DangKyNhanThongBao item)
+        public ActionResult SaveEditDocument(FormCollection f)
         {
-            var model = new object[0];
+            int id = int.Parse(f["txtHiddenId"].ToString());
+            string email = f["txtNew_email"].ToString();
+            var dk = db.DangKyNhanThongBao.SingleOrDefault(n => n.id == id);
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // Insert here a code to update the item in your model
+                    dk.email = email;
+                    db.DangKyNhanThongBao.Add(dk);
+                    db.SaveChanges();
+
+                    db.Entry(dk).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
                 catch (Exception e)
                 {
@@ -59,24 +71,29 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_QuanLyEmailDangKyPartial", model);
+            return RedirectToAction("Index", "QuanLyEmailDangKy");
         }
-        [HttpPost, ValidateInput(false)]
-        public ActionResult QuanLyEmailDangKyPartialDelete(System.Int32 id)
+        public ActionResult Xoa(int? id)
         {
-            var model = new object[0];
+            var model = db.DangKyNhanThongBao.OrderByDescending(n => n.id).ToList();
             if (id >= 0)
             {
                 try
                 {
-                    // Insert here a code to delete the item from your model
+                    var item = model.FirstOrDefault(it => it.id == id);
+                    if (item != null)
+                    {
+                        db.DangKyNhanThongBao.Remove(item);
+                        db.SaveChanges();
+                    }
+
                 }
                 catch (Exception e)
                 {
                     ViewData["EditError"] = e.Message;
                 }
             }
-            return PartialView("_QuanLyEmailDangKyPartial", model);
+            return RedirectToAction("Index", "QuanLyEmailDangKy");
         }
     }
 }

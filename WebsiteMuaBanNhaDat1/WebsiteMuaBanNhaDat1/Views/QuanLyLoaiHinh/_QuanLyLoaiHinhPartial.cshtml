@@ -53,7 +53,6 @@
         settings.SettingsPager.FirstPageButton.Text = "Trang đầu";
         settings.SettingsPager.LastPageButton.Visible = true;
         settings.Width = Unit.Percentage(100);
-        settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Visible;
 
         settings.SettingsPager.LastPageButton.Text = "Trang cuối";
         settings.SettingsPager.Summary.Text = " Trang {0}/{1} (Tổng số loại hình: {2})";
@@ -78,6 +77,7 @@
             column.FieldName = "nhom";
             column.Caption = "Nhóm";
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
         });
         // settings.Columns.Add("comenucon");
         settings.Columns.Add(column =>
@@ -101,6 +101,8 @@
             column.FieldName = "ghichu";
             column.Caption = "Ghi chú";
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+
         });
     });
     if (ViewData["EditError"] != null){

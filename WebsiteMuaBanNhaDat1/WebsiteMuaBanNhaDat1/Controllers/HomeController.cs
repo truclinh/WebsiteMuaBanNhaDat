@@ -103,7 +103,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
         //-------------------------------------- Menu chính
         public ActionResult MenuPartial()
         {
-            var da = db.LoaiHinh.OrderBy(n => n.ma_loaihinh).ToList();
+            var da = db.LoaiHinh.Where(n=>n.ghichu=="0").OrderBy(n => n.ma_loaihinh).ToList();
             return PartialView("MenuPartial", da);
         }
         //--------------------------------------Menu item

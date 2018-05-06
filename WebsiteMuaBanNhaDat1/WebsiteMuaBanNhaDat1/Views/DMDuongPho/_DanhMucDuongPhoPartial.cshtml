@@ -13,6 +13,7 @@
         settings.SettingsBehavior.ConfirmDelete = true;
 
         settings.SettingsBehavior.AllowFocusedRow = true;
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
 
         settings.CommandColumn.Visible = true;
         //settings.CommandColumn.ShowNewButton = true;
@@ -75,14 +76,21 @@
             column.FieldName = "ma_phuongxa";
             column.Caption = "Mã Phường/Xã";
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.EnableCallbackMode = true;
+            comboBoxProperties.DataSource = ViewBag.DMPhuongXa1;
+            comboBoxProperties.TextField = "TenPX";
+            comboBoxProperties.ValueField = "MaPX";
+            comboBoxProperties.ValueType = typeof(int);
         });
         ///settings.Columns.Add("ghichu");
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "ghichu";
-            column.Caption = "Ghi chú";
-            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-        });
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "ghichu";
+        //    column.Caption = "Ghi chú";
+        //    column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        //});
     });
     if (ViewData["EditError"] != null)
     {

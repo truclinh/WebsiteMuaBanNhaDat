@@ -58,8 +58,6 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                 try
                 {
                     dk.email = email;
-                    db.DangKyNhanThongBao.Add(dk);
-                    db.SaveChanges();
 
                     db.Entry(dk).State = EntityState.Modified;
                     db.SaveChanges();

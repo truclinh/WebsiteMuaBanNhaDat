@@ -93,12 +93,12 @@
             comboBoxProperties.ValueType = typeof(int);
         });
         //settings.Columns.Add("ghichu");
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "ghichu";
-            column.Caption = "Ghi chú";
-            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-        });
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "ghichu";
+        //    column.Caption = "Ghi chú";
+        //    column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        //});
     });
     if (ViewData["EditError"] != null){
         grid.SetEditErrorText((string)ViewData["EditError"]);

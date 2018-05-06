@@ -48,9 +48,9 @@
     }
 </style>
 <script type="text/javascript">
-    ribbon.SetActiveTabIndex(0);
+    document.getElementById("TaiKhoan").style.color = "blue";
     function OnGridFocusedRowChanged(s, e) {
-        s.GetRowValues(s.GetFocusedRowIndex(), 'ma_taikhoan;tendangnhap;matkhau;tennguoidung;diachi;email;dienthoai;ngaydangky', OnGetRowValues);
+        s.GetRowValues(s.GetFocusedRowIndex(), 'ma_taikhoan;tendangnhap;matkhau;tennguoidung;diachi;email;dienthoai;', OnGetRowValues);
     }
     function OnGetRowValues(values) {
         txtHiddenId.SetText(values[0]);
@@ -61,7 +61,7 @@
         txt_diachi.SetText(values[4]);
         txt_email.SetText(values[5]);
         txt_dienthoai.SetText(values[6]);
-        txt_ngaydangky.SetText(values[7]);
+        //txt_ngaydangky.SetText(values[7]);
 
         //document.getElementById("txt_makhoa").value = values[3];
         //txt_googledrive.SetText(values[4]);

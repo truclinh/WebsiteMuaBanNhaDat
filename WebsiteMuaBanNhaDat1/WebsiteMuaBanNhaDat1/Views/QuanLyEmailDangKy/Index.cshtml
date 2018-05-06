@@ -49,7 +49,7 @@
     }
 </style>
 <script type="text/javascript">
-    //okribbon.SetActiveTabIndex(0);
+    document.getElementById("EmailDangKy").style.color = "blue";
     function OnGridFocusedRowChanged(s, e) {
         s.GetRowValues(s.GetFocusedRowIndex(), 'id;email', OnGetRowValues);
     }

@@ -1030,6 +1030,9 @@
     <Compile Include="Models\ToaDo.cs">
       <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\XacNhan.cs">
+      <DependentUpon>MuaBanNhaDatModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

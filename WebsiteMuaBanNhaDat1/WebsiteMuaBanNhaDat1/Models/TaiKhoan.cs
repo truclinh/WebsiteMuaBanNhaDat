@@ -11,7 +11,7 @@ namespace WebsiteMuaBanNhaDat1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class TaiKhoan
     {
         public int ma_taikhoan { get; set; }

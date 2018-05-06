@@ -14,13 +14,15 @@ namespace WebsiteMuaBanNhaDat1.Controllers
         MuaBanNhaDatEntities db = new MuaBanNhaDatEntities();
         public ActionResult Index()
         {
+            ViewBag.XacNhan = new SelectList(db.XacNhan.ToList().OrderBy(n => n.id), "noidung", "ten");
             return View();
         }
 
         [ValidateInput(false)]
         public ActionResult QuanLyLoaiHinhPartial()
-
         {
+            ViewBag.XacNhan = new SelectList(db.XacNhan.ToList().OrderBy(n => n.id), "noidung", "ten");
+            ViewBag.XacNhan1 = db.XacNhan.ToList().OrderBy(n => n.id).Select(i => new { NoiDung = i.noidung, Ten = i.ten });
             var model = db.LoaiHinh.OrderByDescending(n => n.ma_loaihinh).ToList();
             return PartialView("_QuanLyLoaiHinhPartial", model);
         }
@@ -28,6 +30,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult SaveNewDocument(FormCollection f)
         {
+            ViewBag.XacNhan = new SelectList(db.XacNhan.ToList().OrderBy(n => n.id), "noidung", "ten");
             string tenloaihinh = f["txtNew_ten_loaihinh"].ToString();
             string nhom = f["txtNew_nhom"].ToString();
             bool comenucon =Boolean.Parse(f["txtNew_comenucon"].ToString());
@@ -57,6 +60,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult SaveEditDocument(FormCollection f)
         {
+            ViewBag.XacNhan = new SelectList(db.XacNhan.ToList().OrderBy(n => n.id), "noidung", "ten");
             int maloaihinh = int.Parse(f["txtHiddenId"].ToString());
             string tenloaihinh = f["txt_ten_loaihinh"].ToString();
             string nhom = f["txt_nhom"].ToString();

@@ -225,6 +225,14 @@
           <Property Name="lat6" Type="float" />
           <Property Name="lng6" Type="float" />
         </EntityType>
+        <EntityType Name="XacNhan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="noidung" Type="bit" Nullable="false" />
+        </EntityType>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -276,6 +284,7 @@
           <EntitySet Name="TinRaoCMCT" EntityType="Self.TinRaoCMCT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinhTP" EntityType="Self.TinhTP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ToaDo" EntityType="Self.ToaDo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="XacNhan" EntityType="Self.XacNhan" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -331,6 +340,7 @@
           <FunctionImport Name="sp_BaiDangNhieuNhanXet" ReturnType="Collection(MuaBanNhaDatModel.sp_BaiDangNhieuNhanXet_Result)" />
           <FunctionImport Name="sp_BaiDangNhieuNhanXet1" ReturnType="Collection(MuaBanNhaDatModel.sp_BaiDangNhieuNhanXet1_Result)" />
           <EntitySet Name="ToaDo" EntityType="MuaBanNhaDatModel.ToaDo" />
+          <EntitySet Name="XacNhan" EntityType="MuaBanNhaDatModel.XacNhan" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -574,6 +584,14 @@
           <Property Name="lng5" Type="Double" />
           <Property Name="lat6" Type="Double" />
           <Property Name="lng6" Type="Double" />
+        </EntityType>
+        <EntityType Name="XacNhan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="noidung" Type="Boolean" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -859,6 +877,15 @@
                 <ScalarProperty Name="lat1" ColumnName="lat1" />
                 <ScalarProperty Name="ma_tinrao" ColumnName="ma_tinrao" />
                 <ScalarProperty Name="ma_toado" ColumnName="ma_toado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XacNhan">
+            <EntityTypeMapping TypeName="MuaBanNhaDatModel.XacNhan">
+              <MappingFragment StoreEntitySet="XacNhan">
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -28,7 +28,7 @@
     }
 
     table#QuanLyLoaiHinh {
-        width: 95%;
+        width: 50%;
         margin: auto;
     }
 
@@ -49,16 +49,23 @@
     }
 </style>
 <script type="text/javascript">
-    ribbon.SetActiveTabIndex(0);
+    document.getElementById("LoaiHinh").style.color = "blue";
     function OnGridFocusedRowChanged(s, e) {
         s.GetRowValues(s.GetFocusedRowIndex(), 'ma_loaihinh;ten_loaihinh;nhom;comenucon;tenkhongdau;', OnGetRowValues);
     }
+   
     function OnGetRowValues(values) {
         txtHiddenId.SetText(values[0]);
+        debugger;
         //txt_ma_taikhoan.SetText(values[0]);
         txt_ten_loaihinh.SetText(values[1]);
         txt_nhom.SetText(values[2]);
-        txt_comenucon.SetText(values[3]);
+        if (values[3] == true) {
+            document.getElementById("txt_comenucon").value = "True";
+        } else {
+            document.getElementById("txt_comenucon").value = "False";
+        }
+       
         txt_tenkhongdau.SetText(values[4]);
     }
     function fncBtnXoaClick() {
@@ -137,10 +144,7 @@
                                 <label>Có menu con</label>
                             </td>
                             <td class="ten">
-                                @Html.DevExpress().TextBox(settings =>
-                            {
-                                settings.Name = "txtNew_comenucon";
-                            }).GetHtml()
+                                @Html.DropDownList("txtNew_comenucon", (IEnumerable<SelectListItem>)ViewBag.XacNhan, "---Chọn---", new { @class = "cbo" })
                             </td>
                         </tr>
                         <tr>
@@ -226,10 +230,7 @@
                                 <label>Có menu con</label>
                             </td>
                             <td class="ten">
-                                @Html.DevExpress().TextBox(settings =>
-                            {
-                                settings.Name = "txt_comenucon";
-                            }).GetHtml()
+                                @Html.DropDownList("txt_comenucon", (IEnumerable<SelectListItem>)ViewBag.XacNhan, "---Chọn---", new { @class = "cbo" })
                             </td>
                         </tr>
                         <tr>

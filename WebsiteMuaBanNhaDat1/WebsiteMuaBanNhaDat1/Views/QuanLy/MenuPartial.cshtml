@@ -10,14 +10,14 @@
     {
         if (item.comenucon == false)
         {
-            <li id="@item.tenkhongdau" class="backgr_item1">
-                <a class="act" href="@Url.Action(@item.tenkhongdau, "QuanLy")"><i class="fa fa-book nav_icon act"></i><b>@item.ten_loaihinh</b></a>
+            <li class="backgr_item1">
+                <a id="@item.tenkhongdau" class="act" href="@Url.Action(@item.tenkhongdau, "QuanLy")"><i class="fa fa-book nav_icon act"></i><b>@item.ten_loaihinh</b></a>
             </li>
         }
         else
         {
-            <li id="@item.tenkhongdau" class="backgr_item1">
-                <a class="act" href="#"><i class="fa fa-book nav_icon act"></i><b>@item.ten_loaihinh</b><span class="fa arrow"></span></a>
+            <li class="backgr_item1">
+                <a id="@item.tenkhongdau" class="act" href="#"><i class="fa fa-book nav_icon act"></i><b>@item.ten_loaihinh</b><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level backgr">
                     @Html.Action("MenuItemPartial", "QuanLy", new { ma = item.ma_loaihinh })
                 </ul>
@@ -50,6 +50,9 @@
     .backgr_item :hover {
         font-weight: bold;
         color: red;
+    }
+        .active{
+        color:red;
     }
 </style>
 

@@ -29,7 +29,7 @@
     }
 
     table#QuanLyNoiDungLoaiHinh {
-        width: 95%;
+        width: 50%;
         margin: auto;
     }
 
@@ -50,7 +50,7 @@
     }
 </style>
 <script type="text/javascript">
-    ribbon.SetActiveTabIndex(0);
+    document.getElementById("NoiDungLoaiHinh").style.color = "blue";
     function OnGridFocusedRowChanged(s, e) {
         s.GetRowValues(s.GetFocusedRowIndex(), 'ma_ndloaihinh;ten_ndloaihinh;tenkhongdau;ma_loaihinh', OnGetRowValues);
     }

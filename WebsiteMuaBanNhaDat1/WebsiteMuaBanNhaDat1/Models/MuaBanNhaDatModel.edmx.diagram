@@ -22,6 +22,7 @@
         <EntityTypeShape EntityType="MuaBanNhaDatModel.NhanXet" Width="1.5" PointX="9.375" PointY="7.75" />
         <EntityTypeShape EntityType="MuaBanNhaDatModel.TaiKhoan" Width="1.5" PointX="11.375" PointY="3.75" />
         <EntityTypeShape EntityType="MuaBanNhaDatModel.ToaDo" Width="1.5" PointX="11.375" PointY="7.75" />
+        <EntityTypeShape EntityType="MuaBanNhaDatModel.XacNhan" Width="1.5" PointX="0.75" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

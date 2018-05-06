@@ -87,6 +87,13 @@
 
             column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.EnableCallbackMode = true;
+            comboBoxProperties.DataSource = ViewBag.XacNhan1;
+            comboBoxProperties.TextField = "Ten";
+            comboBoxProperties.ValueField = "NoiDung";
+            comboBoxProperties.ValueType = typeof(bool);
         });
         //settings.Columns.Add("tenkhongdau");
         settings.Columns.Add(column =>
@@ -96,14 +103,14 @@
             column.Width = 200;
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
         });
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "ghichu";
-            column.Caption = "Ghi chú";
-            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "ghichu";
+        //    column.Caption = "Ghi chú";
+        //    column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        //    column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
 
-        });
+        //});
     });
     if (ViewData["EditError"] != null){
         grid.SetEditErrorText((string)ViewData["EditError"]);

@@ -909,6 +909,9 @@
     <Content Include="Views\BaiDangPhongThuy\_NX_BaiDangPhongThuyPartial.cshtml" />
     <Content Include="Views\TinRaoNhaDat\Index.cshtml" />
     <Content Include="Views\TinRaoNhaDat\_NX_TinRaoNhaDatPartial.cshtml" />
+    <Content Include="Views\TinRaoNhaDatCMCT\Index.cshtml" />
+    <Content Include="Views\TinRaoNhaDatCMCT\__NX_TinRaoNhaDatCMCTPartial.cshtml" />
+    <Content Include="Views\TinRaoNhaDatCMCT\_NX_TinRaoNhaDatCMCTPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -942,6 +945,7 @@
     <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Controllers\TimKiemNangCaoController.cs" />
+    <Compile Include="Controllers\TinRaoNhaDatCMCTController.cs" />
     <Compile Include="Controllers\TinRaoNhaDatController.cs" />
     <Compile Include="Controllers\TinTheoLoaiHinhController.cs" />
     <Compile Include="Global.asax.cs">

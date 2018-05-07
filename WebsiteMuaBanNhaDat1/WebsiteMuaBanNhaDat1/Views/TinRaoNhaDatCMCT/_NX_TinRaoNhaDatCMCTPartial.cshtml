@@ -1,13 +1,11 @@
 ﻿@{
-    Html.EnableClientValidation();
-    Html.EnableUnobtrusiveJavaScript();
     var grid = Html.DevExpress().GridView(settings => {
-        settings.Name = "NX_TinRaoNhaDat";
-        settings.CallbackRouteValues = new { Controller = "TinRaoNhaDat", Action = "NX_TinRaoNhaDatPartial" };
+        settings.Name = "NX_TinRaoNhaDatCMCT";
+        settings.CallbackRouteValues = new { Controller = "TinRaoNhaDatCMCT", Action = "NX_TinRaoNhaDatCMCTPartial" };
 
-        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "TinRaoNhaDat", Action = "NX_TinRaoNhaDatPartialAddNew" };
-        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "TinRaoNhaDat", Action = "NX_TinRaoNhaDatPartialUpdate" };
-        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "TinRaoNhaDat", Action = "NX_TinRaoNhaDatPartialDelete" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "TinRaoNhaDatCMCT", Action = "NX_TinRaoNhaDatCMCTPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "TinRaoNhaDatCMCT", Action = "NX_TinRaoNhaDatCMCTPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "TinRaoNhaDatCMCT", Action = "NX_TinRaoNhaDatCMCTPartialDelete" };
         settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
         settings.SettingsBehavior.ConfirmDelete = true;
 

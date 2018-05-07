@@ -12,6 +12,7 @@
         settings.SettingsBehavior.ConfirmDelete = true;
 
         settings.SettingsBehavior.AllowFocusedRow = true;
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
 
         settings.CommandColumn.Visible = true;
         //settings.CommandColumn.ShowNewButton = true;
@@ -69,6 +70,13 @@
             column.Width = 50;
             column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.EnableCallbackMode = true;
+            comboBoxProperties.DataSource = ViewBag.BaiViet1;
+            comboBoxProperties.TextField = "TenBV";
+            comboBoxProperties.ValueField = "MaBV";
+            comboBoxProperties.ValueType = typeof(int);
         });
         // settings.Columns.Add("hoten");
         settings.Columns.Add(column =>
@@ -98,6 +106,13 @@
             column.Caption = "Thành viên";
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
             column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.EnableCallbackMode = true;
+            comboBoxProperties.DataSource = ViewBag.XacNhan1;
+            comboBoxProperties.TextField = "Ten";
+            comboBoxProperties.ValueField = "NoiDung";
+            comboBoxProperties.ValueType = typeof(bool);
         });
         //settings.Columns.Add("ngaydang");
         settings.Columns.Add(column =>
@@ -107,12 +122,12 @@
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
         });
         //settings.Columns.Add("ghichu");
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "ghichu";
-            column.Caption = "Ghi chú";
-            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-        });
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "ghichu";
+        //    column.Caption = "Ghi chú";
+        //    column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        //});
     });
     if (ViewData["EditError"] != null){
         grid.SetEditErrorText((string)ViewData["EditError"]);

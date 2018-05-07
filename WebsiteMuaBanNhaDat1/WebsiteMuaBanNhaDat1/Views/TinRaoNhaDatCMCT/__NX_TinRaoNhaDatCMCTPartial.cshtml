@@ -1,0 +1,41 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "_NX_TinRaoNhaDatCMCT";
+        settings.CallbackRouteValues = new { Controller = "TinRaoNhaDatCMCT", Action = "_NX_TinRaoNhaDatCMCTPartial" };
+
+				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "TinRaoNhaDatCMCT", Action = "_NX_TinRaoNhaDatCMCTPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "TinRaoNhaDatCMCT", Action = "_NX_TinRaoNhaDatCMCTPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "TinRaoNhaDatCMCT", Action = "_NX_TinRaoNhaDatCMCTPartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+		settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+		settings.KeyFieldName = "id";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = false;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+		settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+		settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+		settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+		settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+		settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+				settings.Columns.Add("ma_tinrao");
+				settings.Columns.Add("hoten");
+				settings.Columns.Add("email");
+				settings.Columns.Add("noidung");
+				settings.Columns.Add("thanhvien");
+				settings.Columns.Add("ngaydang");
+			});
+		if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Trang chủ";
+    ViewBag.Title = "Quản lý";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <fieldset>
@@ -40,19 +40,28 @@
     <legend>NHẬN XÉT</legend>
     <div class="widget_1">
             <a href="@Url.Action("NhanXet", "QuanLy", new {loai="TinRaoNhaDat"})">
-                <div class="col-sm-6 widget_1_box btnIndex" style="margin-top:20px;margin-bottom:30px">
+                <div class="col-sm-4 widget_1_box btnIndex" style="margin-top:20px;margin-bottom:30px">
                     <div class="tile-progress bg-primary">
                         <div class="content">
-                            <h3><i class="fa fa-comments-o nav_icon"></i> TIN RAO NHÀ ĐẤT</h3>
+                            <h3><i class="fa fa-comments-o nav_icon"></i> TIN RAO NHÀ ĐẤT CB/CHT</h3>
                         </div>
                     </div>
                 </div>
             </a>
         <a href="@Url.Action("NhanXet", "QuanLy",new {loai="BaiDangPhongThuy"})">
-            <div class="col-sm-6 widget_1_box btnIndex" style="margin-top:20px;margin-bottom:30px">
+            <div class="col-sm-4 widget_1_box btnIndex" style="margin-top:20px;margin-bottom:30px">
                 <div class="tile-progress bg-primary">
                     <div class="content">
                         <h3><i class="fa fa-comments-o nav_icon"></i>  BÀI ĐĂNG PHONG THỦY</h3>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="@Url.Action("NhanXet", "QuanLy", new {loai="TinRaoNhaDatCMCT"})">
+            <div class="col-sm-4 widget_1_box btnIndex" style="margin-top:20px;margin-bottom:30px">
+                <div class="tile-progress bg-primary">
+                    <div class="content">
+                        <h3><i class="fa fa-comments-o nav_icon"></i> TIN RAO NHÀ ĐẤT CM/CT</h3>
                     </div>
                 </div>
             </div>

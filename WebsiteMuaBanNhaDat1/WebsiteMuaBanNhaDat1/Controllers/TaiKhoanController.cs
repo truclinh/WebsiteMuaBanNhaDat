@@ -7,6 +7,7 @@ using WebsiteMuaBanNhaDat1.Models;
 using BotDetect.Web.Mvc;
 using Facebook;
 using System.Configuration;
+using System.IO;
 
 namespace WebsiteMuaBanNhaDat1.Controllers
 {
@@ -54,6 +55,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                     tk.tennguoidung = model.tennguoidung;
                     tk.diachi = model.diachi;
                     tk.email = model.email;
+                    tk.anhdaidien = "login.png";
                     tk.dienthoai = model.dienthoai;
                     tk.maquyen = 2;
                     tk.ngaydangky = DateTime.Now;
@@ -98,15 +100,24 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                 if (kh1.maquyen == 2)
                 {
                     Session["TaiKhoan"] = kh1;
+                    Session["MaTK"] = kh1.ma_taikhoan;
                     Session["NguoiDung"] = kh1.tennguoidung;
                     Session["TenDangNhap"] = kh1.tendangnhap;
                     Session["Email"] = kh1.email;
+                    Session["LoaiTK"] = kh1.ghichu;
+                    Session["AnhDaiDien"] = kh1.anhdaidien;
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    Session["Admin"] = kh1.tennguoidung;
-                    return RedirectToAction("Index", "Home");
+                    Session["TaiKhoan"] = kh1;
+                    Session["MaTK"] = kh1.ma_taikhoan;
+                    Session["NguoiDung"] = kh1.tennguoidung;
+                    Session["TenDangNhap"] = kh1.tendangnhap;
+                    Session["Email"] = kh1.email;
+                    Session["LoaiTK"] = kh1.ghichu;
+                    Session["AnhDaiDien"] = kh1.anhdaidien;
+                    return RedirectToAction("Index", "QuanLy");
                 }
 
             }
@@ -118,9 +129,12 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             if (Session["TaiKhoan"] != null)
             {
                 Session["TaiKhoan"] = null;
+                Session["MaTK"] = null;
                 Session["NguoiDung"] = null;
-                Session["AnhDaiDien"] = null;
+                Session["TenDangNhap"] = null;
                 Session["Email"] = null;
+                Session["LoaiTK"] = null;
+                Session["AnhDaiDien"] = null;
             }
             return RedirectToAction("Index", "Home");
         }
@@ -157,7 +171,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                 fb.AccessToken = accessToken;
                 // Get the user's information, like email, first name, middle name etc
                 dynamic me = fb.Get("me?fields=first_name,middle_name,last_name,id,email");
-              //  string Avatar = "https://graph.facebook.com/"+me.id+"/picture";
+                //  string Avatar = "https://graph.facebook.com/"+me.id+"/picture";
                 string email = me.email;
                 string userName = me.email;
                 string firstname = me.first_name;
@@ -169,24 +183,173 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                 user.tendangnhap = email;
                 user.matkhau = id;
                 user.xacnhan_matkhau = id;
-                user.email = email;               
+                user.email = email;
                 user.maquyen = 2;
                 user.anhdaidien = id;
                 user.tennguoidung = firstname + " " + middlename + " " + lastname;
-                user.ngaydangky= DateTime.Now;
+                user.ngaydangky = DateTime.Now;
                 var dao = new TaiKhoanDAO();
                 var resultInsert = dao.ThemTKFB(user);
-               
+
                 if (resultInsert > 0)
                 {
                     Session["TaiKhoan"] = user;
+                    Session["MaTK"] = user.ma_taikhoan;
                     Session["NguoiDung"] = user.tennguoidung;
                     Session["AnhDaiDien"] = user.anhdaidien;
                     Session["Email"] = user.email;
+                    Session["LoaiTK"] = user.ghichu;
                     return RedirectToAction("Index", "Home");
                 }
             }
             return RedirectToAction("Index", "Home");
         }
+        public ActionResult HinhDaiDien(int? id)
+        {
+            var hinh = db.TaiKhoan.SingleOrDefault(n => n.ma_taikhoan == id).anhdaidien.ToString();
+            return PartialView("HinhDaiDien", hinh);
+        }
+        public ActionResult Ten(int? id)
+        {
+            var ten = db.TaiKhoan.SingleOrDefault(n => n.ma_taikhoan == id).tennguoidung.ToString();
+            return PartialView("Ten", ten);
+        }
+        //-------------------------------------- 
+        //**************************************** 
+        //-------------------------------------- 
+        public ActionResult ThongTin(int? id)
+        {
+            if (Session["TaiKhoan"] != null)
+            {
+                var da = db.TaiKhoan.SingleOrDefault(n => n.ma_taikhoan == id);
+                return View(da);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+        }
+        //****************************************
+
+        //Chỉnh sửa thông tin tài khoản
+        //**************************************** 
+        [HttpGet]
+        public ActionResult ChinhSuaThongTin(int? id)
+        {
+            if (Session["TaiKhoan"] != null)
+            {
+                //lấy đối tượng tài khoản theo mã
+                TaiKhoan tk = db.TaiKhoan.SingleOrDefault(n => n.ma_taikhoan == id);
+                if (tk == null)
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+                return View(tk);
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult ChinhSuaThongTin(HttpPostedFileBase anhdaidien, FormCollection f)
+        {
+            int mataikhoan = int.Parse(f["ma_taikhoan"].ToString());
+            string tennguoidung = f["tennguoidung"].ToString();
+            string tendangnhap = f["tendangnhap"].ToString();
+            string matkhau = f["matkhau"].ToString();
+            var tk = db.TaiKhoan.SingleOrDefault(n => n.ma_taikhoan == mataikhoan);
+            if (ModelState.IsValid)
+            {
+                tk.tennguoidung = tennguoidung;
+                tk.tendangnhap = tendangnhap;
+                tk.matkhau = matkhau;
+                tk.xacnhan_matkhau = matkhau;
+                if (anhdaidien != null && anhdaidien.ContentLength > 0)
+                //-------------------------------------- 
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(anhdaidien.FileName);
+                    string extension = Path.GetExtension(anhdaidien.FileName);
+                    fileName = fileName + DateTime.Now.ToString("ddMMyyyy") + extension;
+                    tk.anhdaidien = fileName.ToString();
+                    fileName = Path.Combine(Server.MapPath("~/Content/images1/login/"), fileName);
+                    anhdaidien.SaveAs(fileName);
+                }
+                else
+                {
+                    string anhdaidien1 = f["oldanhdaidien"].ToString();
+                    tk.anhdaidien = anhdaidien1;
+                }
+                db.Entry(tk).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "QuanLy");
+            }
+            //Thêm vào cơ sở dữ liệu
+            return View();
+        }
+        //**************************************** 
+        //Đổi mật khẩu
+        //**************************************** 
+        [HttpGet]
+        public ActionResult DoiMatKhau(int? id)
+        {
+            if (Session["TaiKhoan"] != null)
+            {
+                //lấy đối tượng tài khoản theo mã
+                TaiKhoan tk = db.TaiKhoan.SingleOrDefault(n => n.ma_taikhoan == id);
+                if (tk == null)
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+                return View(tk);
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+        }
+        [HttpPost, ValidateInput(false)]
+        public ActionResult DoiMatKhau(FormCollection f)
+        {
+            int mataikhoan = int.Parse(f["ma_taikhoan"].ToString());
+            string tennguoidung = f["tennguoidung"].ToString();
+            string tendangnhap = f["tendangnhap"].ToString();
+            string matkhau = f["matkhaumoi"].ToString();
+            string anhdaidien = f["anhdaidien"].ToString();
+            string diachi = f["diachi"].ToString();
+            int maquyen = int.Parse(f["maquyen"].ToString());
+            string email = f["email"].ToString();
+            string dienthoai = f["dienthoai"].ToString();
+
+            var tk = db.TaiKhoan.SingleOrDefault(n => n.ma_taikhoan == mataikhoan);
+            if (ModelState.IsValid)
+            {
+                tk.tennguoidung = tennguoidung;
+                tk.tendangnhap = tendangnhap;
+                tk.matkhau = matkhau;
+                tk.xacnhan_matkhau = matkhau;
+                tk.anhdaidien = anhdaidien;
+                tk.diachi = diachi;
+                tk.maquyen = maquyen;
+                tk.email = email;
+                tk.dienthoai = dienthoai;
+                db.Entry(tk).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.ThongBao = "Đổi mật khẩu thành công!";
+                return View();
+            }
+           
+            //Thêm vào cơ sở dữ liệu
+            return View();
+        }
+        //**************************************** 
     }
 }

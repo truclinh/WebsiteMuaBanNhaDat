@@ -1,0 +1,143 @@
+﻿@model WebsiteMuaBanNhaDat1.Models.TaiKhoan
+@{
+    ViewBag.Title = "Đổi mật khẩu";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+<style>
+    label.error {
+        color: red;
+    }
+
+    td.lbMK {
+        padding-left: 15px;
+        width: 150px;
+    }
+
+    td.txtMK {
+        width: 150px;
+    }
+
+    table {
+        margin-left: 7%;
+        width: 350px;
+        height: 120px;
+        padding: 50px;
+        border-left: 1px solid #808080;
+        border-bottom: 1px solid #808080;
+    }
+</style>
+<h2 class="tieude">ĐỔI MẬT KHẨU</h2>
+@if (ViewBag.ThongBao!=null)
+{
+<div class="alert alert-success">
+    <strong>Thông báo: </strong> @ViewBag.ThongBao
+</div> }
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "frmDoiMatKhau" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ma_taikhoan)
+        @Html.HiddenFor(model => model.tennguoidung)
+        @Html.HiddenFor(model => model.tendangnhap)
+        @Html.HiddenFor(model => model.matkhau, htmlAttributes: new { @id = "matkhau" })
+        @Html.HiddenFor(model => model.xacnhan_matkhau, htmlAttributes: new { @id = "xacnhan_matkhau" })
+        @Html.HiddenFor(model => model.anhdaidien)
+        @Html.HiddenFor(model => model.diachi)
+        @Html.HiddenFor(model => model.maquyen)
+        @Html.HiddenFor(model => model.email)
+        @Html.HiddenFor(model => model.dienthoai)
+        @Html.HiddenFor(model => model.ngaydangky)
+        @Html.HiddenFor(model => model.ghichu)
+        @Html.Hidden("matkhaumoi")
+        <div class="form-group">
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })*@
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <table>
+                    <tr>
+                        <td class="lbMK">Mật khẩu cũ:</td>
+                        <td class="txtMK"><input type="password" name="oldpass" id="oldpass" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lbMK">Mật khẩu mới:</td>
+                        <td class="txtMK"><input type="password" name="newpass" id="newpass" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lbMK">Nhập lại:</td>
+                        <td class="txtMK"><input type="password" name="renewpass" id="renewpass" /></td>
+                    </tr>
+                </table>
+
+
+                <script>
+                    $(document).ready(function () {
+
+                        //Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
+                        $("#frmDoiMatKhau").validate({
+                            rules: {
+                                oldpass: {
+                                    required: true,
+                                    minlength: 2,
+                                    maxlength: 12,
+                                    equalTo: '#matkhau'
+                                },
+                                newpass: {
+                                    required: true,
+                                    minlength: 2,
+                                    maxlength: 12
+                                },
+                                renewpass: {
+                                    required: true,
+                                    minlength: 2,
+                                    maxlength: 12,
+                                    equalTo: '#newpass'
+                                }
+                            },
+                            messages: {
+                                oldpass: {
+                                    required: "Vui lòng nhập mật khẩu cũ",
+                                    minlength: "Độ dài phải >2",
+                                    maxlength: "Độ dài phải <12",
+                                    equalTo: 'Mật khẩu cũ sai'
+                                },
+                                newpass: {
+                                    required: "Vui lòng nhập Mật khẩu mới",
+                                    minlength: "Độ dài phải >2",
+                                    maxlength: "Độ dài phải <12"
+                                },
+                                renewpass: {
+                                    required: "Vui lòng nhập lại",
+                                    minlength: "Độ dài phải >2",
+                                    maxlength: "Độ dài phải <12",
+                                    equalTo: 'Không khớp với mật khẩu'
+                                }
+                            }
+                            ,
+                            success: function () {
+                                $('#btnSave').click(function () {
+                                $('#matkhaumoi').val($('#newpass').val());
+                                //  $("#frmDoiMatKhau").submit();
+                                  });
+                            }
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div style="float:left;margin-left:15%">
+                <input type="submit" value="Lưu" class="btn btn-success" id="btnSave" /> |
+                <a href="@Url.Action("Index","QuanLy") "><div class="btn btn-warning">Trở về</div></a>
+            </div>
+        </div>
+
+    </div>
+}
+

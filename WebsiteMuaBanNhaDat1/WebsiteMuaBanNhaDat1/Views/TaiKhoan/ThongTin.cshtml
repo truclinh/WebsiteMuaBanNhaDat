@@ -1,0 +1,70 @@
+﻿@model WebsiteMuaBanNhaDat1.Models.TaiKhoan
+
+@{
+    ViewBag.Title = "Thông tin";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    td {
+        color: #1a1515;
+        width: 200px;
+        padding: 10px;
+    }
+
+        td.tdTitle {
+            font-weight: bold;
+            margin-left: 30%;
+        }
+
+    table {
+        border: 1px solid black;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+</style>
+<br />
+<h2 class="tieude">&nbsp;THÔNG TIN TÀI KHOẢN</h2>
+
+
+<hr />
+<div></div>
+
+<div class="container" style="margin-left:6%;">
+    <table>
+        <tr>
+            <td colspan="2" style="text-align:center"><img src="~/Content/images1/login/@(Model.anhdaidien)" width="150" height="120" /></td>
+        </tr>
+
+        <tr>
+            <td class="tdTitle">@Html.DisplayNameFor(model => model.tennguoidung)</td>
+            <td>@Html.DisplayFor(model => model.tennguoidung)</td>
+        </tr>
+
+        <tr>
+            <td class="tdTitle">@Html.DisplayNameFor(model => model.tendangnhap)</td>
+            <td>@Html.DisplayFor(model => model.tendangnhap)</td>
+        </tr>
+
+        <tr>
+            <td class="tdTitle">@Html.DisplayNameFor(model => model.diachi)</td>
+            <td>@Html.DisplayFor(model => model.diachi)</td>
+        </tr>
+
+        <tr>
+            <td class="tdTitle">@Html.DisplayNameFor(model => model.email)</td>
+            <td>@Html.DisplayFor(model => model.email)</td>
+        </tr>
+        <tr>
+            <td class="tdTitle">@Html.DisplayNameFor(model => model.dienthoai)</td>
+            <td>@Html.DisplayFor(model => model.dienthoai)</td>
+        </tr>
+    </table>
+</div>
+<hr />
+<div style="float:left;margin-left:17%">
+    <a href="@Url.Action("ChinhSuaThongTin","TaiKhoan", new { @id = Model.ma_taikhoan }) "><div class="btn btn-success">Chỉnh sửa</div></a> |
+    <a href="@Url.Action("Index", "QuanLy") "><div class="btn btn-warning">Trở về</div></a>
+</div>

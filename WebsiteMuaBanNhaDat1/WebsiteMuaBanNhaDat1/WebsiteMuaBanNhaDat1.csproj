@@ -244,6 +244,7 @@
     <Content Include="Content\images1\imgSanCo10042018.jpg" />
     <Content Include="Content\images1\imgThuVien09042018.jpg" />
     <Content Include="Content\images1\imgThuVien10042018.jpg" />
+    <Content Include="Content\images1\login\login.png" />
     <Content Include="Content\images\about.jpg" />
     <Content Include="Content\images\advertisements.jpg" />
     <Content Include="Content\images\agents\1.jpg" />
@@ -912,6 +913,11 @@
     <Content Include="Views\TinRaoNhaDatCMCT\Index.cshtml" />
     <Content Include="Views\TinRaoNhaDatCMCT\__NX_TinRaoNhaDatCMCTPartial.cshtml" />
     <Content Include="Views\TinRaoNhaDatCMCT\_NX_TinRaoNhaDatCMCTPartial.cshtml" />
+    <Content Include="Views\TaiKhoan\HinhDaiDien.cshtml" />
+    <Content Include="Views\TaiKhoan\Ten.cshtml" />
+    <Content Include="Views\TaiKhoan\ThongTin.cshtml" />
+    <Content Include="Views\TaiKhoan\ChinhSuaThongTin.cshtml" />
+    <Content Include="Views\TaiKhoan\DoiMatKhau.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

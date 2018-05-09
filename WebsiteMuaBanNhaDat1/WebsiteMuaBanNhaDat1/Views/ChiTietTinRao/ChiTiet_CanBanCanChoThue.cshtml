@@ -148,7 +148,7 @@
                     }
                     else
                     {
-                        using (Html.BeginForm("NhanXet_VoDanh", "NhanXet", new { _ma_tinrao = @item.ma_tinrao, _ma_loaihinh = item.ma_loaihinh }, FormMethod.Post, new { id = "frmThanhVien" }))
+                        using (Html.BeginForm("NhanXet_ThanhVien", "NhanXet", new { _ma_tinrao = @item.ma_tinrao, _ma_loaihinh = item.ma_loaihinh }, FormMethod.Post, new { id = "frmThanhVien" }))
                         {
                             <input type="hidden" name="txtHoTen1"  value="@Session["NguoiDung"].ToString()"/>
                             <input type="hidden" name="txtEmail1" value="@Session["Email"].ToString()" />

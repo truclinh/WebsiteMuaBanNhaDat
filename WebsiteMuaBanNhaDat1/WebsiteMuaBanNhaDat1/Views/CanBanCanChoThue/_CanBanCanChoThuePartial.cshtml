@@ -47,7 +47,7 @@
 
         settings.SettingsText.ConfirmDelete = "Bạn có chắc chắn muốn xóa?";
 
-        settings.SettingsPager.PageSize = 12;
+        settings.SettingsPager.PageSize = 4;
         settings.SettingsPager.FirstPageButton.Visible = true;
         settings.SettingsPager.FirstPageButton.Text = "Trang đầu";
         settings.SettingsPager.LastPageButton.Visible = true;
@@ -69,6 +69,7 @@
             column.FieldName = "tieude";
             column.Caption = "Tiêu đề";
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Width = 250;
         });
         //settings.Columns.Add("ma_loaihinh");
         settings.Columns.Add(column =>
@@ -76,6 +77,13 @@
             column.FieldName = "ma_loaihinh";
             column.Caption = "Loại hình";
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.EnableCallbackMode = true;
+            comboBoxProperties.DataSource = ViewBag.DMLoaiHinh1;
+            comboBoxProperties.TextField = "TenLH";
+            comboBoxProperties.ValueField = "MaLH";
+            comboBoxProperties.ValueType = typeof(int);
         });
         //settings.Columns.Add("ma_ndloaihinh");
         settings.Columns.Add(column =>
@@ -83,6 +91,13 @@
             column.FieldName = "ma_ndloaihinh";
             column.Caption = "ND loại hình";
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.EnableCallbackMode = true;
+            comboBoxProperties.DataSource = ViewBag.DMNDLoaiHinh1;
+            comboBoxProperties.TextField = "TenNDLH";
+            comboBoxProperties.ValueField = "MaNDLH";
+            comboBoxProperties.ValueType = typeof(int);
         });
         //settings.Columns.Add("ma_tinhtp");
         settings.Columns.Add(column =>
@@ -90,28 +105,53 @@
             column.FieldName = "ma_tinhtp";
             column.Caption = "Tỉnh/TP";
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.EnableCallbackMode = true;
+            comboBoxProperties.DataSource = ViewBag.DMTinhTP1;
+            comboBoxProperties.TextField = "TenTP";
+            comboBoxProperties.ValueField = "MaTP";
+            comboBoxProperties.ValueType = typeof(int);
         });
         //settings.Columns.Add("ma_quanhuyen");
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "ma_quanhuyen";
-            column.Caption = "Quận/Huyện";
-            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-        });
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "ma_quanhuyen";
+        //    column.Caption = "Quận/Huyện";
+        //    column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        //    var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+        //    comboBoxProperties.EnableCallbackMode = true;
+        //    comboBoxProperties.DataSource = ViewBag.DMQH1;
+        //    comboBoxProperties.TextField = "TenQH";
+        //    comboBoxProperties.ValueField = "MaQH";
+        //    comboBoxProperties.ValueType = typeof(int);
+        //});
         //settings.Columns.Add("ma_phuongxa");
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "ma_phuongxa";
-            column.Caption = "Phường/Xã";
-            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-        });
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "ma_phuongxa";
+        //    column.Caption = "Phường/Xã";
+        //    column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        //    //var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+        //    //comboBoxProperties.EnableCallbackMode = true;
+        //    //comboBoxProperties.DataSource = ViewBag.DMPX1;
+        //    //comboBoxProperties.TextField = "TenPX";
+        //    //comboBoxProperties.ValueField = "MaPX";
+        //    //comboBoxProperties.ValueType = typeof(int);
+        //});
         //settings.Columns.Add("ma_duongpho");
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "ma_duongpho";
-            column.Caption = "Đường/Phố";
-            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-        });
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "ma_duongpho";
+        //    column.Caption = "Đường/Phố";
+        //    column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        //    //var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+        //    //comboBoxProperties.EnableCallbackMode = true;
+        //    //comboBoxProperties.DataSource = ViewBag.DMDP1;
+        //    //comboBoxProperties.TextField = "TenDP";
+        //    //comboBoxProperties.ValueField = "MaDP";
+        //    //comboBoxProperties.ValueType = typeof(int);
+        //});
         // settings.Columns.Add("dientich");
         settings.Columns.Add(column =>
         {
@@ -127,12 +167,18 @@
             column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
         });
         //settings.Columns.Add("ma_donvi");
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "ma_donvi";
-            column.Caption = "Đơn vị";
-            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-        });
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "ma_donvi";
+        //    column.Caption = "Đơn vị";
+        //    column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        //    //var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+        //    //comboBoxProperties.EnableCallbackMode = true;
+        //    //comboBoxProperties.DataSource = ViewBag.DMDV1;
+        //    //comboBoxProperties.TextField = "TenDV";
+        //    //comboBoxProperties.ValueField = "MaDV";
+        //    //comboBoxProperties.ValueType = typeof(int);
+        //});
         //settings.Columns.Add("mota");
         //settings.Columns.Add(column =>
         //{

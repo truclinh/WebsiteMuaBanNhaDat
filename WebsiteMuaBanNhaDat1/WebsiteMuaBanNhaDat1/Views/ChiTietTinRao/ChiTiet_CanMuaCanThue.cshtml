@@ -153,12 +153,26 @@
             <div class="col-lg-12 col-sm-4 ">
                 <div class="enquiry">
                     <h6><b class="demuc"><span class="glyphicon glyphicon-envelope"></span> Nhận xét</b></h6>
-                    <form role="form">
-                        <input type="text" class="form-control" placeholder="Họ và tên" />
-                        <input type="text" class="form-control" placeholder="Địa chỉ Email" />
-                        <textarea rows="6" class="form-control" placeholder="Nhập nhận xét ..."></textarea>
-                        <button type="submit" class="btn btn-primary" name="Submit">Đăng</button>
-                    </form>
+                    @if (Session["TaiKhoan"] == null)
+                    {
+                        using (Html.BeginForm("NhanXet_VoDanh", "NhanXet", new { _ma_tinrao = @item.ma_tinrao, _ma_loaihinh = item.ma_loaihinh }, FormMethod.Post, new { id = "frmVodanh" }))
+                        {
+                            <input type="text" name="txtHoTen" class="form-control" placeholder="Họ và tên" />
+                            <input type="text" name="txtEmail" class="form-control" placeholder="Địa chỉ Email" />
+                            <textarea rows="6" name="txtNoiDung" class="form-control" placeholder="Nhập nhận xét ..."></textarea>
+                            <button type="submit" class="btn btn-primary" name="Submit">Đăng</button>
+                        }
+                    }
+                    else
+                    {
+                        using (Html.BeginForm("NhanXet_ThanhVien", "NhanXet", new { _ma_tinrao = @item.ma_tinrao, _ma_loaihinh = item.ma_loaihinh }, FormMethod.Post, new { id = "frmThanhVien" }))
+                        {
+                            <input type="hidden" name="txtHoTen1" value="@Session["NguoiDung"].ToString()" />
+                            <input type="hidden" name="txtEmail1" value="@Session["Email"].ToString()" />
+                            <textarea rows="6" name="txtNoiDung1" class="form-control" placeholder="Nhập nhận xét ..."></textarea>
+                            <button type="submit" class="btn btn-primary" name="Submit">Đăng</button>
+                        }
+                    }
                 </div>
             </div>
             <div class="col-lg-12 col-sm-4" style="visibility:hidden">Chèn hàng trắng</div>

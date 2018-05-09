@@ -42,12 +42,15 @@
             else
             {
                 <li><button class="btn btn-lg btn-danger" onclick="window.location.href='@Url.Action("DangTinCBCHT","DangTin")'"><span class="glyphicon glyphicon-pencil"></span>Đăng tin miễn phí </button></li>
-                if (Session["AnhDaiDien"]!=null)
+                if (Session["AnhDaiDien"]!=null && Session["LoaiTK"].ToString()=="fb")
                 {
                     <li><img src="https://graph.facebook.com/@(Session["AnhDaiDien"].ToString())/picture" /></li>
                 }
-
-                <li><h4><i class="fas fa-user"></i> <b>@Session["NguoiDung"].ToString()</b></h4></li>
+                if (Session["AnhDaiDien"] != null && Session["LoaiTK"].ToString() == "nm")
+                {
+                    <li><img src="../Content/images1/login/@(Session["AnhDaiDien"].ToString())" /></li>
+                }
+                <li><h4><b>@Session["NguoiDung"].ToString()</b></h4></li>
                 <li><a onclick="dangxuat();" style="cursor:pointer;" id="linkDangXuat">Đăng xuất <i class="fas fa-sign-out-alt"></i></a></li>
             }
         </ul>

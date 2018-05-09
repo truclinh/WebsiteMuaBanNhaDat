@@ -27,7 +27,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             ViewBag.TinRao1 = db.TinRaoCBCHT.ToList().OrderBy(n => n.ma_tinrao).Select(i => new { MaTR = i.ma_tinrao, TenTR = i.tieude });
             ViewBag.XacNhan1 = db.XacNhan.ToList().OrderBy(n => n.id).Select(i => new { NoiDung = i.noidung, Ten = i.ten });
 
-            var model = db.NhanXet.Where(n => n.ma_baiviet == null && n.ma_tinrao != null ).OrderByDescending(n=>n.ngaydang).ToList();
+            var model = db.NhanXet.Where(n => n.ma_baiviet == null && n.ma_tinrao != null && n.ghichu == "1").OrderByDescending(n=>n.ngaydang).ToList();
             return PartialView("_NX_TinRaoNhaDatPartial", model);
         }
         [HttpPost, ValidateInput(false)]
@@ -53,6 +53,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                     nx.noidung = noidung;
                     nx.thanhvien = thanhvien;
                     nx.ngaydang = DateTime.Now;
+                    nx.ghichu = "1";
 
                     db.NhanXet.Add(nx);
                     db.SaveChanges();

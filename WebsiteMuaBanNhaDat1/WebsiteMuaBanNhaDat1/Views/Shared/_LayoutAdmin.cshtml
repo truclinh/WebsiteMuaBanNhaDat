@@ -57,20 +57,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
-                @*<li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge">4</span></a>
-                    @Html.Partial("_PartialMsg")
-                </li>*@
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="~/Content/admin/images/1.png"><span class="badge">9</span></a>
+                    <a style="text-decoration:none;color:white;font-weight:bold" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">@Html.Action("Ten", "TaiKhoan", new { @id = Session["MaTK"] })</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown">
+                        @Html.Action("HinhDaiDien", "TaiKhoan", new { @id =int.Parse(Session["MaTK"].ToString()) })
+                    </a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-menu-header text-center">
-                            <strong>Cài đặt</strong>
+                            <strong>Tài khoản</strong>
                         </li>
-                        <li class="m_2"><a href="#"><i class="fa fa-user"></i> Thông tin</a></li>
-                        <li class="m_2"><a href="#"><i class="fa fa-wrench"></i> Đổi mật khẩu</a></li>
-                        <li class="m_2"><a href="#"><i class="fa fa-lock"></i> Đăng xuất</a></li>
-                    </ul>
+                        <li class="linkk m_2"><a href="@Url.Action("ThongTin","TaiKhoan",new {@id=Session["MaTK"] })"><i class="fa fa-user"></i> Thông tin</a></li>
+                        <li class="linkk m_2"><a href="@Url.Action("DoiMatKhau","TaiKhoan",new {@id=Session["MaTK"] })"><i class="fa fa-wrench"></i> Đổi mật khẩu</a></li>
+                        <li class="linkk m_2"><a onclick="dangxuat();" style="cursor:pointer;" id="linkDangXuat"><i class="fa fa-lock"></i> Đăng xuất</a></li>
+                    </ul> 
                 </li>
             </ul>
             <div class="navbar-default sidebar" role="navigation">
@@ -91,5 +92,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- /#wrapper -->
     <!-- Bootstrap Core JavaScript -->
     <script src="~/Content/admin/js/bootstrap.min.js"></script>
+    <style>
+        .linkk:hover {
+            color: red;
+        }
+    </style>
+    <script>
+    function dangxuat() {
+        var r = confirm("Bạn có chắn chắn muốn Đăng xuất?");
+        if (r == true) {
+            window.location.href = '@Url.Action("DangXuat","TaiKhoan")';
+        } else {
+            return false;
+        }
+    }
+    </script>
 </body>
 </html>

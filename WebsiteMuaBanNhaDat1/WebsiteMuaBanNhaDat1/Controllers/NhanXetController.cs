@@ -21,6 +21,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             var model = db.NhanXet.Where(n=>n.ma_tinrao==_ma_tinrao).ToList();
             ViewBag.NhanXet = model;
             var url = Url.Action("ChiTiet", "ChiTietTinRao", new { ma_tinrao = _ma_tinrao, ma_loaihinh = _ma_loaihinh });
+            var nhom = db.LoaiHinh.SingleOrDefault(n => n.ma_loaihinh == _ma_loaihinh).nhom.ToString();
             if (ModelState.IsValid)
             {
                 try
@@ -32,6 +33,14 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                         nx.noidung = noidung;
                         nx.thanhvien = false;
                         nx.ngaydang = DateTime.Now;
+                    if (nhom == "CBCHT")
+                    {
+                        nx.ghichu = "1";
+                    }
+                    else
+                    {
+                        nx.ghichu = "2";
+                    }
                         db.NhanXet.Add(nx);
                         db.SaveChanges();
                         ViewBag.KetQua = "Đăng ký nhận tin thành công!";
@@ -80,6 +89,7 @@ namespace WebsiteMuaBanNhaDat1.Controllers
             var model = db.NhanXet.Where(n => n.ma_tinrao == _ma_tinrao).ToList();
             ViewBag.NhanXet = model;
             var url = Url.Action("ChiTiet", "ChiTietTinRao", new { ma_tinrao = _ma_tinrao, ma_loaihinh = _ma_loaihinh });
+            var nhom = db.LoaiHinh.SingleOrDefault(n => n.ma_loaihinh == _ma_loaihinh).nhom.ToString();
 
             if (ModelState.IsValid)
             {
@@ -92,7 +102,15 @@ namespace WebsiteMuaBanNhaDat1.Controllers
                         nx.noidung = noidung;
                         nx.thanhvien = true;
                         nx.ngaydang = DateTime.Now;
-                        db.NhanXet.Add(nx);
+                    if (nhom == "CBCHT")
+                    {
+                        nx.ghichu = "1";
+                    }
+                    else
+                    {
+                        nx.ghichu = "2";
+                    }
+                    db.NhanXet.Add(nx);
                         db.SaveChanges();
                     //--------------------------------------
                     MailMessage mail = new MailMessage();
